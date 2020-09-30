@@ -1,0 +1,25 @@
+# network
+network: "medalla"
+
+# p2p
+p2p-enabled: true
+p2p-port: 9001
+
+# validators
+#validators-key-file: "validator_keys.yaml"
+
+# deposit
+eth1-endpoint: http://geth:8545
+
+# metrics
+metrics-enabled: true
+metrics-categories: ["BEACON","LIBP2P","NETWORK"]
+
+# database
+data-path: "/opt/teku/data"
+data-storage-mode: "archive"
+
+# beacon rest api
+rest-api-port: 5051
+rest-api-docs-enabled: true
+rest-api-enabled: true
