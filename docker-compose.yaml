@@ -68,7 +68,6 @@ volumes:
   v_prysm_data:
   v_lighthouse_data:
   v_lighthouse_network:
-  v_lighthouse_scripts:
   v_teku_data:
 
 # EOF
