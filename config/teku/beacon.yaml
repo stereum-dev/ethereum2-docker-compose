@@ -23,3 +23,5 @@ data-storage-mode: "archive"
 rest-api-port: 5051
 rest-api-docs-enabled: true
 rest-api-enabled: true
+
+log-destination: console
