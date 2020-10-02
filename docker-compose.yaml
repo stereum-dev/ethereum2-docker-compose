@@ -67,8 +67,7 @@ services:
   vouch:
     image: attestant/vouch:${VOUCH_DOCKER_TAG}
     restart: always
-    environment:
-      - "VOUCH_BASE_DIR=/config/"
+    command: ["--base-dir=/config"]
     volumes:
       - ./config/vouch/vouch.yml:/config/vouch.yml:ro
       - ./config/vouch/certs:/config/certs:ro
@@ -78,8 +77,7 @@ services:
   dirk:
     image: attestant/dirk:${DIRK_DOCKER_TAG}
     restart: always
-    environment:
-      - "DIRK_BASE_DIR=/config/"
+    command: ["--base-dir=/config"]
     volumes:
       - ./config/dirk/dirk.yml:/config/dirk.yml:ro
       - ./config/dirk/certs:/config/certs:ro
