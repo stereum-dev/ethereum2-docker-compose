@@ -1,0 +1,46 @@
+# log-level is the global log level for Vouch logging.
+log-level: Debug
+
+# metrics is the module that logs metrics, in this case using prometheus.
+metrics:
+  prometheus:
+    # log-level is the log level for this module, over-riding the global level.
+    log-level: warn
+    # listen-address is the address on which prometheus listens for metrics requests.
+    listen-address: 0.0.0.0:8081
+
+# graffiti provides graffiti data.  Full details are in the separate document.
+graffiti:
+  static:
+    value: stefa2k/ethereum2-docker-compose
+
+# submitter submits data to beacon nodes.  If not present the nodes in beacon-node-address above will be used.
+submitter:
+  # style can currently only be 'all'
+  style: all
+  # beacon-node-addresses is the list of addresses to which submit.  Submissions run in parallel
+  beacon-node-addresses:
+    - prysm_node:4000
+    - teku_node:5051
+    - lighthouse_node:5052
+
+# strategies provide advanced strategies for dealing with multiple beacon nodes
+strategies:
+  beaconblockproposal:
+    # style can be 'best', which obtains blocks from all nodes and compares them, or 'first', which uses the first returned
+    style: best
+    # beacon-node-addresses are the addresses of beacon nodes to use for this strategy.
+    beacon-node-addresses:
+      - prysm_node:4000
+      - teku_node:5051
+      - lighthouse_node:5052
+
+accountmanager:
+  dirk:
+    endpoints:
+      - dirk:8881
+    client-cert: file:///config/certs/vouch.crt
+    client-key: file:///config/certs/vouch.key
+    ca-cert: file:///config/certs/ca.crt
+    accounts:
+      - wallet

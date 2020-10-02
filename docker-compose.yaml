@@ -63,11 +63,38 @@ services:
       - 127.0.0.1:5051:5051/tcp
     <<: *logging
 
+  vouch:
+    image: attestant/vouch:${VOUCH_DOCKER_TAG}
+    restart: always
+    environment:
+      - "VOUCH_BASE_DIR=/config/"
+    volumes:
+      - ./config/vouch/vouch.yaml:/config/vouch.yml:ro
+      - ./config/vouch/certs:/config/certs:ro
+    # ports:
+    <<: *logging
+  
+  dirk:
+    image: attestant/dirk:${DIRK_DOCKER_TAG}
+    restart: always
+    environment:
+      - "DIRK_BASE_DIR=/config/"
+    volumes:
+      - ./config/dirk/dirk.yml:/config/dirk.yml:ro
+      - ./config/dirk/certs:/config/certs:ro
+      - ./wallets:/wallets:ro
+      - ./config/dirk/passphrases:/config/passphrases:ro
+      - v_dirk_data:/data
+    # ports:
+    <<: *logging
+
+
 volumes:
   v_geth_data:
   v_prysm_data:
   v_lighthouse_data:
   v_lighthouse_network:
   v_teku_data:
+  v_dirk_data:
 
 # EOF
