@@ -69,7 +69,7 @@ services:
     environment:
       - "VOUCH_BASE_DIR=/config/"
     volumes:
-      - ./config/vouch/vouch.yaml:/config/vouch.yml:ro
+      - ./config/vouch/vouch.yml:/config/vouch.yml:ro
       - ./config/vouch/certs:/config/certs:ro
     # ports:
     <<: *logging
