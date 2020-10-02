@@ -51,6 +51,7 @@ services:
 
   teku_node:
     image: pegasyseng/teku:${TEKU_DOCKER_TAG}
+    user: "0:0"
     restart: always
     command: ["--config-file=/opt/teku/beacon.yaml"]
     environment:
