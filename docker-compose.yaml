@@ -87,6 +87,20 @@ services:
     # ports:
     <<: *logging
 
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus:v2.21.0
+    user: root # https://github.com/prometheus/prometheus/issues/5976
+    restart: on-failure
+    hostname: prometheus
+    command: --storage.tsdb.retention.time=7d --config.file=/etc/prometheus/prometheus.yml
+    ports:
+    - 127.0.0.1:9090:9090
+    volumes:
+    - ./config/prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml
+    - v_prometheus:/prometheus
+    <<: *logging
+
 
 volumes:
   v_geth_data:
@@ -95,5 +109,6 @@ volumes:
   v_lighthouse_network:
   v_teku_data:
   v_dirk_data:
+  v_prometheus:
 
 # EOF

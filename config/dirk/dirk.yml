@@ -32,7 +32,7 @@ stores:
 metrics:
   # listen-address is where Dirk's Prometheus server will present.  If this value is not present then Dirk
   # will not gather metrics.
-  listen-address: localhost:8181
+  listen-address: 0.0.0.0:8181
 peers:
   # These are the IDs and addresses of the peers with which Dirk can communicate for distributed key generation.
   # At a minimum it must include this instance.
