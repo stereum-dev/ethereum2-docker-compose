@@ -38,7 +38,7 @@ strategies:
 accountmanager:
   dirk:
     endpoints:
-      - dirk:8881
+      - dirk:13141
     client-cert: file:///config/certs/vouch.crt
     client-key: file:///config/certs/vouch.key
     ca-cert: file:///config/certs/ca.crt

@@ -12,7 +12,7 @@ server:
   name: dirk1.medalla.eth2
   # listen-address is the interface and port on which Dirk will listen for requests; change `127.0.0.1`
   # to `0.0.0.0` to listen on all network interfaces.
-  listen-address: 127.0.0.1:13141
+  listen-address: 0.0.0.0:13141
   # storage-path is the path where information created by the slashing protection system is stored.
   storage-path: /data/protection
 certificates:
