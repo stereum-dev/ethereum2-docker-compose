@@ -16,6 +16,8 @@ services:
       - 30303:30303/tcp
       - 30303:30303/udp
       - 127.0.0.1:8545:8545
+      - 127.0.0.1:8546:8546
+      - 127.0.0.1:8547:8547
     volumes:
       - v_geth_data:/root/.ethereum
     <<: *logging
@@ -60,7 +62,8 @@ services:
       - ./config/teku/beacon.yaml:/opt/teku/beacon.yaml:ro
       - v_teku_data:/opt/teku/data
     ports:
-      - 9001:9001
+      - 9001:9001/tcp
+      - 9001:9001/udp
       - 127.0.0.1:5051:5051/tcp
     <<: *logging
 
