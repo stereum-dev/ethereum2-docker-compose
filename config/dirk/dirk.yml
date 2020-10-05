@@ -49,5 +49,5 @@ process:
   generation-passphrase: file:///config/passphrases/account-passphrase.txt
 permissions:
   # This permission allows client1 the ability to carry out all operations on accounts in wallet1.
-  dirk1.medalla.eth2:
+  vouch1.medalla.eth2:
     wallet: All
