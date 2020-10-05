@@ -43,4 +43,4 @@ accountmanager:
     client-key: file:///config/certs/vouch.key
     ca-cert: file:///config/certs/ca.crt
     accounts:
-      - wallet
+      - .*

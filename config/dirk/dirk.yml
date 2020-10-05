@@ -9,7 +9,7 @@ server:
   # id should be randomly chosen 8-digit numeric ID; it must be unique across all of your Dirk instances.
   id: 73690039
   # name is the name of your server, as specified in its SSL certificate.
-  name: dirk1.medalla.eth2
+  name: dirk
   # listen-address is the interface and port on which Dirk will listen for requests; change `127.0.0.1`
   # to `0.0.0.0` to listen on all network interfaces.
   listen-address: 0.0.0.0:13141
@@ -49,5 +49,5 @@ process:
   generation-passphrase: file:///config/passphrases/account-passphrase.txt
 permissions:
   # This permission allows client1 the ability to carry out all operations on accounts in wallet1.
-  vouch1.medalla.eth2:
-    wallet: All
+  vouch:
+    .*: All
