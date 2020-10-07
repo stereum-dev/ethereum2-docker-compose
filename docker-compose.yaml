@@ -11,7 +11,7 @@ services:
   geth:
     image: ethereum/client-go:v1.9.14
     restart: always
-    command: --goerli --rpc --rpcport=8545 --rpcaddr=0.0.0.0 --rpcvhosts="*" --allow-insecure-unlock --rpcapi="db,eth,net,web3,personal"
+    command: --goerli --rpc --rpcport=8545 --rpcaddr=0.0.0.0 --rpcvhosts="*" --allow-insecure-unlock --rpcapi="db,eth,net,web3,personal" --pprof --pprofaddr=0.0.0.0 --pprofport=6060 --metrics
     ports:
       - 30303:30303/tcp
       - 30303:30303/udp
