@@ -26,10 +26,12 @@ This docker-compose includes all parts to run and monitor an Ethereum 2.0 stakin
 ### Certificates
 Generate a client certificate for vouch and a server certificate for dirk. There are a number of ways to generate them, one way is the use of [easy-rsa](https://help.endian.com/hc/en-us/articles/360009201753-How-to-generate-and-import-CA-Server-and-Client-certificates-from-an-external-host). Copy the certificates to:
 
+**Vouch**
 * `./config/vouch/certs/ca.crt` CA public key of server certificate for **dirk**
 * `./config/vouch/certs/vouch.crt` public key of server certificate for vouch (CN=vouch)
 * `./config/vouch/certs/vouch.key` private key of server certificate for vouch
 
+**Dirk**
 * `./config/dirk/certs/ca.crt` CA public key of server certificate for dirk
 * `./config/dirk/certs/dirk.crt` public key of server certificate for dirk (CN=dirk)
 * `./config/dirk/certs/dirk.key` private key of server certificate for dirk
