@@ -20,13 +20,13 @@ scrape_configs:
       - targets: ['geth:6060']
   - job_name: 'prysm'
     static_configs:
-      - targets: ['prysm_node:8081']
+      - targets: ['prysm_beacon:8080']
   - job_name: 'lighthouse'
     static_configs:
-      - targets: ['lighthouse_node:5052']
+      - targets: ['lighthouse_beacon:5052']
   - job_name: 'teku'
     static_configs:
-      - targets: ['teku_node:5051']
+      - targets: ['teku_beacon:5051']
   - job_name: 'vouch1'
     static_configs:
       - targets: ['vouch:8081']
