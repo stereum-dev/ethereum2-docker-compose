@@ -112,7 +112,7 @@ services:
 
   grafana:
     container_name: grafana
-    image: grafana/grafana:7.0.3
+    image: grafana/grafana:7.2.1
     restart: on-failure
     hostname: grafana
     depends_on:
