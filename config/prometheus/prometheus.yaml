@@ -25,8 +25,9 @@ scrape_configs:
     static_configs:
       - targets: ['lighthouse_beacon:5052']
   - job_name: 'teku'
+    metrics_path: /metrics
     static_configs:
-      - targets: ['teku_beacon:5051']
+      - targets: ['teku_beacon:8008']
   - job_name: 'vouch1'
     static_configs:
       - targets: ['vouch:8081']

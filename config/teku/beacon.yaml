@@ -14,6 +14,8 @@ eth1-endpoint: http://geth:8545
 # metrics
 metrics-enabled: true
 metrics-categories: ["BEACON","LIBP2P","NETWORK"]
+metrics-port: 8008
+metrics-interface: 0.0.0.0
 
 # database
 data-path: "/opt/teku/data"
