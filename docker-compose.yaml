@@ -110,6 +110,20 @@ services:
     - v_prometheus:/prometheus
     <<: *logging
 
+  grafana:
+    container_name: grafana
+    image: grafana/grafana:7.0.3
+    restart: on-failure
+    hostname: grafana
+    depends_on:
+      - prometheus
+    ports:
+      - 127.0.0.1:3000:3000
+    volumes:
+      - ./config/grafana/provisioning:/etc/grafana/provisioning
+      - v_grafana_data:/var/lib/grafana
+    <<: *logging
+
 
 volumes:
   v_geth_data:
