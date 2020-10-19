@@ -61,7 +61,7 @@ services:
     restart: always
     command: ["--config-file=/opt/teku/beacon.yaml"]
     environment:
-      - "JAVA_OPTS=-Xmx2g"
+      - "JAVA_OPTS=-Xmx4g"
     volumes:
       - ./config/teku/beacon.yaml:/opt/teku/beacon.yaml:ro
       - v_teku_data:/opt/teku/data
