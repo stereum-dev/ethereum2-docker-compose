@@ -26,3 +26,5 @@ p2p-tcp-port: 13000
 ##############################
 # Connection to geth container
 http-web3provider: http://geth:8545
+
+blst: yes
