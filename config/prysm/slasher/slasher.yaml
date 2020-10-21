@@ -1,0 +1,20 @@
+############################################################
+##
+## Read up on parameters on
+## https://docs.prylabs.network/docs/prysm-usage/parameters/
+##
+############################################################
+
+accept-terms-of-use: yes
+
+datadir: /data
+
+##############
+# Connectivity
+beacon-rpc-provider: prysm_beacon_slasher:4000
+monitoring-host: 0.0.0.0
+monitoring-port: 8680
+rpc-host: 0.0.0.0
+
+# Enables historical attestation detection for the slasher
+enable-historical-detection: yes

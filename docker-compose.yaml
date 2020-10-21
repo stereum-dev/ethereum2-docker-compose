@@ -36,7 +36,34 @@ services:
       - 13000:13000/tcp
       - 12000:12000/udp
     <<: *logging
-    
+
+  prysm_beacon_slasher:
+    container_name: prysm_beacon_slasher
+    image: gcr.io/prysmaticlabs/prysm/beacon-chain:${PRYSM_DOCKER_TAG}
+    restart: always
+    command: --config-file=/config/beacon.yaml
+    volumes:
+      - ./config/prysm/slasher/beacon.yaml:/config/beacon.yaml:ro
+      - v_prysm_beacon_slasher_data:/data
+    ports:
+      - 127.0.0.1:4001:4000
+      - 13001:13000/tcp
+      - 12001:12000/udp
+    <<: *logging
+
+  prysm_slasher:
+    container_name: prysm_slasher
+    image: gcr.io/prysmaticlabs/prysm/slasher:${PRYSM_SLASHER_DOCKER_TAG}
+    restart: always
+    hostname: slasher
+    depends_on:
+      - prysm_beacon_slasher
+    command: --config-file=/config/slasher.yaml
+    volumes:
+      - ./config/prysm/slasher/slasher.yaml:/config/slasher.yaml:ro
+      - v_prysm_slasher_data:/data
+    <<: *logging
+
   lighthouse_beacon:
     container_name: lighthouse_beacon
     image: sigp/lighthouse:${LIGHTHOUSE_DOCKER_TAG}
@@ -128,6 +155,8 @@ services:
 volumes:
   v_geth_data:
   v_prysm_data:
+  v_prysm_beacon_slasher_data:
+  v_prysm_slasher_data:
   v_lighthouse_data:
   v_lighthouse_network:
   v_teku_data:
