@@ -12,12 +12,15 @@ This docker-compose includes all parts to run and monitor an Ethereum 2.0 stakin
 * Lighthouse beacon node
 * Teku beacon node
 
+* Additional Prysm beacon node (for slasher)
+* Prysm slasher
+
 * Vouch
 * Dirk
 
 ### Monitoring
 * prometheus
-* grafana (wip)
+* grafana
 
 **All services are enabled by default.**
 
@@ -43,7 +46,7 @@ Vouch and dirk need to be aware of the wallets. Copy the [ethdo](https://github.
 
 Edit the following files to allow dirk to decrypt the wallet/accounts with passwords:
 * `./config/dirk/passphrases/account-passphrase.txt`
-* `config/dirk/passphrases/wallet-passphrase.txt`
+* `./config/dirk/passphrases/wallet-passphrase.txt`
 
 ## Monitoring
 
