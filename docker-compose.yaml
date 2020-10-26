@@ -20,7 +20,7 @@ services:
       - 127.0.0.1:8546:8546
       - 127.0.0.1:8547:8547
     volumes:
-      - v_geth_data:/root/.ethereum
+      - ./data/geth:/root/.ethereum
     networks:
       - n_bridge
     <<: *logging
@@ -32,7 +32,7 @@ services:
     command: --config-file=/config/beacon.yaml
     volumes:
       - ./config/prysm/beacon.yaml:/config/beacon.yaml:ro
-      - v_prysm_data:/data
+      - ./data/prysm/beacon:/data
     ports:
       - 127.0.0.1:4000:4000
       - 13000:13000/tcp
@@ -49,7 +49,7 @@ services:
     command: --config-file=/config/beacon.yaml
     volumes:
       - ./config/prysm/slasher/beacon.yaml:/config/beacon.yaml:ro
-      - v_prysm_beacon_slasher_data:/data
+      - ./data/prysm/beacon-slasher:/data
     ports:
       - 127.0.0.1:4001:4000
       - 13001:13000/tcp
@@ -70,7 +70,7 @@ services:
     command: --config-file=/config/slasher.yaml
     volumes:
       - ./config/prysm/slasher/slasher.yaml:/config/slasher.yaml:ro
-      - v_prysm_slasher_data:/data
+      - ./data/prysm/slasher:/data
     networks:
       - n_slasher_beacon
     <<: *logging
@@ -83,8 +83,8 @@ services:
     env_file: ./config/lighthouse/.env
     volumes:
       - ./config/lighthouse/start-beacon-node.sh:/root/scripts/start-beacon-node.sh:ro
-      - v_lighthouse_data:/root/.lighthouse
-      - v_lighthouse_network:/root/network
+      - ./data/sigmaprime/lighthouse:/root/.lighthouse
+      - ./data/sigmaprime/lighthouse-network:/root/network
     ports:
       - 127.0.0.1:5052:5052/tcp
       - 127.0.0.1:5053:5053/tcp
@@ -105,7 +105,7 @@ services:
       - "JAVA_OPTS=-Xmx8g"
     volumes:
       - ./config/teku/beacon.yaml:/opt/teku/beacon.yaml:ro
-      - v_teku_data:/opt/teku/data
+      - ./data/consensys/teku:/opt/teku/data
     ports:
       - 9001:9001/tcp
       - 9001:9001/udp
@@ -138,7 +138,7 @@ services:
       - ./config/dirk/certs:/config/certs:ro
       - ./wallets:/wallets:ro
       - ./config/dirk/passphrases:/config/passphrases:ro
-      - v_dirk_data:/data
+      - ./data/attestant/dirk:/data
     networks:
       - n_dirk_vouch
     <<: *logging
@@ -153,8 +153,8 @@ services:
     ports:
     - 127.0.0.1:9090:9090
     volumes:
-    - ./config/prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml
-    - v_prometheus:/prometheus
+    - ./config/prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml:ro
+    - ./data/prometheus:/prometheus
     networks:
       - n_grafana_prometheus
       - n_dirk_vouch
@@ -172,24 +172,11 @@ services:
     ports:
       - 127.0.0.1:3000:3000
     volumes:
-      - ./config/grafana/provisioning:/etc/grafana/provisioning
-      - v_grafana_data:/var/lib/grafana
+      - ./config/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./data/grafana:/var/lib/grafana
     networks:
       - n_grafana_prometheus
     <<: *logging
-
-
-volumes:
-  v_geth_data:
-  v_prysm_data:
-  v_prysm_beacon_slasher_data:
-  v_prysm_slasher_data:
-  v_lighthouse_data:
-  v_lighthouse_network:
-  v_teku_data:
-  v_dirk_data:
-  v_prometheus:
-  v_grafana_data:
 
 networks:
   # bridge network - this networks gets internet access!
