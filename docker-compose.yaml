@@ -21,6 +21,8 @@ services:
       - 127.0.0.1:8547:8547
     volumes:
       - v_geth_data:/root/.ethereum
+    networks:
+      - n_bridge
     <<: *logging
 
   prysm_beacon:
@@ -35,6 +37,9 @@ services:
       - 127.0.0.1:4000:4000
       - 13000:13000/tcp
       - 12000:12000/udp
+    networks:
+      - n_vouch_beacons
+      - n_bridge
     <<: *logging
 
   prysm_beacon_slasher:
@@ -49,6 +54,10 @@ services:
       - 127.0.0.1:4001:4000
       - 13001:13000/tcp
       - 12001:12000/udp
+    networks:
+      - n_vouch_beacons
+      - n_bridge
+      - n_slasher_beacon
     <<: *logging
 
   prysm_slasher:
@@ -62,6 +71,8 @@ services:
     volumes:
       - ./config/prysm/slasher/slasher.yaml:/config/slasher.yaml:ro
       - v_prysm_slasher_data:/data
+    networks:
+      - n_slasher_beacon
     <<: *logging
 
   lighthouse_beacon:
@@ -79,6 +90,9 @@ services:
       - 127.0.0.1:5053:5053/tcp
       - 9000:9000/tcp
       - 9000:9000/udp
+    networks:
+      - n_vouch_beacons
+      - n_bridge
     <<: *logging
 
   teku_beacon:
@@ -96,6 +110,9 @@ services:
       - 9001:9001/tcp
       - 9001:9001/udp
       - 127.0.0.1:5051:5051/tcp
+    networks:
+      - n_vouch_beacons
+      - n_bridge
     <<: *logging
 
   vouch:
@@ -106,7 +123,9 @@ services:
     volumes:
       - ./config/vouch/vouch.yml:/config/vouch.yml:ro
       - ./config/vouch/certs:/config/certs:ro
-    # ports:
+    networks:
+      - n_dirk_vouch
+      - n_vouch_beacons
     <<: *logging
   
   dirk:
@@ -120,7 +139,8 @@ services:
       - ./wallets:/wallets:ro
       - ./config/dirk/passphrases:/config/passphrases:ro
       - v_dirk_data:/data
-    # ports:
+    networks:
+      - n_dirk_vouch
     <<: *logging
 
   prometheus:
@@ -135,6 +155,11 @@ services:
     volumes:
     - ./config/prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml
     - v_prometheus:/prometheus
+    networks:
+      - n_grafana_prometheus
+      - n_dirk_vouch
+      - n_vouch_beacons
+      - n_slasher_beacon
     <<: *logging
 
   grafana:
@@ -149,6 +174,8 @@ services:
     volumes:
       - ./config/grafana/provisioning:/etc/grafana/provisioning
       - v_grafana_data:/var/lib/grafana
+    networks:
+      - n_grafana_prometheus
     <<: *logging
 
 
@@ -163,5 +190,25 @@ volumes:
   v_dirk_data:
   v_prometheus:
   v_grafana_data:
+
+networks:
+  # bridge network - this networks gets internet access!
+  n_bridge:
+    
+  # vouch to beacons
+  n_vouch_beacons:
+    internal: yes
+  
+  # slasher to beacon:
+  n_slasher_beacon:
+    internal: yes
+  
+  # dirk to vouch
+  n_dirk_vouch:
+    internal: yes
+  
+  # grafana to prometheus
+  n_grafana_prometheus:
+    internal: yes
 
 # EOF
