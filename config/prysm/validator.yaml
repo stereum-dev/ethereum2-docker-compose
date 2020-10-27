@@ -18,8 +18,6 @@ datadir: /data/db
 wallet-dir: /data/wallets
 wallet-password-file: /data/passwords/wallet-password
 
-web: yes
-
 ###########
 # Fun Stuff
 graffiti: ""
