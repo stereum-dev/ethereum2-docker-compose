@@ -1,5 +1,9 @@
 # Multiclient with Vouch & Dirk
 
+## Requirements
+* Understanding of TLS/SSL and how to create CA, issue certificates
+* Server with a minimum of 6 cores/12 threads & 32 gb memory & 256 gb of storage
+
 ## Services
 
 ### Ethereum 1
