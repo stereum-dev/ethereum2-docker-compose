@@ -1,10 +1,6 @@
 # log-level is the global log level for Dirk logging.
 log-level: Debug
-# log-levels contain override log levels for individual modules.  A full list of modules is supplied later
-# in this document.
-log-levels:
-  signer: Trace
-  accountmanager: None
+
 server:
   # id should be randomly chosen 8-digit numeric ID; it must be unique across all of your Dirk instances.
   id: 73690039

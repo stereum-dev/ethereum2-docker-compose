@@ -1,7 +1,7 @@
 # log-level is the global log level for Vouch logging.
 log-level: Debug
 
-beacon-node-address: prysm_beacon:4000
+beacon-node-address: lighthouse_beacon:5052
 
 # metrics is the module that logs metrics, in this case using prometheus.
 metrics:
