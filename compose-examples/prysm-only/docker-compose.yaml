@@ -9,7 +9,6 @@ x-logging: &logging
 
 services:
   geth:
-    container_name: geth
     image: ethereum/client-go:v1.9.14
     restart: always
     hostname: geth
@@ -23,7 +22,6 @@ services:
     <<: *logging
 
   beacon:
-    container_name: beacon-chain
     image: gcr.io/prysmaticlabs/prysm/beacon-chain:${PRYSM_DOCKER_TAG}
     restart: always
     hostname: beacon-chain
@@ -35,12 +33,11 @@ services:
       - 13000:13000/tcp
       - 12000:12000/udp
     volumes:
-      - ./config/prysm/beacon.yaml:/config/beacon.yaml:ro
+      - ./config/prysm/slasher/beacon.yaml:/config/beacon.yaml:ro
       - ./data/prysm/beacon-slasher:/data
     <<: *logging
 
   validator:
-    container_name: validator
     image: gcr.io/prysmaticlabs/prysm/validator:${PRYSM_DOCKER_TAG}
     restart: on-failure
     hostname: validator
@@ -53,7 +50,6 @@ services:
     <<: *logging
 
   slasher:
-    container_name: slasher
     image: gcr.io/prysmaticlabs/prysm/slasher:${PRYSM_DOCKER_TAG}
     restart: always
     hostname: slasher
@@ -66,7 +62,6 @@ services:
     <<: *logging
 
   prometheus:
-    container_name: prometheus
     image: prom/prometheus:v2.19.0
     user: root # https://github.com/prometheus/prometheus/issues/5976
     restart: on-failure
@@ -80,7 +75,6 @@ services:
     <<: *logging
 
   grafana:
-    container_name: grafana
     image: grafana/grafana:7.0.3
     restart: on-failure
     hostname: grafana
