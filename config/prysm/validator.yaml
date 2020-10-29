@@ -1,0 +1,23 @@
+############################################################
+##
+## Read up on parameters on
+## https://docs.prylabs.network/docs/prysm-usage/parameters/
+##
+############################################################
+
+accept-terms-of-use: yes
+
+##############
+# Connectivity
+beacon-rpc-provider: beacon:4000
+monitoring-host: 0.0.0.0
+
+#####################################
+# Validator database, accounts & key management
+datadir: /data/db
+wallet-dir: /data/wallets
+wallet-password-file: /data/passwords/wallet-password
+
+###########
+# Fun Stuff
+graffiti: ""

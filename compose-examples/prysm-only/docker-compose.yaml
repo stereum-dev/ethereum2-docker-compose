@@ -1,0 +1,90 @@
+version: "3.7"
+
+x-logging: &logging
+  logging:
+    driver: "json-file"
+    options:
+      max-file: "10"
+      max-size: "100m"
+
+services:
+  geth:
+    image: ethereum/client-go:v1.9.14
+    restart: always
+    hostname: geth
+    command: --goerli --rpc --rpcport=8545 --rpcaddr=0.0.0.0 --rpcvhosts="*" --allow-insecure-unlock --rpcapi="db,eth,net,web3,personal"
+    ports:
+      - 30303:30303/tcp
+      - 30303:30303/udp
+      - 127.0.0.1:8545:8545
+    volumes:
+      - ./data/geth:/root/.ethereum
+    <<: *logging
+
+  beacon:
+    image: gcr.io/prysmaticlabs/prysm/beacon-chain:${PRYSM_DOCKER_TAG}
+    restart: always
+    hostname: beacon-chain
+    depends_on:
+      - geth
+    command: --config-file=/config/beacon.yaml
+    ports:
+      - 127.0.0.1:4000:4000
+      - 13000:13000/tcp
+      - 12000:12000/udp
+    volumes:
+      - ./config/prysm/slasher/beacon.yaml:/config/beacon.yaml:ro
+      - ./data/prysm/beacon-slasher:/data
+    <<: *logging
+
+  validator:
+    image: gcr.io/prysmaticlabs/prysm/validator:${PRYSM_DOCKER_TAG}
+    restart: on-failure
+    hostname: validator
+    depends_on:
+      - beacon
+    command: --config-file=/config/validator.yaml
+    volumes:
+      - ./config/prysm/validator.yaml:/config/validator.yaml:ro
+      - ./data/prysm/validator:/data
+    <<: *logging
+
+  slasher:
+    image: gcr.io/prysmaticlabs/prysm/slasher:${PRYSM_DOCKER_TAG}
+    restart: always
+    hostname: slasher
+    depends_on:
+      - beacon
+    command: --config-file=/config/slasher.yaml
+    volumes:
+      - ./config/prysm/slasher/slasher.yaml:/config/slasher.yaml:ro
+      - ./data/prysm/slasher:/data
+    <<: *logging
+
+  prometheus:
+    image: prom/prometheus:v2.19.0
+    user: root # https://github.com/prometheus/prometheus/issues/5976
+    restart: on-failure
+    hostname: prometheus
+    command: --storage.tsdb.retention.time=31d --config.file=/etc/prometheus/prometheus.yml
+    ports:
+      - 127.0.0.1:9090:9090
+    volumes:
+      - ./config/prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml
+      - ./data/prometheus:/prometheus
+    <<: *logging
+
+  grafana:
+    image: grafana/grafana:7.0.3
+    restart: on-failure
+    hostname: grafana
+    depends_on:
+      - prometheus
+    ports:
+      - 127.0.0.1:3000:3000
+    volumes:
+      - ./config/grafana/provisioning:/etc/grafana/provisioning
+      - ./data/grafana:/var/lib/grafana
+    <<: *logging
+
+# EOF
