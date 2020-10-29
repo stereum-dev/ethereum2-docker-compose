@@ -85,6 +85,6 @@ services:
     volumes:
       - ./config/grafana/provisioning:/etc/grafana/provisioning
       - ./data/grafana:/var/lib/grafana
-<<: *logging
+    <<: *logging
 
 # EOF
