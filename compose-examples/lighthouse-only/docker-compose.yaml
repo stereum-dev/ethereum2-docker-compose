@@ -17,8 +17,6 @@ services:
       - 30304:30303/udp
     volumes:
       - ./data/geth:/root/.ethereum
-    networks:
-      - n_bridge
     <<: *logging
   beacon:
     image: sigp/lighthouse:${LIGHTHOUSE_DOCKER_TAG}
