@@ -62,5 +62,6 @@ Todo
 Todo
 
 ## FAQ
-### I want to use a specific Ethereum 1 node!
-Todo
+### I want to use a specific Ethereum 1 node, like Infura.io!
+1. Edit `./config/lighthouse/.env` and set `VOTING_ETH1_NODE=` to your external Ethereum 1 node, e. g. `VOTING_ETH1_NODE=https://goerli.infura.io:443/v3/put-your-infura-id-here`.
+2. Copy `./compose-examples/lighthouse-only/override-examples/docker-compose.no-geth.override.yaml` to `./docker-compose.override.yaml`. This will prevent geth from starting.
