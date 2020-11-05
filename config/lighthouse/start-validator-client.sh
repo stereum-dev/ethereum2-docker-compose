@@ -23,6 +23,10 @@ if [ "$START_VALIDATOR" != "" ]; then
 			--reuse-password \
 			--stdin-inputs
 	else
+		if [ ! -d $DATADIR ]; then
+			mkdir $DATADIR
+		fi
+
 		if [ ! -d $DATADIR/secrets ]; then
 			cd $DATADIR; mkdir secrets
 		fi
@@ -55,5 +59,6 @@ if [ "$START_VALIDATOR" != "" ]; then
 		--debug-level $DEBUG_LEVEL \
 		--testnet $TESTNET \
 		validator \
-		--beacon-node http://beacon_node:5052
+		--beacon-node http://beacon:5052 \
+		--init-slashing-protection
 fi
