@@ -2,6 +2,7 @@
 
 ## Requirements
 * Understanding of TLS/SSL and how to create CA, issue certificates
+* Intermediate knowledge of Ethereum (1 & 2)
 * Server with a minimum of 6 cores/12 threads & 32 gb memory & 256 gb of storage
 
 ## Services
