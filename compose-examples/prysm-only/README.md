@@ -34,7 +34,7 @@ Please complete the steps on [launchpad](https://medalla.launchpad.ethereum.org/
 
 1. Generate your validator(s) using [launchpad](https://medalla.launchpad.ethereum.org/) and complete the process
 2. Copy your generated validator(s) from `~/eth2.0-deposit-cli/validator_keys` to `./launchpad/eth2.0-deposit-cli/validator_keys`
-2. Run `docker-compose -f create-account.yaml run validator-import-launchpad` and use the **same password** as in the generation of the validator(s)
+3. Run `docker-compose -f create-account.yaml run validator-import-launchpad` and use the **same password** as in the generation of the validator(s)
 
 You can repeat step 2 & 3 as often as you like, make sure to restart your validator to make it notice your new accounts!
 
