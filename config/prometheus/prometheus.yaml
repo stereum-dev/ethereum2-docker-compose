@@ -26,7 +26,7 @@ scrape_configs:
       - targets: ['prysm_slasher:8680']
   - job_name: 'lighthouse'
     static_configs:
-      - targets: ['lighthouse_beacon:5052']
+      - targets: ['lighthouse_beacon:5054']
   - job_name: 'teku'
     metrics_path: /metrics
     static_configs:
