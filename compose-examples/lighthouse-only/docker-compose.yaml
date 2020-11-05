@@ -1,0 +1,46 @@
+version: "3.7"
+
+x-logging: &logging
+  logging:
+    driver: "json-file"
+    options:
+      max-file: "10"
+      max-size: "100m"
+
+services:
+  geth:
+    image: ethereum/client-go:${GETH_DOCKER_TAG}
+    restart: always
+    command: --goerli --rpc --rpcport=8545 --rpcaddr=0.0.0.0 --rpcvhosts="*" --allow-insecure-unlock --rpcapi="db,eth,net,web3,personal" --pprof --pprofaddr=0.0.0.0 --pprofport=6060 --metrics
+    ports:
+      - 30304:30303/tcp
+      - 30304:30303/udp
+    volumes:
+      - ./data/geth:/root/.ethereum
+    <<: *logging
+  beacon:
+    image: sigp/lighthouse:${LIGHTHOUSE_DOCKER_TAG}
+    volumes:
+      - ./data/sigmaprime/lighthouse:/root/.lighthouse
+      - ./config/lighthouse/start-beacon-node.sh:/root/scripts/start-beacon-node.sh:ro
+    ports:
+      - 9000:9000/tcp
+      - 9000:9000/udp
+    env_file: ./config/lighthouse/.env
+    command: sh /root/scripts/start-beacon-node.sh
+    restart: on-failure
+    <<: *logging
+  validator:
+    image: sigp/lighthouse:${LIGHTHOUSE_DOCKER_TAG}
+    volumes:
+      - ./data/sigmaprime/validator:/root/.lighthouse
+      - ./config/scripts/start-validator-client.sh:/root/scripts/start-validator-client.sh:ro
+      - ./wallets:/root/validator_keys
+    depends_on:
+      - beacon
+    env_file: ./config/lighthouse/.env
+    command: sh /root/scripts/start-validator-client.sh
+    restart: on-failure
+    <<: *logging
+
+# EOF
