@@ -9,7 +9,7 @@ x-logging: &logging
 
 services:
   geth:
-    image: ethereum/client-go:v1.9.14
+    image: ethereum/client-go:${GETH_DOCKER_TAG}
     restart: always
     hostname: geth
     command: --goerli --rpc --rpcport=8545 --rpcaddr=0.0.0.0 --rpcvhosts="*" --allow-insecure-unlock --rpcapi="db,eth,net,web3,personal"
