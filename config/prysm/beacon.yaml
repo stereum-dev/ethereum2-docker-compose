@@ -30,3 +30,5 @@ p2p-max-peers: 100
 http-web3provider: http://geth:8545
 
 blst: yes
+
+medalla: yes
