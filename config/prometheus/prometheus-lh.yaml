@@ -1,0 +1,21 @@
+global:
+  scrape_interval:     15s
+  evaluation_interval: 15s
+
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets:
+      # - alertmanager:9093
+
+rule_files:
+  # - "first_rules.yml"
+  # - "second_rules.yml"
+
+scrape_configs:
+  - job_name: 'beacon'
+    static_configs:
+      - targets: ['beacon:5054']
+  - job_name: 'validator'
+    static_configs:
+      - targets: ['validator:5054']

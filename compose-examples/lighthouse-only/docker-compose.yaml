@@ -18,6 +18,7 @@ services:
     volumes:
       - ./data/geth:/root/.ethereum
     <<: *logging
+
   beacon:
     image: sigp/lighthouse:${LIGHTHOUSE_DOCKER_TAG}
     volumes:
@@ -30,6 +31,7 @@ services:
     command: sh /root/scripts/start-beacon-node.sh
     restart: on-failure
     <<: *logging
+
   validator:
     image: sigp/lighthouse:${LIGHTHOUSE_DOCKER_TAG}
     volumes:
@@ -41,6 +43,32 @@ services:
     env_file: ./config/lighthouse/.env
     command: sh /root/scripts/start-validator-client.sh
     restart: on-failure
+    <<: *logging
+
+  prometheus:
+    image: prom/prometheus:v2.21.0
+    user: root # https://github.com/prometheus/prometheus/issues/5976
+    restart: on-failure
+    hostname: prometheus
+    command: --storage.tsdb.retention.time=7d --config.file=/etc/prometheus/prometheus.yml
+    ports:
+    - 127.0.0.1:9090:9090
+    volumes:
+    - ./config/prometheus/prometheus.yaml:/etc/prometheus/prometheus-lh.yml:ro
+    - ./data/prometheus:/prometheus
+    <<: *logging
+
+  grafana:
+    image: grafana/grafana:7.2.1
+    restart: on-failure
+    hostname: grafana
+    depends_on:
+      - prometheus
+    ports:
+      - 127.0.0.1:3000:3000
+    volumes:
+      - ./config/grafana/provisioning-lh:/etc/grafana/provisioning:ro
+      - ./data/grafana:/var/lib/grafana
     <<: *logging
 
 # EOF
