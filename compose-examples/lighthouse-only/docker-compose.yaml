@@ -35,11 +35,11 @@ services:
   validator:
     image: sigp/lighthouse:${LIGHTHOUSE_DOCKER_TAG}
     volumes:
-      - ./config/scripts/start-validator-client.sh:/root/scripts/start-validator-client.sh:ro
+      - ./config/lighthouse/validator/start-validator-client.sh:/root/scripts/start-validator-client.sh:ro
       - ./wallets:/root/.lighthouse
     depends_on:
       - beacon
-    env_file: ./config/lighthouse/.env
+    env_file: ./config/lighthouse/validator/.env
     command: sh /root/scripts/start-validator-client.sh
     restart: on-failure
     <<: *logging
