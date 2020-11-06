@@ -53,7 +53,7 @@ services:
     ports:
     - 127.0.0.1:9092:9090
     volumes:
-    - ./config/prometheus/prometheus.yaml:/etc/prometheus/prometheus-lh.yml:ro
+    - ./config/prometheus/prometheus-lh.yaml:/etc/prometheus/prometheus.yml:ro
     - ./data/prometheus:/prometheus
     <<: *logging
 
