@@ -56,10 +56,13 @@ docker-compose logs --tail=100 beacon
 ```
 
 ### Prometheus
-Todo
+Runs on http://localhost:9092, scrapes data of beacon, validator and slasher.
 
 ### Grafana
-Todo
+Grafana listens on http://localhost:3002 and uses the data provided by prometheus service.
+
+Login with username `admin` and password `admin` (Grafana defaults), data source to Prometheus is already established and dashboards installed (source of dashboards: [lighthouse-metrics](https://github.com/sigp/lighthouse-metrics)).
+
 
 ## FAQ
 ### I want to use a specific Ethereum 1 node, like Infura.io!
