@@ -13,8 +13,8 @@ services:
     restart: always
     command: --goerli --rpc --rpcport=8545 --rpcaddr=0.0.0.0 --rpcvhosts="*" --allow-insecure-unlock --rpcapi="db,eth,net,web3,personal" --pprof --pprofaddr=0.0.0.0 --pprofport=6060 --metrics
     ports:
-      - 30304:30303/tcp
-      - 30304:30303/udp
+      - 30305:30303/tcp
+      - 30305:30303/udp
     volumes:
       - ./data/geth:/root/.ethereum
     <<: *logging
@@ -51,7 +51,7 @@ services:
     hostname: prometheus
     command: --storage.tsdb.retention.time=7d --config.file=/etc/prometheus/prometheus.yml
     ports:
-    - 127.0.0.1:9090:9090
+    - 127.0.0.1:9092:9090
     volumes:
     - ./config/prometheus/prometheus.yaml:/etc/prometheus/prometheus-lh.yml:ro
     - ./data/prometheus:/prometheus
@@ -64,7 +64,7 @@ services:
     depends_on:
       - prometheus
     ports:
-      - 127.0.0.1:3000:3000
+      - 127.0.0.1:3002:3000
     volumes:
       - ./config/grafana/provisioning-lh:/etc/grafana/provisioning:ro
       - ./data/grafana:/var/lib/grafana
