@@ -63,6 +63,14 @@ Grafana listens on http://localhost:3002 and uses the data provided by prometheu
 
 Login with username `admin` and password `admin` (Grafana defaults), data source to Prometheus is already established and dashboards installed (source of dashboards: [lighthouse-metrics](https://github.com/sigp/lighthouse-metrics)).
 
+It's possible an error occures when starting up grafana:
+```
+grafana_1     | GF_PATHS_DATA='/var/lib/grafana' is not writable.
+grafana_1     | You may have issues with file permissions, more information here: http://docs.grafana.org/installation/docker/#migration-from-a-previous-version-of-the-docker-container-to-5-1-or-later
+grafana_1     | mkdir: can't create directory '/var/lib/grafana/plugins': Permission denied
+```
+Adding `user: <your-user-id>` to the service `grafana` in your `docker-compose.yaml` resolves this. Run `id -u` to get your user-id on linux.
+
 
 ## FAQ
 ### I want to use a specific Ethereum 1 node, like Infura.io!
