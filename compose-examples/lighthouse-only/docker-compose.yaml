@@ -35,9 +35,8 @@ services:
   validator:
     image: sigp/lighthouse:${LIGHTHOUSE_DOCKER_TAG}
     volumes:
-      - ./data/sigmaprime/validator:/root/.lighthouse
       - ./config/scripts/start-validator-client.sh:/root/scripts/start-validator-client.sh:ro
-      - ./wallets:/root/validator_keys
+      - ./wallets:/root/.lighthouse
     depends_on:
       - beacon
     env_file: ./config/lighthouse/.env
