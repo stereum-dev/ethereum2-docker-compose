@@ -1,0 +1,45 @@
+version: "3.7"
+
+x-limit-node:
+  &limit-node
+    deploy:
+      resources:
+        limits:
+          cpus: "4"
+          memory: "10G"
+
+x-limit-miniservice:
+  &limit-miniservice
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: "2G"
+
+services:
+  geth:
+    <<: *limit-node
+  prysm_beacon:
+    <<: *limit-node
+  prysm_beacon_slasher:
+    <<: *limit-node
+  prysm_slasher:
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: "4G"
+  lighthouse_beacon:
+    <<: *limit-node
+  teku_beacon:
+    <<: *limit-node
+  vouch:
+    <<: *limit-miniservice
+  dirk:
+    <<: *limit-miniservice
+  prometheus:
+    <<: *limit-miniservice
+  grafana:
+    <<: *limit-miniservice
+
+# EOF

@@ -150,8 +150,6 @@ services:
     restart: on-failure
     hostname: prometheus
     command: --storage.tsdb.retention.time=7d --config.file=/etc/prometheus/prometheus.yml
-    ports:
-      - 127.0.0.1:9090:9090
     volumes:
       - ./config/prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml:ro
       - ./data/prometheus:/prometheus
@@ -176,6 +174,7 @@ services:
       - ./data/grafana:/var/lib/grafana
     networks:
       - n_grafana_prometheus
+      - n_bridge
     <<: *logging
 
 networks:
