@@ -13,7 +13,7 @@ x-limit-miniservice:
     deploy:
       resources:
         limits:
-          cpus: "4"
+          cpus: "2"
           memory: "2G"
 
 services:
