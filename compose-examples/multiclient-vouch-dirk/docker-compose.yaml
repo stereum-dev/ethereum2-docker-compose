@@ -34,7 +34,7 @@ services:
       - ./config/prysm/beacon.yaml:/config/beacon.yaml:ro
       - ./data/prysm/beacon:/data
     ports:
-      - 127.0.0.1:4000:4000
+      - ${BEACON_API_IP}:4000:4000
       - 13000:13000/tcp
       - 12000:12000/udp
     networks:
@@ -51,7 +51,7 @@ services:
       - ./config/prysm/slasher/beacon.yaml:/config/beacon.yaml:ro
       - ./data/prysm/beacon-slasher:/data
     ports:
-      - 127.0.0.1:4001:4000
+      - ${BEACON_API_IP}:4001:4000
       - 13001:13000/tcp
       - 12001:12000/udp
     networks:
@@ -86,8 +86,7 @@ services:
       - ./data/sigmaprime/lighthouse:/root/.lighthouse
       - ./data/sigmaprime/lighthouse-network:/root/network
     ports:
-      - 127.0.0.1:5052:5052/tcp
-      - 127.0.0.1:5053:5053/tcp
+      - ${BEACON_API_IP}:5052:5052/tcp
       - 9000:9000/tcp
       - 9000:9000/udp
     networks:
@@ -109,7 +108,7 @@ services:
     ports:
       - 9001:9001/tcp
       - 9001:9001/udp
-      - 127.0.0.1:5051:5051/tcp
+      - ${BEACON_API_IP}:5051:5051/tcp
     networks:
       - n_vouch_beacons
       - n_bridge
