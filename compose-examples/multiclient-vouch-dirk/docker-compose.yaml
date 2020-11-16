@@ -11,7 +11,7 @@ services:
   geth:
     container_name: geth
     image: ethereum/client-go:${GETH_DOCKER_TAG}
-    restart: always
+    restart: unless-stopped
     command: --goerli --http --http.port=8545 --http.addr=0.0.0.0 --http.vhosts="*" --allow-insecure-unlock --http.api="db,eth,net,web3,personal"
     ports:
       - 30303:30303/tcp
@@ -28,7 +28,7 @@ services:
   prysm_beacon:
     container_name: prysm_beacon
     image: gcr.io/prysmaticlabs/prysm/beacon-chain:${PRYSM_DOCKER_TAG}
-    restart: always
+    restart: unless-stopped
     command: --config-file=/config/beacon.yaml
     volumes:
       - ./config/prysm/beacon.yaml:/config/beacon.yaml:ro
@@ -45,7 +45,7 @@ services:
   prysm_beacon_slasher:
     container_name: prysm_beacon_slasher
     image: gcr.io/prysmaticlabs/prysm/beacon-chain:${PRYSM_DOCKER_TAG}
-    restart: always
+    restart: unless-stopped
     command: --config-file=/config/beacon.yaml
     volumes:
       - ./config/prysm/slasher/beacon.yaml:/config/beacon.yaml:ro
@@ -63,7 +63,7 @@ services:
   prysm_slasher:
     container_name: prysm_slasher
     image: gcr.io/prysmaticlabs/prysm/slasher:${PRYSM_SLASHER_DOCKER_TAG}
-    restart: always
+    restart: unless-stopped
     hostname: slasher
     depends_on:
       - prysm_beacon_slasher
@@ -78,7 +78,7 @@ services:
   lighthouse_beacon:
     container_name: lighthouse_beacon
     image: sigp/lighthouse:${LIGHTHOUSE_DOCKER_TAG}
-    restart: always
+    restart: unless-stopped
     command: sh /root/scripts/start-beacon-node.sh
     env_file: ./config/lighthouse/.env
     volumes:
@@ -98,7 +98,7 @@ services:
     container_name: teku_beacon
     image: pegasyseng/teku:${TEKU_DOCKER_TAG}
     user: "0:0"
-    restart: always
+    restart: unless-stopped
     command: ["--config-file=/opt/teku/beacon.yaml"]
     environment:
       - "JAVA_OPTS=-Xmx8g"
@@ -117,7 +117,7 @@ services:
   vouch:
     container_name: vouch
     image: attestant/vouch:${VOUCH_DOCKER_TAG}
-    restart: always
+    restart: unless-stopped
     command: ["--base-dir=/config"]
     volumes:
       - ./config/vouch/vouch.yml:/config/vouch.yml:ro
@@ -130,7 +130,7 @@ services:
   dirk:
     container_name: dirk
     image: attestant/dirk:${DIRK_DOCKER_TAG}
-    restart: always
+    restart: unless-stopped
     command: ["--base-dir=/config"]
     volumes:
       - ./config/dirk/dirk.yml:/config/dirk.yml:ro
@@ -146,7 +146,7 @@ services:
     container_name: prometheus
     image: prom/prometheus:${PROMETHEUS_DOCKER_TAG}
     user: root # https://github.com/prometheus/prometheus/issues/5976
-    restart: on-failure
+    restart: unless-stopped
     hostname: prometheus
     command: --storage.tsdb.retention.time=7d --config.file=/etc/prometheus/prometheus.yml
     volumes:
@@ -162,7 +162,7 @@ services:
   grafana:
     container_name: grafana
     image: grafana/grafana:${GRAFANA_DOCKER_TAG}
-    restart: on-failure
+    restart: unless-stopped
     hostname: grafana
     depends_on:
       - prometheus
