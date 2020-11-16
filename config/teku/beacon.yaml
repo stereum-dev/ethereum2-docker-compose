@@ -1,5 +1,5 @@
 # network
-network: "medalla"
+network: "pyrmont"
 
 # p2p
 p2p-enabled: true
