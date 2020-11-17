@@ -30,7 +30,7 @@
 ## Setup
 
 ### Certificates
-Generate a client certificate for vouch and a server certificate for dirk. There are a number of ways to generate them, one way is the use of [easy-rsa](https://help.endian.com/hc/en-us/articles/360009201753-How-to-generate-and-import-CA-Server-and-Client-certificates-from-an-external-host). Copy the certificates to:
+Generate a client certificate for vouch and a server certificate for dirk. These certificates won't be accessable from outside, they are only visible to vouch and dirk. There are a number of ways to generate them, one way is the use of [easy-rsa](https://help.endian.com/hc/en-us/articles/360009201753-How-to-generate-and-import-CA-Server-and-Client-certificates-from-an-external-host). Copy the certificates to:
 
 **Vouch**
 * `./config/vouch/certs/ca.crt` CA public key of server certificate for **dirk**
