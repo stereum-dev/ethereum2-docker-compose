@@ -34,4 +34,4 @@ block-batch-limit: 512
 
 blst: yes
 
-medalla: yes
+pyrmont: yes

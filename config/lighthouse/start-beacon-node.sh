@@ -2,7 +2,7 @@
 #
 # Starts a beacon node.
 
-DEFAULT_TESTNET=medalla
+DEFAULT_TESTNET=pyrmont
 
 if [ "$START_VALIDATOR" != "" ]; then
         ETH1_FLAG=--eth1

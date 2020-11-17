@@ -31,4 +31,4 @@ http-web3provider: http://geth:8545
 
 blst: yes
 
-medalla: yes
+pyrmont: yes

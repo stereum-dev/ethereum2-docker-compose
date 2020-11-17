@@ -11,7 +11,7 @@ services:
   geth:
     container_name: geth
     image: ethereum/client-go:${GETH_DOCKER_TAG}
-    restart: always
+    restart: unless-stopped
     command: --http --http.port=8545 --http.addr=0.0.0.0 --http.vhosts="*" --allow-insecure-unlock --http.api="db,eth,net,web3,personal"
     ports:
       - 31303:30303/tcp
@@ -28,13 +28,13 @@ services:
   prysm_beacon:
     container_name: prysm_beacon
     image: gcr.io/prysmaticlabs/prysm/beacon-chain:${PRYSM_DOCKER_TAG}
-    restart: always
+    restart: unless-stopped
     command: --config-file=/config/beacon.yaml
     volumes:
       - ./config/prysm/beacon.yaml:/config/beacon.yaml:ro
       - ./data/prysm/beacon:/data
     ports:
-      - 127.0.0.1:4000:4000
+      - ${BEACON_API_IP}:4000:4000
       - 13000:13000/tcp
       - 12000:12000/udp
     networks:
@@ -45,13 +45,13 @@ services:
   prysm_beacon_slasher:
     container_name: prysm_beacon_slasher
     image: gcr.io/prysmaticlabs/prysm/beacon-chain:${PRYSM_DOCKER_TAG}
-    restart: always
+    restart: unless-stopped
     command: --config-file=/config/beacon.yaml
     volumes:
       - ./config/prysm/slasher/beacon.yaml:/config/beacon.yaml:ro
       - ./data/prysm/beacon-slasher:/data
     ports:
-      - 127.0.0.1:4001:4000
+      - ${BEACON_API_IP}:4001:4000
       - 13001:13000/tcp
       - 12001:12000/udp
     networks:
@@ -63,7 +63,7 @@ services:
   prysm_slasher:
     container_name: prysm_slasher
     image: gcr.io/prysmaticlabs/prysm/slasher:${PRYSM_SLASHER_DOCKER_TAG}
-    restart: always
+    restart: unless-stopped
     hostname: slasher
     depends_on:
       - prysm_beacon_slasher
@@ -78,7 +78,7 @@ services:
   lighthouse_beacon:
     container_name: lighthouse_beacon
     image: sigp/lighthouse:${LIGHTHOUSE_DOCKER_TAG}
-    restart: always
+    restart: unless-stopped
     command: sh /root/scripts/start-beacon-node.sh
     env_file: ./config/lighthouse/.env
     volumes:
@@ -86,8 +86,7 @@ services:
       - ./data/sigmaprime/lighthouse:/root/.lighthouse
       - ./data/sigmaprime/lighthouse-network:/root/network
     ports:
-      - 127.0.0.1:5052:5052/tcp
-      - 127.0.0.1:5053:5053/tcp
+      - ${BEACON_API_IP}:5052:5052/tcp
       - 9000:9000/tcp
       - 9000:9000/udp
     networks:
@@ -99,7 +98,7 @@ services:
     container_name: teku_beacon
     image: pegasyseng/teku:${TEKU_DOCKER_TAG}
     user: "0:0"
-    restart: always
+    restart: unless-stopped
     command: ["--config-file=/opt/teku/beacon.yaml"]
     environment:
       - "JAVA_OPTS=-Xmx8g"
@@ -109,7 +108,7 @@ services:
     ports:
       - 9001:9001/tcp
       - 9001:9001/udp
-      - 127.0.0.1:5051:5051/tcp
+      - ${BEACON_API_IP}:5051:5051/tcp
     networks:
       - n_vouch_beacons
       - n_bridge
@@ -118,7 +117,7 @@ services:
   vouch:
     container_name: vouch
     image: attestant/vouch:${VOUCH_DOCKER_TAG}
-    restart: always
+    restart: unless-stopped
     command: ["--base-dir=/config"]
     volumes:
       - ./config/vouch/vouch.yml:/config/vouch.yml:ro
@@ -131,7 +130,7 @@ services:
   dirk:
     container_name: dirk
     image: attestant/dirk:${DIRK_DOCKER_TAG}
-    restart: always
+    restart: unless-stopped
     command: ["--base-dir=/config"]
     volumes:
       - ./config/dirk/dirk.yml:/config/dirk.yml:ro
@@ -147,7 +146,7 @@ services:
     container_name: prometheus
     image: prom/prometheus:${PROMETHEUS_DOCKER_TAG}
     user: root # https://github.com/prometheus/prometheus/issues/5976
-    restart: on-failure
+    restart: unless-stopped
     hostname: prometheus
     command: --storage.tsdb.retention.time=7d --config.file=/etc/prometheus/prometheus.yml
     volumes:
@@ -163,7 +162,7 @@ services:
   grafana:
     container_name: grafana
     image: grafana/grafana:${GRAFANA_DOCKER_TAG}
-    restart: on-failure
+    restart: unless-stopped
     hostname: grafana
     depends_on:
       - prometheus

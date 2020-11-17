@@ -1,6 +1,6 @@
 #! /bin/bash
 
-DEFAULT_TESTNET=medalla
+DEFAULT_TESTNET=pyrmont
 
 # Set testnet name
 if [ "$TESTNET" = "" ]; then
