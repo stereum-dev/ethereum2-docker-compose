@@ -1,0 +1,23 @@
+global:
+  scrape_interval:     15s
+  evaluation_interval: 15s
+
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets:
+      # - alertmanager:9093
+
+rule_files:
+  # - "first_rules.yml"
+  # - "second_rules.yml"
+
+scrape_configs:
+  - job_name: 'beacon'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['beacon:8008']
+  - job_name: 'validator'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['validator:8008']
