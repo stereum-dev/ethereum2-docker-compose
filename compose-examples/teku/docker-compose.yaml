@@ -22,31 +22,30 @@ services:
     <<: *logging
 
   beacon:
-    image: gcr.io/prysmaticlabs/prysm/beacon-chain:${PRYSM_DOCKER_TAG}
+    image: gcr.io/pegasyseng/teku:${TEKU_DOCKER_TAG}
     restart: always
     hostname: beacon-chain
     depends_on:
       - geth
     command: --config-file=/config/beacon.yaml
     ports:
-      - 127.0.0.1:4000:4000
-      - 9001:9001/tcp
-      - 9001:9001/udp
+      - 5051:5051/tcp
+      - 9000:9000/tcp
     volumes:
-      - ./config/prysm/slasher/beacon.yaml:/config/beacon.yaml:ro
-      - ./data/prysm/beacon-slasher:/data
+      - ./config/teku/beacon.yaml:/config/beacon.yaml:ro
+      - ./data/consensys/teku/beacon:/data
     <<: *logging
 
   validator:
-    image: gcr.io/prysmaticlabs/prysm/validator:${PRYSM_DOCKER_TAG}
+    image: gcr.io/pegasyseng/teku:${TEKU_DOCKER_TAG}
     restart: on-failure
     hostname: validator
     depends_on:
       - beacon
     command: --config-file=/config/validator.yaml
     volumes:
-      - ./config/prysm/validator.yaml:/config/validator.yaml:ro
-      - ./data/prysm/validator:/data
+      - ./config/teku/validator.yaml:/config/validator.yaml:ro
+      - ./data/consensys/teku/validator:/data
     <<: *logging
 
   prometheus:
