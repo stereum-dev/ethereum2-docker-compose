@@ -30,8 +30,8 @@ services:
     command: --config-file=/config/beacon.yaml
     ports:
       - 127.0.0.1:4000:4000
-      - 13000:13000/tcp
-      - 12000:12000/udp
+      - 9001:9001/tcp
+      - 9001:9001/udp
     volumes:
       - ./config/prysm/slasher/beacon.yaml:/config/beacon.yaml:ro
       - ./data/prysm/beacon-slasher:/data
@@ -49,41 +49,29 @@ services:
       - ./data/prysm/validator:/data
     <<: *logging
 
-  slasher:
-    image: gcr.io/prysmaticlabs/prysm/slasher:${PRYSM_DOCKER_TAG}
-    restart: always
-    hostname: slasher
-    depends_on:
-      - beacon
-    command: --config-file=/config/slasher.yaml
-    volumes:
-      - ./config/prysm/slasher/slasher.yaml:/config/slasher.yaml:ro
-      - ./data/prysm/slasher:/data
-    <<: *logging
-
   prometheus:
-    image: prom/prometheus:v2.19.0
+    image: prom/prometheus:v2.21.0
     user: root # https://github.com/prometheus/prometheus/issues/5976
     restart: on-failure
     hostname: prometheus
-    command: --storage.tsdb.retention.time=31d --config.file=/etc/prometheus/prometheus.yml
+    command: --storage.tsdb.retention.time=7d --config.file=/etc/prometheus/prometheus.yml
     ports:
-      - 127.0.0.1:9090:9090
+      - 127.0.0.1:9094:9090
     volumes:
-      - ./config/prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml
+      - ./config/prometheus/prometheus-t.yaml:/etc/prometheus/prometheus.yml
       - ./data/prometheus:/prometheus
     <<: *logging
 
   grafana:
-    image: grafana/grafana:7.0.3
+    image: grafana/grafana:7.2.1
     restart: on-failure
     hostname: grafana
     depends_on:
       - prometheus
     ports:
-      - 127.0.0.1:3000:3000
+      - 127.0.0.1:3004:3000
     volumes:
-      - ./config/grafana/provisioning:/etc/grafana/provisioning
+      - ./config/grafana/provisioning-t:/etc/grafana/provisioning:ro
       - ./data/grafana:/var/lib/grafana
     <<: *logging
 
