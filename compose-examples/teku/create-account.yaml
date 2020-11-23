@@ -2,7 +2,7 @@ version: "3.7"
 services:
   validator-import-launchpad:
     image: pegasyseng/teku:${TEKU_DOCKER_TAG}
-    command: teku --testnet=pyrmont account validator import --validator-keys=/launchpad:/data/consensys/teku/validator/passwords
+    command: teku --network=pyrmont --validator-keys=/launchpad:/data/consensys/teku/validator/passwords
 
     volumes:
       - ./wallets:/root/.teku
