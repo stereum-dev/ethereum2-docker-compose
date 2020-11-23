@@ -44,7 +44,7 @@ services:
       - beacon
     command: --config-file=/config/validator.yaml
     volumes:
-      - ./config/teku/validator.yaml:/config/validator.yaml:ro
+      - ./config/prysm/validator.yaml:/config/validator.yaml:ro
       - ./data/consensys/teku/validator:/data
     <<: *logging
 
