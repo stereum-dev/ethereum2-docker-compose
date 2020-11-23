@@ -70,7 +70,7 @@ services:
     ports:
       - 127.0.0.1:9090:9090
     volumes:
-      - ./config/prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml
+      - ./config/prometheus/prometheus-p.yaml:/etc/prometheus/prometheus.yml
       - ./data/prometheus:/prometheus
     <<: *logging
 
@@ -83,7 +83,7 @@ services:
     ports:
       - 127.0.0.1:3000:3000
     volumes:
-      - ./config/grafana/provisioning:/etc/grafana/provisioning
+      - ./config/grafana/provisioning-p:/etc/grafana/provisioning
       - ./data/grafana:/var/lib/grafana
     <<: *logging
 
