@@ -32,8 +32,6 @@ http-web3provider: http://geth:8545
 historical-slasher-node: yes
 block-batch-limit: 512
 
-blst: yes
-
 pyrmont: yes
 
 # https://github.com/attestantio/vouch/issues/6
