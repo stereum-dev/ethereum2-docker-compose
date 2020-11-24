@@ -2,15 +2,15 @@
 #
 # Starts a beacon node.
 
-DEFAULT_TESTNET=pyrmont
+DEFAULT_NETWORK=pyrmont
 
 if [ "$START_VALIDATOR" != "" ]; then
         ETH1_FLAG=--eth1
 fi
 
 
-if [ "$TESTNET" = "" ]; then
-        TESTNET=$DEFAULT_TESTNET
+if [ "$NETWORK" = "" ]; then
+        NETWORK=$DEFAULT_NETWORK
 fi
 
 if [ "$ENABLE_METRICS" != "" ]; then
@@ -23,7 +23,7 @@ fi
 
 exec lighthouse \
         --debug-level $DEBUG_LEVEL \
-        --testnet $TESTNET \
+        --network $NETWORK \
         beacon_node \
         --eth1-endpoint $VOTING_ETH1_NODE \
         --http \
