@@ -32,7 +32,7 @@ http-web3provider: http://geth:8545
 historical-slasher-node: yes
 block-batch-limit: 512
 
-pyrmont: yes
+mainnet: yes
 
 # https://github.com/attestantio/vouch/issues/6
 rpc-max-page-size: 100000

@@ -29,7 +29,7 @@ p2p-max-peers: 100
 # Connection to geth container
 http-web3provider: http://geth:8545
 
-pyrmont: yes
+mainnet: yes
 
 # https://github.com/attestantio/vouch/issues/6
 rpc-max-page-size: 100000

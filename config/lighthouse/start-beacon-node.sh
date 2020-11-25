@@ -2,7 +2,7 @@
 #
 # Starts a beacon node.
 
-DEFAULT_NETWORK=pyrmont
+DEFAULT_NETWORK=mainnet
 
 if [ "$START_VALIDATOR" != "" ]; then
         ETH1_FLAG=--eth1

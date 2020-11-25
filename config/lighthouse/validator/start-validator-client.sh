@@ -1,6 +1,6 @@
 #! /bin/bash
 
-DEFAULT_NETWORK=pyrmont
+DEFAULT_NETWORK=mainnet
 
 # Set network name
 if [ "$NETWORK" = "" ]; then
