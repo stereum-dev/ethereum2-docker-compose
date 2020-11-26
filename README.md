@@ -8,6 +8,20 @@ docker-compose | Description
 [Prysm standalone](./compose-examples/prysm-only) | Stand-alone [Prysm](https://github.com/prysmaticlabs/prysm) fullstack node and monitoring
 [Lighthouse standalone](./compose-examples/lighthouse-only) | Stand-alone [Lighthouse](https://github.com/sigp/lighthouse) node and monitoring
 
+## Testnet (Pyrmont) or Mainnet
+** You are viewing this repository with configuration for Pyrmont**
+
+Default is Pyrmont, the long-term testnet for Ethereum 2.0. For running on Mainnet, checkout `mainnet` branch by executing the following commands after `git clone`:
+```
+git checkout mainnet
+```
+
+### Links
+Service | Pyrmont (Testnet) | Mainnet
+--------|-------------------|---------
+Block explorer | https://beaconscan.com/pyrmont or https://pyrmont.beaconcha.in/ | https://beaconscan.com/ or https://beaconcha.in/
+Ethereum Launchpad | https://pyrmont.launchpad.ethereum.org/ | https://launchpad.ethereum.org/
+
 ## Run a node
 1. Select a docker-compose from the list above.
 2. Copy the `docker-compose.yaml` of your choice to the project's root directory (this directory).
