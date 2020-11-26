@@ -9,7 +9,7 @@ docker-compose | Description
 [Lighthouse standalone](./compose-examples/lighthouse-only) | Stand-alone [Lighthouse](https://github.com/sigp/lighthouse) node and monitoring
 
 ## Testnet (Pyrmont) or Mainnet
-**You are viewing this repository with configuration for Pyrmont**
+**You are viewing this repository with configuration for Mainnet**
 
 Default is Pyrmont, the long-term testnet for Ethereum 2.0. For running on Mainnet, checkout `mainnet` branch by executing the following commands after `git clone`:
 ```
