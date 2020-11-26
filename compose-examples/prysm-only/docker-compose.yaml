@@ -32,6 +32,10 @@ services:
       - 127.0.0.1:4000:4000
       - 13000:13000/tcp
       - 12000:12000/udp
+    networks:
+      default:
+        aliases:
+          - prysm_beacon_slasher
     volumes:
       - ./config/prysm/slasher/beacon.yaml:/config/beacon.yaml:ro
       - ./data/prysm/beacon-slasher:/data
