@@ -108,7 +108,7 @@ services:
     environment:
       - "JAVA_OPTS=-Xmx8g"
     volumes:
-      - ./config/teku/beacon.yaml:/opt/teku/beacon.yaml:ro
+      - ./config/teku/beacon-mc.yaml:/opt/teku/beacon.yaml:ro
       - ./data/consensys/teku:/opt/teku/data
     ports:
       - ${BEACON_API_IP}:5051:5051/tcp
