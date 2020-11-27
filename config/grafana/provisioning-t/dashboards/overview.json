@@ -11,16 +11,10 @@
   ],
   "__requires": [
     {
-      "type": "panel",
-      "id": "gauge",
-      "name": "Gauge",
-      "version": ""
-    },
-    {
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "7.0.3"
+      "version": "6.2.4"
     },
     {
       "type": "panel",
@@ -36,8 +30,8 @@
     },
     {
       "type": "panel",
-      "id": "stat",
-      "name": "Stat",
+      "id": "table",
+      "name": "Table",
       "version": ""
     }
   ],
@@ -55,1294 +49,22 @@
       }
     ]
   },
-  "description": "Provides an overview of a Teku Ethereum 2.0 node",
+  "description": "Provides an overview of Teku nodes",
   "editable": true,
-  "gnetId": 12522,
+  "gnetId": 12199,
   "graphTooltip": 0,
-  "id": null,
-  "iteration": 1593002962522,
+  "id": 5,
+  "iteration": 1588132665027,
   "links": [],
   "panels": [
     {
-      "collapsed": true,
-      "datasource": "${DS_PROMETHEUS}",
+      "collapsed": false,
+      "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
         "y": 0
-      },
-      "id": 49,
-      "panels": [
-        {
-          "datasource": "${DS_PROMETHEUS}",
-          "description": "",
-          "fieldConfig": {
-            "defaults": {
-              "custom": {},
-              "decimals": 1,
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  }
-                ]
-              },
-              "unit": "bytes"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 4,
-            "w": 3,
-            "x": 0,
-            "y": 1
-          },
-          "id": 43,
-          "options": {
-            "colorMode": "value",
-            "graphMode": "area",
-            "justifyMode": "auto",
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": true
-            }
-          },
-          "pluginVersion": "7.0.3",
-          "targets": [
-            {
-              "expr": "jvm_memory_bytes_max{area=\"heap\"}",
-              "format": "time_series",
-              "instant": true,
-              "interval": "",
-              "legendFormat": "",
-              "refId": "A"
-            }
-          ],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Max heap",
-          "type": "stat"
-        },
-        {
-          "datasource": "${DS_PROMETHEUS}",
-          "description": "",
-          "fieldConfig": {
-            "defaults": {
-              "custom": {},
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  }
-                ]
-              },
-              "unit": "none"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 4,
-            "w": 3,
-            "x": 3,
-            "y": 1
-          },
-          "id": 25,
-          "interval": "10s",
-          "options": {
-            "colorMode": "value",
-            "graphMode": "area",
-            "justifyMode": "auto",
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": true
-            }
-          },
-          "pluginVersion": "7.0.3",
-          "targets": [
-            {
-              "expr": "validator_local_validator_count",
-              "format": "time_series",
-              "instant": true,
-              "interval": "",
-              "legendFormat": "",
-              "refId": "A"
-            }
-          ],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Local Validator Count",
-          "type": "stat"
-        }
-      ],
-      "title": "Config",
-      "type": "row"
-    },
-    {
-      "collapsed": true,
-      "datasource": "${DS_PROMETHEUS}",
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 1
-      },
-      "id": 55,
-      "panels": [
-        {
-          "cacheTimeout": null,
-          "datasource": "${DS_PROMETHEUS}",
-          "description": "Proportion of slots that are synced",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "custom": {},
-              "decimals": 1,
-              "mappings": [
-                {
-                  "id": 0,
-                  "op": "=",
-                  "text": "N/A",
-                  "type": 1,
-                  "value": "null"
-                }
-              ],
-              "max": 100,
-              "min": 0,
-              "nullValueMode": "null",
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "yellow",
-                    "value": null
-                  },
-                  {
-                    "color": "green",
-                    "value": 90
-                  }
-                ]
-              },
-              "unit": "percent"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 4,
-            "w": 3,
-            "x": 0,
-            "y": 2
-          },
-          "id": 53,
-          "interval": "10s",
-          "links": [],
-          "options": {
-            "orientation": "horizontal",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showThresholdLabels": false,
-            "showThresholdMarkers": true
-          },
-          "pluginVersion": "7.0.3",
-          "targets": [
-            {
-              "expr": "100 * beacon_head_slot / beacon_slot",
-              "format": "time_series",
-              "instant": true,
-              "interval": "",
-              "intervalFactor": 1,
-              "legendFormat": "",
-              "refId": "A",
-              "step": 900
-            }
-          ],
-          "timeFrom": null,
-          "title": "Synced %",
-          "type": "gauge"
-        },
-        {
-          "cacheTimeout": null,
-          "datasource": "${DS_PROMETHEUS}",
-          "description": "",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "custom": {},
-              "decimals": 0,
-              "mappings": [
-                {
-                  "id": 0,
-                  "op": "=",
-                  "text": "N/A",
-                  "type": 1,
-                  "value": "null"
-                }
-              ],
-              "max": 1,
-              "min": 0,
-              "nullValueMode": "null",
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  }
-                ]
-              },
-              "unit": "none"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 4,
-            "w": 3,
-            "x": 3,
-            "y": 2
-          },
-          "id": 57,
-          "interval": "10s",
-          "links": [],
-          "options": {
-            "colorMode": "value",
-            "graphMode": "area",
-            "justifyMode": "auto",
-            "orientation": "horizontal",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            }
-          },
-          "pluginVersion": "7.0.3",
-          "targets": [
-            {
-              "expr": "beacon_slot - beacon_head_slot",
-              "format": "time_series",
-              "instant": true,
-              "interval": "",
-              "intervalFactor": 1,
-              "legendFormat": "",
-              "refId": "A",
-              "step": 900
-            }
-          ],
-          "timeFrom": null,
-          "title": "Slots behind",
-          "type": "stat"
-        },
-        {
-          "cacheTimeout": null,
-          "datasource": "${DS_PROMETHEUS}",
-          "description": "",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "custom": {},
-              "decimals": 1,
-              "mappings": [
-                {
-                  "id": 0,
-                  "op": "=",
-                  "text": "N/A",
-                  "type": 1,
-                  "value": "null"
-                }
-              ],
-              "max": 1,
-              "min": 0,
-              "nullValueMode": "null",
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "red",
-                    "value": null
-                  },
-                  {
-                    "color": "yellow",
-                    "value": 1
-                  },
-                  {
-                    "color": "green",
-                    "value": 10
-                  }
-                ]
-              },
-              "unit": "none"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 4,
-            "w": 3,
-            "x": 6,
-            "y": 2
-          },
-          "id": 56,
-          "interval": "10s",
-          "links": [],
-          "options": {
-            "colorMode": "value",
-            "graphMode": "area",
-            "justifyMode": "auto",
-            "orientation": "horizontal",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            }
-          },
-          "pluginVersion": "7.0.3",
-          "targets": [
-            {
-              "expr": "rate (beacon_head_slot[30s])",
-              "format": "time_series",
-              "instant": true,
-              "interval": "",
-              "intervalFactor": 1,
-              "legendFormat": "",
-              "refId": "A",
-              "step": 900
-            }
-          ],
-          "timeFrom": null,
-          "title": "Sync rate (slots/s)",
-          "type": "stat"
-        },
-        {
-          "cacheTimeout": null,
-          "datasource": "${DS_PROMETHEUS}",
-          "description": "",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "custom": {},
-              "decimals": 1,
-              "mappings": [
-                {
-                  "id": 0,
-                  "op": "=",
-                  "text": "N/A",
-                  "type": 1,
-                  "value": "null"
-                }
-              ],
-              "max": 1,
-              "min": 0,
-              "nullValueMode": "null",
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  }
-                ]
-              },
-              "unit": "clocks"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 4,
-            "w": 3,
-            "x": 9,
-            "y": 2
-          },
-          "id": 58,
-          "interval": "10s",
-          "links": [],
-          "options": {
-            "colorMode": "value",
-            "graphMode": "area",
-            "justifyMode": "auto",
-            "orientation": "horizontal",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            }
-          },
-          "pluginVersion": "7.0.3",
-          "targets": [
-            {
-              "expr": "(beacon_slot - beacon_head_slot) / rate (beacon_head_slot[30s])",
-              "format": "time_series",
-              "instant": true,
-              "interval": "",
-              "intervalFactor": 1,
-              "legendFormat": "",
-              "refId": "A",
-              "step": 900
-            }
-          ],
-          "timeFrom": null,
-          "title": "Remaining time",
-          "type": "stat"
-        }
-      ],
-      "title": "Sync",
-      "type": "row"
-    },
-    {
-      "collapsed": false,
-      "datasource": "${DS_PROMETHEUS}",
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 2
-      },
-      "id": 35,
-      "panels": [],
-      "title": "Beacon Chain",
-      "type": "row"
-    },
-    {
-      "datasource": "${DS_PROMETHEUS}",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 3,
-        "x": 0,
-        "y": 3
-      },
-      "id": 36,
-      "interval": "10s",
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": true
-        }
-      },
-      "pluginVersion": "7.0.3",
-      "targets": [
-        {
-          "expr": "beacon_slot",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Slot",
-      "type": "stat"
-    },
-    {
-      "datasource": "${DS_PROMETHEUS}",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 3,
-        "x": 3,
-        "y": 3
-      },
-      "id": 27,
-      "interval": "10s",
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": true
-        }
-      },
-      "pluginVersion": "7.0.3",
-      "targets": [
-        {
-          "expr": "beacon_epoch",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Epoch",
-      "type": "stat"
-    },
-    {
-      "datasource": "${DS_PROMETHEUS}",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "semi-dark-orange",
-                "value": 5
-              },
-              {
-                "color": "semi-dark-red",
-                "value": 10
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 3,
-        "x": 6,
-        "y": 3
-      },
-      "id": 37,
-      "interval": "10s",
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": true
-        }
-      },
-      "pluginVersion": "7.0.3",
-      "targets": [
-        {
-          "expr": "beacon_epoch - beacon_finalized_epoch",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Epochs since finalisation",
-      "type": "stat"
-    },
-    {
-      "datasource": "${DS_PROMETHEUS}",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "decimals": 1,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "semi-dark-orange",
-                "value": 1920
-              },
-              {
-                "color": "semi-dark-red",
-                "value": 3840
-              }
-            ]
-          },
-          "unit": "clocks"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 3,
-        "x": 9,
-        "y": 3
-      },
-      "id": 52,
-      "interval": "10s",
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": true
-        }
-      },
-      "pluginVersion": "7.0.3",
-      "targets": [
-        {
-          "expr": "12 * (beacon_slot - 32 * beacon_finalized_epoch)",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Time since finalisation",
-      "type": "stat"
-    },
-    {
-      "datasource": "${DS_PROMETHEUS}",
-      "description": "Current active validators (not \"live\")",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "semi-dark-red",
-                "value": null
-              },
-              {
-                "color": "semi-dark-orange",
-                "value": 5
-              },
-              {
-                "color": "semi-dark-green",
-                "value": 10
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 3,
-        "x": 12,
-        "y": 3
-      },
-      "id": 44,
-      "interval": "10s",
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": true
-        }
-      },
-      "pluginVersion": "7.0.3",
-      "targets": [
-        {
-          "expr": "beacon_current_active_validators",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Validators",
-      "type": "stat"
-    },
-    {
-      "datasource": "${DS_PROMETHEUS}",
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "semi-dark-red",
-                "value": null
-              },
-              {
-                "color": "dark-yellow",
-                "value": 50
-              },
-              {
-                "color": "semi-dark-green",
-                "value": 67
-              }
-            ]
-          },
-          "unit": "percent"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 3,
-        "x": 15,
-        "y": 3
-      },
-      "id": 33,
-      "interval": "10",
-      "options": {
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": true
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
-      },
-      "pluginVersion": "7.0.3",
-      "targets": [
-        {
-          "expr": "100 * beacon_previous_live_validators / beacon_previous_active_validators",
-          "format": "time_series",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Participation",
-      "type": "gauge"
-    },
-    {
-      "collapsed": false,
-      "datasource": "${DS_PROMETHEUS}",
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 7
-      },
-      "id": 47,
-      "panels": [],
-      "title": "Teku",
-      "type": "row"
-    },
-    {
-      "datasource": "${DS_PROMETHEUS}",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "decimals": 1,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "clocks"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 3,
-        "x": 0,
-        "y": 8
-      },
-      "id": 45,
-      "interval": "10s",
-      "links": [
-        {
-          "title": "",
-          "url": ""
-        }
-      ],
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "fields": "",
-          "values": false
-        }
-      },
-      "pluginVersion": "7.0.3",
-      "targets": [
-        {
-          "expr": "time() - process_start_time_seconds{instance=\"localhost:8008\"}",
-          "format": "time_series",
-          "instant": true,
-          "interval": "",
-          "intervalFactor": 5,
-          "legendFormat": "{{state}}",
-          "metric": "jvm_gc_collection_seconds_sum",
-          "refId": "A",
-          "step": 10
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Teku Uptime",
-      "type": "stat"
-    },
-    {
-      "datasource": "${DS_PROMETHEUS}",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "semi-dark-red",
-                "value": null
-              },
-              {
-                "color": "semi-dark-orange",
-                "value": 5
-              },
-              {
-                "color": "semi-dark-green",
-                "value": 10
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 3,
-        "x": 3,
-        "y": 8
-      },
-      "id": 30,
-      "interval": "10s",
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": true
-        }
-      },
-      "pluginVersion": "7.0.3",
-      "targets": [
-        {
-          "expr": "libp2p_peers",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Peer count",
-      "type": "stat"
-    },
-    {
-      "datasource": "${DS_PROMETHEUS}",
-      "description": "Percentage of the java heap used",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "mappings": [],
-          "max": 100,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "semi-dark-green",
-                "value": null
-              },
-              {
-                "color": "dark-yellow",
-                "value": 80
-              },
-              {
-                "color": "semi-dark-red",
-                "value": 90
-              }
-            ]
-          },
-          "unit": "percent"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 3,
-        "x": 6,
-        "y": 8
-      },
-      "id": 23,
-      "interval": "10",
-      "links": [],
-      "options": {
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
-      },
-      "pluginVersion": "7.0.3",
-      "targets": [
-        {
-          "expr": "100 * jvm_memory_bytes_used{instance=~\"$system\", area=\"heap\"} / jvm_memory_bytes_max{instance=~\"$system\", area=\"heap\"}",
-          "format": "time_series",
-          "instant": true,
-          "interval": "",
-          "intervalFactor": 5,
-          "legendFormat": "{{instance}}",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "JVM Heap Used",
-      "type": "gauge"
-    },
-    {
-      "datasource": "${DS_PROMETHEUS}",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "decimals": 1,
-          "mappings": [],
-          "thresholds": {
-            "mode": "percentage",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "yellow",
-                "value": 5
-              },
-              {
-                "color": "red",
-                "value": 10
-              }
-            ]
-          },
-          "unit": "percentunit"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 3,
-        "x": 9,
-        "y": 8
-      },
-      "id": 50,
-      "interval": "10s",
-      "links": [
-        {
-          "title": "",
-          "url": ""
-        }
-      ],
-      "options": {
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
-      },
-      "pluginVersion": "7.0.3",
-      "targets": [
-        {
-          "expr": "rate(jvm_gc_collection_seconds_sum{instance=~\"$system\",gc=\"G1 Young Generation\"}[1m])",
-          "format": "time_series",
-          "instant": true,
-          "interval": "",
-          "intervalFactor": 5,
-          "legendFormat": "{{gc}} [{{instance}}]",
-          "metric": "jvm_gc_collection_seconds_sum",
-          "refId": "A",
-          "step": 10
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Young GC time",
-      "type": "gauge"
-    },
-    {
-      "datasource": "${DS_PROMETHEUS}",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "decimals": 1,
-          "mappings": [],
-          "thresholds": {
-            "mode": "percentage",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "yellow",
-                "value": 5
-              },
-              {
-                "color": "red",
-                "value": 10
-              }
-            ]
-          },
-          "unit": "percentunit"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 3,
-        "x": 12,
-        "y": 8
-      },
-      "id": 51,
-      "interval": "10s",
-      "links": [
-        {
-          "title": "",
-          "url": ""
-        }
-      ],
-      "options": {
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
-      },
-      "pluginVersion": "7.0.3",
-      "targets": [
-        {
-          "expr": "rate(jvm_gc_collection_seconds_sum{instance=~\"$system\",gc=\"G1 Old Generation\"}[1m])",
-          "format": "time_series",
-          "instant": true,
-          "interval": "",
-          "intervalFactor": 5,
-          "legendFormat": "{{gc}} [{{instance}}]",
-          "metric": "jvm_gc_collection_seconds_sum",
-          "refId": "A",
-          "step": 10
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Old GC time",
-      "type": "gauge"
-    },
-    {
-      "cacheTimeout": null,
-      "datasource": "${DS_PROMETHEUS}",
-      "description": "Used Data FS",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {},
-          "mappings": [
-            {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
-            }
-          ],
-          "max": 100,
-          "min": 0,
-          "nullValueMode": "null",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "semi-dark-green",
-                "value": null
-              },
-              {
-                "color": "dark-yellow",
-                "value": 80
-              },
-              {
-                "color": "semi-dark-red",
-                "value": 90
-              }
-            ]
-          },
-          "unit": "percent"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 3,
-        "x": 15,
-        "y": 8
-      },
-      "id": 32,
-      "interval": "10s",
-      "links": [],
-      "options": {
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
-      },
-      "pluginVersion": "7.0.3",
-      "targets": [
-        {
-          "expr": "100 - ((node_filesystem_avail_bytes{mountpoint=\"/data\"} * 100) / node_filesystem_size_bytes{mountpoint=\"/data\"})",
-          "format": "time_series",
-          "instant": true,
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "",
-          "refId": "A",
-          "step": 900
-        }
-      ],
-      "timeFrom": null,
-      "title": "Data FS Used",
-      "type": "gauge"
-    },
-    {
-      "collapsed": false,
-      "datasource": "${DS_PROMETHEUS}",
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 12
       },
       "id": 16,
       "panels": [],
@@ -1354,154 +76,30 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
-      "decimals": 0,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
+      "datasource": "Prometheus",
       "fill": 1,
-      "fillGradient": 5,
+      "fillGradient": 0,
       "gridPos": {
         "h": 10,
-        "w": 6,
+        "w": 8,
         "x": 0,
-        "y": 13
-      },
-      "hiddenSeries": false,
-      "id": 6,
-      "interval": "10s",
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": false,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "connected",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": true,
-      "targets": [
-        {
-          "expr": "beacon_slot",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        },
-        {
-          "expr": "beacon_head_slot",
-          "interval": "",
-          "legendFormat": "",
-          "refId": "B"
-        }
-      ],
-      "thresholds": [
-        {
-          "colorMode": "critical",
-          "fill": true,
-          "line": true,
-          "op": "gt",
-          "yaxis": "left"
-        }
-      ],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Slot",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:642",
-          "decimals": 0,
-          "format": "none",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "$$hashKey": "object:643",
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
-      "decimals": 0,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 5,
-      "gridPos": {
-        "h": 10,
-        "w": 6,
-        "x": 6,
-        "y": 13
+        "y": 1
       },
       "hiddenSeries": false,
       "id": 2,
-      "interval": "10s",
       "legend": {
         "avg": false,
         "current": false,
-        "hideEmpty": false,
-        "hideZero": false,
         "max": false,
         "min": false,
-        "show": false,
+        "show": true,
         "total": false,
         "values": false
       },
       "lines": true,
       "linewidth": 1,
       "maxPerRow": 24,
-      "nullPointMode": "connected",
+      "nullPointMode": "null",
       "options": {
         "dataLinks": []
       },
@@ -1514,7 +112,7 @@
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
-      "steppedLine": true,
+      "steppedLine": false,
       "targets": [
         {
           "expr": "beacon_epoch",
@@ -1561,23 +159,20 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:593",
-          "decimals": 0,
-          "format": "none",
-          "label": "",
+          "format": "short",
+          "label": null,
           "logBase": 1,
           "max": null,
           "min": null,
           "show": true
         },
         {
-          "$$hashKey": "object:594",
           "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": false
+          "show": true
         }
       ],
       "yaxis": {
@@ -1590,32 +185,23 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
-      "decimals": 0,
-      "description": "The number of peers currently connected.",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
+      "datasource": null,
       "fill": 1,
-      "fillGradient": 5,
+      "fillGradient": 0,
       "gridPos": {
         "h": 10,
-        "w": 6,
-        "x": 12,
-        "y": 13
+        "w": 8,
+        "x": 8,
+        "y": 1
       },
       "hiddenSeries": false,
-      "id": 22,
-      "interval": "10s",
+      "id": 6,
       "legend": {
         "avg": false,
         "current": false,
         "max": false,
         "min": false,
-        "show": false,
+        "show": true,
         "total": false,
         "values": false
       },
@@ -1632,7 +218,111 @@
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
-      "steppedLine": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "beacon_slot",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        },
+        {
+          "expr": "beacon_head_slot",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [
+        {
+          "colorMode": "critical",
+          "fill": true,
+          "line": true,
+          "op": "gt",
+          "yaxis": "left"
+        }
+      ],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Slot",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "description": "The number of peers currently connected.",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 10,
+        "w": 8,
+        "x": 16,
+        "y": 1
+      },
+      "hiddenSeries": false,
+      "id": 22,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
       "targets": [
         {
           "expr": "libp2p_peers",
@@ -1662,9 +352,8 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:887",
           "decimals": 0,
-          "format": "none",
+          "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1672,146 +361,12 @@
           "show": true
         },
         {
-          "$$hashKey": "object:888",
           "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
-      "decimals": 0,
-      "description": "Active and live validators based on the previous epoch",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 5,
-      "gridPos": {
-        "h": 10,
-        "w": 6,
-        "x": 18,
-        "y": 13
-      },
-      "hiddenSeries": false,
-      "id": 40,
-      "interval": "10s",
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": false,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": true,
-      "targets": [
-        {
-          "expr": "beacon_previous_live_validators",
-          "interval": "",
-          "intervalFactor": 3,
-          "legendFormat": "Live",
-          "refId": "A"
-        },
-        {
-          "expr": "beacon_previous_active_validators",
-          "interval": "",
-          "intervalFactor": 3,
-          "legendFormat": "Active",
-          "refId": "B"
-        },
-        {
-          "expr": "",
-          "hide": false,
-          "instant": false,
-          "interval": "",
-          "intervalFactor": 3,
-          "legendFormat": "Threshold",
-          "refId": "C"
-        }
-      ],
-      "thresholds": [
-        {
-          "$$hashKey": "object:251",
-          "colorMode": "critical",
-          "fill": false,
-          "line": true,
-          "op": "gt",
-          "value": null,
-          "yaxis": "left"
-        }
-      ],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Validators",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "transformations": [
-        {
-          "id": "organize",
-          "options": {}
-        }
-      ],
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:887",
-          "decimals": 0,
-          "format": "none",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": "0",
           "show": true
-        },
-        {
-          "$$hashKey": "object:888",
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": false
         }
       ],
       "yaxis": {
@@ -1821,12 +376,12 @@
     },
     {
       "collapsed": false,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 23
+        "y": 11
       },
       "id": 14,
       "panels": [],
@@ -1838,35 +393,25 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
-      "decimals": 2,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
+      "datasource": null,
       "fill": 1,
-      "fillGradient": 5,
+      "fillGradient": 0,
       "gridPos": {
         "h": 9,
-        "w": 6,
+        "w": 8,
         "x": 0,
-        "y": 24
+        "y": 12
       },
       "hiddenSeries": false,
       "id": 12,
-      "interval": "10s",
       "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "max": true,
-        "min": true,
-        "rightSide": false,
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
         "show": true,
         "total": false,
-        "values": true
+        "values": false
       },
       "lines": true,
       "linewidth": 1,
@@ -1913,7 +458,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:1545",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1922,13 +466,12 @@
           "show": true
         },
         {
-          "$$hashKey": "object:1546",
           "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": false
+          "show": true
         }
       ],
       "yaxis": {
@@ -1941,25 +484,17 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
-      "decimals": 2,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
+      "datasource": null,
       "fill": 1,
-      "fillGradient": 5,
+      "fillGradient": 0,
       "gridPos": {
         "h": 9,
-        "w": 6,
-        "x": 6,
-        "y": 24
+        "w": 8,
+        "x": 8,
+        "y": 12
       },
       "hiddenSeries": false,
       "id": 10,
-      "interval": "10s",
       "legend": {
         "alignAsTable": true,
         "avg": true,
@@ -1998,7 +533,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "JVM Memory Used",
+      "title": "Memory Used",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -2014,7 +549,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:1102",
           "format": "decbytes",
           "label": null,
           "logBase": 1,
@@ -2023,13 +557,12 @@
           "show": true
         },
         {
-          "$$hashKey": "object:1103",
           "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": false
+          "show": true
         }
       ],
       "yaxis": {
@@ -2042,24 +575,17 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
+      "datasource": "Prometheus",
       "fill": 1,
-      "fillGradient": 5,
+      "fillGradient": 0,
       "gridPos": {
         "h": 9,
-        "w": 6,
-        "x": 12,
-        "y": 24
+        "w": 8,
+        "x": 16,
+        "y": 12
       },
       "hiddenSeries": false,
       "id": 8,
-      "interval": "10s",
       "legend": {
         "avg": false,
         "current": false,
@@ -2121,287 +647,21 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:969",
-          "decimals": 3,
+          "decimals": null,
           "format": "percentunit",
-          "label": "",
+          "label": null,
           "logBase": 1,
           "max": null,
           "min": "0",
           "show": true
         },
         {
-          "$$hashKey": "object:970",
           "format": "short",
           "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
-      "decimals": 3,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 5,
-      "gridPos": {
-        "h": 9,
-        "w": 6,
-        "x": 18,
-        "y": 24
-      },
-      "hiddenSeries": false,
-      "id": 39,
-      "interval": "10s",
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "max": true,
-        "min": true,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "process_resident_memory_bytes{instance=~\"$system\"}",
-          "format": "time_series",
-          "interval": "",
-          "intervalFactor": 5,
-          "legendFormat": "{{instance}}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Process memory",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:1102",
-          "decimals": 2,
-          "format": "decbytes",
-          "label": "",
           "logBase": 1,
           "max": null,
           "min": null,
           "show": true
-        },
-        {
-          "$$hashKey": "object:1103",
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
-      "decimals": 0,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 5,
-      "gridPos": {
-        "h": 9,
-        "w": 6,
-        "x": 0,
-        "y": 33
-      },
-      "hiddenSeries": false,
-      "id": 38,
-      "interval": "10s",
-      "legend": {
-        "alignAsTable": false,
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "rightSide": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [
-        {
-          "title": "",
-          "url": ""
-        }
-      ],
-      "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": true,
-      "steppedLine": true,
-      "targets": [
-        {
-          "expr": "jvm_threads_state{state=\"WAITING\"}",
-          "format": "time_series",
-          "interval": "",
-          "intervalFactor": 5,
-          "legendFormat": "{{state}}",
-          "metric": "jvm_gc_collection_seconds_sum",
-          "refId": "A",
-          "step": 10
-        },
-        {
-          "expr": "jvm_threads_state{state=\"TIMED_WAITING\"}",
-          "format": "time_series",
-          "interval": "",
-          "intervalFactor": 5,
-          "legendFormat": "{{state}}",
-          "metric": "jvm_gc_collection_seconds_sum",
-          "refId": "B",
-          "step": 10
-        },
-        {
-          "expr": "jvm_threads_state{state=\"RUNNABLE\"}",
-          "format": "time_series",
-          "interval": "",
-          "intervalFactor": 5,
-          "legendFormat": "{{state}}",
-          "metric": "jvm_gc_collection_seconds_sum",
-          "refId": "C",
-          "step": 10
-        },
-        {
-          "expr": "jvm_threads_state{state=\"BLOCKED\"}",
-          "format": "time_series",
-          "interval": "",
-          "intervalFactor": 5,
-          "legendFormat": "{{state}}",
-          "metric": "jvm_gc_collection_seconds_sum",
-          "refId": "D",
-          "step": 10
-        },
-        {
-          "expr": "jvm_threads_state{state=\"NEW\"}",
-          "format": "time_series",
-          "interval": "",
-          "intervalFactor": 5,
-          "legendFormat": "{{state}}",
-          "metric": "jvm_gc_collection_seconds_sum",
-          "refId": "E",
-          "step": 10
-        },
-        {
-          "expr": "jvm_threads_state{state=\"TERMINATED\"}",
-          "format": "time_series",
-          "interval": "",
-          "intervalFactor": 5,
-          "legendFormat": "{{state}}",
-          "metric": "jvm_gc_collection_seconds_sum",
-          "refId": "F",
-          "step": 10
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "JVM Threads",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:969",
-          "decimals": 0,
-          "format": "none",
-          "label": "",
-          "logBase": 1,
-          "max": null,
-          "min": "0",
-          "show": true
-        },
-        {
-          "$$hashKey": "object:970",
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": false
         }
       ],
       "yaxis": {
@@ -2411,7 +671,7 @@
     }
   ],
   "refresh": "10s",
-  "schemaVersion": 25,
+  "schemaVersion": 22,
   "style": "dark",
   "tags": [
     "ethereum",
@@ -2422,11 +682,17 @@
     "list": [
       {
         "allValue": null,
-        "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "current": {
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "Prometheus",
         "definition": "query_result(beacon_slot)",
         "hide": 0,
         "includeAll": true,
+        "index": -1,
         "label": "System",
         "multi": true,
         "name": "system",
@@ -2445,11 +711,12 @@
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [
+      "5s",
       "10s",
       "30s",
       "1m",
@@ -2464,5 +731,8 @@
   "timezone": "",
   "title": "Teku Overview",
   "uid": "JxLDWgqWy",
-  "version": 21
+  "variables": {
+    "list": []
+  },
+  "version": 2
 }
