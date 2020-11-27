@@ -1,4 +1,4 @@
-# Teku standalone fullstack
+# Teku standalone 
 
 ## Requirements
 * Get to know [Teku](https://docs.teku.consensys.net/en/latest/) a bit
