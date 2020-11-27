@@ -1,4 +1,4 @@
-# Teku standalone fullstack
+# Teku standalone 
 
 ## Requirements
 * Get to know [Teku](https://docs.teku.consensys.net/en/latest/) a bit
@@ -27,15 +27,15 @@ Run with (as deamon with "-d")
 ```
 docker-compose up -d
 ```
-or run only certain services (in this case only beacon and validator)
+or run only certain services (in this case only beacon)
 ```
-docker-compose up -d beacon validator
+docker-compose up -d beacon 
 ```
 
 ### Stop it
 Stop services (or everything) like this
 ```
-docker-compose stop validator slasher
+docker-compose stop beacon
 ```
 
 ### Shut it down for good
