@@ -63,8 +63,5 @@ Login with username `admin` and password `admin` (Grafana defaults), data source
 
 ## FAQ
 
-### How do I install docker and docker-compose on raspberry pi?
-There is an excellent short article about [how to install docker and docker-compose on raspberry pi](https://dev.to/rohansawant/installing-docker-and-docker-compose-on-the-raspberry-pi-in-5-simple-steps-3mgl), you can also use google to find another tutorial for it.
-
 ### I want to use a specific Ethereum 1 node!
 Edit the line with `eth1-endpoint:` in [./config/teku/beacon.yaml](/config/teku/beacon.yaml) and set your Ethereum 1 node URL, e. g. use it with [Infura.io](https://infura.io/) and make it look like this: `eth1-endpoint: https://goerli.infura.io:443/v3/put-your-infura-id-here`.
