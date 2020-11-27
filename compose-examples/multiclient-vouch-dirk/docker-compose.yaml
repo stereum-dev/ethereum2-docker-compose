@@ -35,6 +35,7 @@ services:
       - ./data/prysm/beacon:/data
     ports:
       - ${BEACON_API_IP}:4000:4000
+      - ${BEACON_API_IP}:8900:8080
       - 13000:13000/tcp
       - 12000:12000/udp
     networks:
@@ -52,6 +53,7 @@ services:
       - ./data/prysm/beacon-slasher:/data
     ports:
       - ${BEACON_API_IP}:4001:4000
+      - ${BEACON_API_IP}:8901:8080
       - 13001:13000/tcp
       - 12001:12000/udp
     networks:
@@ -71,6 +73,8 @@ services:
     volumes:
       - ./config/prysm/slasher/slasher.yaml:/config/slasher.yaml:ro
       - ./data/prysm/slasher:/data
+    ports:
+      - ${BEACON_API_IP}:8902:8680
     networks:
       - n_slasher_beacon
     <<: *logging
@@ -87,6 +91,7 @@ services:
       - ./data/sigmaprime/lighthouse-network:/root/network
     ports:
       - ${BEACON_API_IP}:5052:5052/tcp
+      - ${BEACON_API_IP}:8910:5054
       - 9000:9000/tcp
       - 9000:9000/udp
     networks:
@@ -106,9 +111,10 @@ services:
       - ./config/teku/beacon.yaml:/opt/teku/beacon.yaml:ro
       - ./data/consensys/teku:/opt/teku/data
     ports:
+      - ${BEACON_API_IP}:5051:5051/tcp
+      - ${BEACON_API_IP}:8920:8008
       - 9001:9001/tcp
       - 9001:9001/udp
-      - ${BEACON_API_IP}:5051:5051/tcp
     networks:
       - n_vouch_beacons
       - n_bridge
