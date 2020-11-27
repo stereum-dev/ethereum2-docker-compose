@@ -12,10 +12,3 @@ scrape_configs:
     scheme: http
     static_configs:
       - targets: ["beacon:8008"]
-  - job_name: "validator"
-    scrape_timeout: 10s
-    metrics_path: /metrics
-    scheme: http
-    static_configs:
-      - targets: ["validator:8008"]
-
