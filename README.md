@@ -1,6 +1,6 @@
-# ethereum2-docker-compose
+# ethereum2-docker-compose t
 
-Run and monitor an Ethereum 2.0 staking node. Provides multiple `docker-compose.yaml` for different scenarios.
+Run and monitor an Ethereum 2.0 staking node. Provides ultiple `docker-compose.yaml` for different scenarios.
 
 docker-compose | Description
 ---------------|-------------
