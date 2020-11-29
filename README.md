@@ -1,4 +1,4 @@
-# ethereum2-docker-compose t
+# ethereum2-docker-compose
 
 Run and monitor an Ethereum 2.0 staking node. Provides ultiple `docker-compose.yaml` for different scenarios.
 
