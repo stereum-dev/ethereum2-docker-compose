@@ -38,6 +38,16 @@ strategies:
       - prysm_beacon_slasher:4000
       - teku_beacon:5051
       - lighthouse_beacon:5052
+  # The attestationdata strategy obtains attestation data from multiple sources.
+  attestationdata:
+    # style can be 'best', which obtains attestations from all nodes and selects the best, or 'first', which uses the first returned
+    style: best
+    # beacon-node-addresses are the addresses of beacon nodes to use for this strategy.
+    beacon-node-addresses:
+      - prysm_beacon:4000
+      - prysm_beacon_slasher:4000
+      - teku_beacon:5051
+      - lighthouse_beacon:5052
 
 accountmanager:
   dirk:

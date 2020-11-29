@@ -1,13 +1,9 @@
 # network
-network: "mainnet"
+network: "pyrmont"
 
 # p2p
 p2p-enabled: true
 p2p-port: 9001
-
-# validators
-validator-keys: "/launchpad:/launchpad"
-validators-keystore-locking-enabled: false
 
 # deposit
 eth1-endpoint: http://geth:8545
