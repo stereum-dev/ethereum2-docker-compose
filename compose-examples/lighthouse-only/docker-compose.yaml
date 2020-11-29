@@ -17,6 +17,8 @@ services:
       - 30305:30303/udp
     volumes:
       - ./data/geth:/root/.ethereum
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     <<: *logging
 
   beacon:
@@ -24,6 +26,8 @@ services:
     volumes:
       - ./data/sigmaprime/lighthouse:/root/.lighthouse
       - ./config/lighthouse/start-beacon-node.sh:/root/scripts/start-beacon-node.sh:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     ports:
       - 9000:9000/tcp
       - 9000:9000/udp
@@ -37,6 +41,8 @@ services:
     volumes:
       - ./config/lighthouse/validator/start-validator-client.sh:/root/scripts/start-validator-client.sh:ro
       - ./wallets:/root/.lighthouse
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     depends_on:
       - beacon
     env_file: ./config/lighthouse/validator/.env
@@ -55,6 +61,8 @@ services:
     volumes:
     - ./config/prometheus/prometheus-lh.yaml:/etc/prometheus/prometheus.yml:ro
     - ./data/prometheus:/prometheus
+    - /etc/timezone:/etc/timezone:ro
+    - /etc/localtime:/etc/localtime:ro
     <<: *logging
 
   grafana:
@@ -68,6 +76,8 @@ services:
     volumes:
       - ./config/grafana/provisioning-lh:/etc/grafana/provisioning:ro
       - ./data/grafana:/var/lib/grafana
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     <<: *logging
 
 # EOF
