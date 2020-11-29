@@ -16,6 +16,3 @@ scrape_configs:
   - job_name: 'beacon'
     static_configs:
       - targets: ['beacon:5054']
-  - job_name: 'validator'
-    static_configs:
-      - targets: ['validator:5054']
