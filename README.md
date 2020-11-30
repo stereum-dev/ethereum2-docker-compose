@@ -23,7 +23,7 @@ Block explorer | https://beaconscan.com/pyrmont or https://pyrmont.beaconcha.in/
 Ethereum Launchpad | https://pyrmont.launchpad.ethereum.org/ | https://launchpad.ethereum.org/
 
 ## Run a node
-1. Select a docker-compose from the list above.
+1. Decide on a client by selecting a docker-compose file from the `compose-examples` directory.
 2. Copy the `docker-compose.yaml` of your choice to the project's root directory (this directory).
 3. Follow the guide included with the docker-compose (`README.md` of the selected docker-compose).
 
