@@ -30,6 +30,7 @@ p2p-max-peers: 100
 http-web3provider: http://geth:8545
 
 historical-slasher-node: yes
+subscribe-all-subnets: yes
 block-batch-limit: 512
 
 mainnet: yes
