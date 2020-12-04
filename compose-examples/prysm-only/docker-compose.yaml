@@ -29,7 +29,7 @@ services:
       - geth
     command: --config-file=/config/beacon.yaml
     ports:
-      - 3500:3500/tcp # for web-ui    
+      - 127.0.0.1:3500:3500/tcp # for web-ui    
       - 8080:8080/tcp # for web-ui
       - 127.0.0.1:4000:4000
       - 13000:13000/tcp
@@ -51,7 +51,7 @@ services:
       - beacon
     command: --config-file=/config/validator.yaml
     ports:
-      - 8081:8081/tcp # for web-ui    
+      - 127.0.0.1:8081:8081/tcp # for web-ui    
       - 7500:7500/tcp # for web-ui
     volumes:
       - ./config/prysm/validator.yaml:/config/validator.yaml:ro
