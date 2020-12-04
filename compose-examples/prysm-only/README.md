@@ -80,9 +80,9 @@ Grafana listens on http://localhost:3000 and uses the data provided by prometheu
 Login with username `admin` and password `admin` (Grafana defaults), data source to Prometheus is already established and dashboards installed.
 
 ### Prysm Web Interface
-Runs on `http://localhost:7500`, a wallet is already created then signup with your web interface password.
+Runs on http://localhost:7500, a wallet is already created then signup with your web interface password.
 
-If not, use `Imported Wallet` option to import the your keystores & set your web interface password. 
+If not, use `Imported Wallet` option to import your keystores & set your web interface password. 
 
 ## FAQ
 ### I keep missing attestations or keep getting warnings/errors about `roughtime`
