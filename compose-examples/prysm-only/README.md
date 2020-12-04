@@ -81,6 +81,7 @@ Login with username `admin` and password `admin` (Grafana defaults), data source
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 It's possible an error occures when starting up grafana:
 ```
 grafana_1     | GF_PATHS_DATA='/var/lib/grafana' is not writable.
@@ -104,6 +105,12 @@ Runs on http://localhost:7500, a wallet is already created then signup with your
 
 If not, use `Imported Wallet` option to import your keystores & set your web interface password. 
 >>>>>>> f411646cac104842fc57540ef9d88d049e66f77d
+=======
+### Prysm Web Interface
+Runs on http://localhost:7500, a wallet is already created then signup with your web interface password.
+
+If not, use `Imported Wallet` option to import your keystores & set your web interface password. 
+>>>>>>> f411646cac104842fc57540ef9d88d049e66f77d
 
 ## FAQ
 ### I keep missing attestations or keep getting warnings/errors about `roughtime`
@@ -121,10 +128,14 @@ There is an excellent short article about [how to install docker and docker-comp
 ### I want to use a specific Ethereum 1 node!
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 Edit the line with `http-web3provider` in [./config/prysm/beacon.yaml](/config/prysm/beacon.yaml) and set your Ethereum 1 node URL, e. g. use it with [Infura.io](https://infura.io/) and make it look like this: `http-web3provider: "https://goerli.infura.io:443/v3/put-your-infura-id-here"` (make sure to use `""` for the url).
 =======
 Edit the line with `http-web3provider` in [./config/prysm/beacon.yaml](/config/prysm/beacon.yaml) and set your Ethereum 1 node URL, e. g. use it with [Infura.io](https://infura.io/) and make it look like this: `http-web3provider: https://goerli.infura.io:443/v3/put-your-infura-id-here`.
 >>>>>>> prysm web-ui
+=======
+Edit the line with `http-web3provider` in [./config/prysm/beacon.yaml](/config/prysm/beacon.yaml) and set your Ethereum 1 node URL, e. g. use it with [Infura.io](https://infura.io/) and make it look like this: `http-web3provider: https://goerli.infura.io:443/v3/put-your-infura-id-here`.
+>>>>>>> f411646cac104842fc57540ef9d88d049e66f77d
 =======
 Edit the line with `http-web3provider` in [./config/prysm/beacon.yaml](/config/prysm/beacon.yaml) and set your Ethereum 1 node URL, e. g. use it with [Infura.io](https://infura.io/) and make it look like this: `http-web3provider: https://goerli.infura.io:443/v3/put-your-infura-id-here`.
 >>>>>>> f411646cac104842fc57540ef9d88d049e66f77d
