@@ -19,7 +19,7 @@ monitoring-host: 0.0.0.0
 
 grpc-gateway-host: 0.0.0.0
 grpc-gateway-port: 3500
-grpc-gateway-corsdomain: http://127.0.0.1:7500
+grpc-gateway-corsdomain: http://localhost:7500
 
 # disable scan of local network
 p2p-denylist: ["10.0.0.0/8","172.16.0.0/12","192.168.0.0/16","100.64.0.0/10","169.254.0.0/16"]
@@ -38,6 +38,7 @@ subscribe-all-subnets: yes
 block-batch-limit: 512
 
 pyrmont: yes
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 # https://github.com/attestantio/vouch/issues/6
@@ -45,3 +46,5 @@ rpc-max-page-size: 100000
 grpc-max-msg-size: 268435456
 =======
 >>>>>>> working on it
+=======
+>>>>>>> prysm web-ui
