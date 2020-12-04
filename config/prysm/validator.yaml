@@ -13,8 +13,12 @@ beacon-rpc-provider: beacon:4000
 monitoring-host: 0.0.0.0
 
 grpc-gateway-host: 0.0.0.0
-grpc-gateway-corsdomain: http://127.0.0.1:7500
+grpc-gateway-corsdomain: http://localhost:7500
 grpc-gateway-port: 7500
+
+#########
+# Web-UI
+web: true
 
 #####################################
 # Validator database, accounts & key management

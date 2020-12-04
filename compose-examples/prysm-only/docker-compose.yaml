@@ -29,8 +29,8 @@ services:
       - geth
     command: --config-file=/config/beacon.yaml
     ports:
-      - 3500:3500/tcp     
-      - 8080:8080/tcp     
+      - 3500:3500/tcp # for web-ui    
+      - 8080:8080/tcp # for web-ui
       - 127.0.0.1:4000:4000
       - 13000:13000/tcp
       - 12000:12000/udp
@@ -45,10 +45,10 @@ services:
     hostname: validator
     depends_on:
       - beacon
-    command: --web --config-file=/config/validator.yaml
+    command: --config-file=/config/validator.yaml
     ports:
-      - 8081:8081/tcp     
-      - 7500:7500/tcp
+      - 8081:8081/tcp # for web-ui    
+      - 7500:7500/tcp # for web-ui
     volumes:
       - ./config/prysm/validator.yaml:/config/validator.yaml:ro
       - ./data/prysm/validator:/data
@@ -82,7 +82,6 @@ services:
   grafana:
     image: grafana/grafana:7.3.4
     restart: on-failure
-    user: "1000"
     hostname: grafana
     depends_on:
       - prometheus
