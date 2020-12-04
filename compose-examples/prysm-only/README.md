@@ -79,9 +79,6 @@ Grafana listens on http://localhost:3000 and uses the data provided by prometheu
 
 Login with username `admin` and password `admin` (Grafana defaults), data source to Prometheus is already established and dashboards installed.
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 It's possible an error occures when starting up grafana:
 ```
 grafana_1     | GF_PATHS_DATA='/var/lib/grafana' is not writable.
@@ -89,28 +86,11 @@ grafana_1     | You may have issues with file permissions, more information here
 grafana_1     | mkdir: can't create directory '/var/lib/grafana/plugins': Permission denied
 ```
 Adding `user: <your-user-id>` to the service `grafana` in your `docker-compose.yaml` resolves this. Run `id -u` to get your user-id on linux.
-=======
+
 ### Prysm Web Interface
 Runs on http://localhost:7500, a wallet is already created then signup with your web interface password.
 
-<<<<<<< HEAD
-If not, use `Imported Wallet` option to import the your keystores & set your web interface password. 
->>>>>>> prysm web-ui
-=======
-If not, use `Imported Wallet` option to import your keystores & set your web interface password. 
->>>>>>> Update README.md
-=======
-### Prysm Web Interface
-Runs on http://localhost:7500, a wallet is already created then signup with your web interface password.
-
-If not, use `Imported Wallet` option to import your keystores & set your web interface password. 
->>>>>>> f411646cac104842fc57540ef9d88d049e66f77d
-=======
-### Prysm Web Interface
-Runs on http://localhost:7500, a wallet is already created then signup with your web interface password.
-
-If not, use `Imported Wallet` option to import your keystores & set your web interface password. 
->>>>>>> f411646cac104842fc57540ef9d88d049e66f77d
+If not, use `Imported Wallet` option to import the your keystores & set your web interface password.
 
 ## FAQ
 ### I keep missing attestations or keep getting warnings/errors about `roughtime`
@@ -126,16 +106,4 @@ Ask google on how to get your OS' time synced again.
 There is an excellent short article about [how to install docker and docker-compose on raspberry pi](https://dev.to/rohansawant/installing-docker-and-docker-compose-on-the-raspberry-pi-in-5-simple-steps-3mgl), you can also use google to find another tutorial for it.
 
 ### I want to use a specific Ethereum 1 node!
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 Edit the line with `http-web3provider` in [./config/prysm/beacon.yaml](/config/prysm/beacon.yaml) and set your Ethereum 1 node URL, e. g. use it with [Infura.io](https://infura.io/) and make it look like this: `http-web3provider: "https://goerli.infura.io:443/v3/put-your-infura-id-here"` (make sure to use `""` for the url).
-=======
-Edit the line with `http-web3provider` in [./config/prysm/beacon.yaml](/config/prysm/beacon.yaml) and set your Ethereum 1 node URL, e. g. use it with [Infura.io](https://infura.io/) and make it look like this: `http-web3provider: https://goerli.infura.io:443/v3/put-your-infura-id-here`.
->>>>>>> prysm web-ui
-=======
-Edit the line with `http-web3provider` in [./config/prysm/beacon.yaml](/config/prysm/beacon.yaml) and set your Ethereum 1 node URL, e. g. use it with [Infura.io](https://infura.io/) and make it look like this: `http-web3provider: https://goerli.infura.io:443/v3/put-your-infura-id-here`.
->>>>>>> f411646cac104842fc57540ef9d88d049e66f77d
-=======
-Edit the line with `http-web3provider` in [./config/prysm/beacon.yaml](/config/prysm/beacon.yaml) and set your Ethereum 1 node URL, e. g. use it with [Infura.io](https://infura.io/) and make it look like this: `http-web3provider: https://goerli.infura.io:443/v3/put-your-infura-id-here`.
->>>>>>> f411646cac104842fc57540ef9d88d049e66f77d
