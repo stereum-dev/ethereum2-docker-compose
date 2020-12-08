@@ -27,7 +27,7 @@ p2p-denylist: ["10.0.0.0/8","172.16.0.0/12","192.168.0.0/16","100.64.0.0/10","16
 # changing this also needs to be changed in docker-compose.yaml!
 p2p-tcp-port: 13000
 
-p2p-max-peers: 60
+p2p-max-peers: 100
 
 ##############################
 # Connection to geth container
