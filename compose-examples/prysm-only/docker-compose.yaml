@@ -87,6 +87,7 @@ services:
     image: grafana/grafana:7.3.4
     restart: on-failure
     hostname: grafana
+    user: "1000"
     depends_on:
       - prometheus
     ports:
@@ -96,4 +97,10 @@ services:
       - ./data/grafana:/var/lib/grafana
     <<: *logging
 
+  node-exporter:
+    image: prom/node-exporter:latest
+    hostname: node-exporter
+    ports:
+      - 127.0.0.1:9100:9100
+    <<: *logging
 # EOF
