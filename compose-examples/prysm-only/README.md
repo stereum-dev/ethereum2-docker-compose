@@ -87,6 +87,11 @@ grafana_1     | mkdir: can't create directory '/var/lib/grafana/plugins': Permis
 ```
 Adding `user: <your-user-id>` to the service `grafana` in your `docker-compose.yaml` resolves this. Run `id -u` to get your user-id on linux.
 
+### Prysm Web Interface
+Runs on http://localhost:7500, a wallet is already created then signup with your web interface password.
+
+If not, use `Imported Wallet` option to import the your keystores & set your web interface password.
+
 ## FAQ
 ### I keep missing attestations or keep getting warnings/errors about `roughtime`
 E. g. error messages like this:
