@@ -100,7 +100,5 @@ services:
   node-exporter:
     image: prom/node-exporter:latest
     hostname: node-exporter
-    ports:
-      - 127.0.0.1:9100:9100
     <<: *logging
 # EOF
