@@ -46,7 +46,7 @@ There are pregenerated certificates to kickstart this installation faster for tr
 
 ### Wallets
 Vouch and dirk need to be aware of the wallets. Copy the [ethdo](https://github.com/wealdtech/ethdo) wallet(s) to `./wallets` and adapt the following files:
-* `./config/vouch/vouch.yml`: edit `accountmanager.dirk.accounts` and list the wallets. Take a look at the [vouch github](https://github.com/attestantio/vouch/blob/master/docs/accountmanager.md#accounts) for more details.
+* `./config/vouch/vouch.yml`: edit `accountmanager.dirk.accounts` and list the wallets. Take a look at the [vouch github](https://github.com/attestantio/vouch/blob/master/docs/accountmanager.md#accounts) for more details. Use `""` if your wallet- or account-name includes special characters (e. g. `"wallet-a/account-123"`).
 * (optional) `./config/dirk/dirk.yml`: edit `permissions.vouch`, default is to give access to all wallets/accounts. Read up details on the [dirk github](https://github.com/attestantio/dirk/blob/master/docs/permissions.md)
 
 Edit the following files to allow dirk to decrypt the wallet/accounts with passwords:
