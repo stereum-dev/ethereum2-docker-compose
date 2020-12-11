@@ -3,7 +3,7 @@ services:
   validator-import-launchpad:
     container_name: validator-import-launchpad
     image: gcr.io/prysmaticlabs/prysm/validator:${PRYSM_DOCKER_TAG}
-    command: accounts import --keys-dir="/launchpad/eth2.0-deposit-cli/validator_keys" --wallet-dir="/data/wallets" --wallet-password-file="/data/passwords/wallet-password"
+    command: accounts import --keys-dir="/launchpad/eth2.0-deposit-cli/validator_keys" --wallet-dir="/data/wallets" --wallet-password-file="/data/passwords/wallet-password" --pyrmont
     volumes:
       - ./data/prysm/validator:/data
       - ./launchpad:/launchpad
@@ -11,6 +11,6 @@ services:
   validator-list-accounts:
     container_name: validator_list_accounts
     image: gcr.io/prysmaticlabs/prysm/validator:${PRYSM_DOCKER_TAG}
-    command: accounts list --wallet-dir="/data/wallets" --wallet-password-file="/data/passwords/wallet-password"
+    command: accounts list --wallet-dir="/data/wallets" --wallet-password-file="/data/passwords/wallet-password" --pyrmont
     volumes:
       - ./data/prysm/validator:/data
