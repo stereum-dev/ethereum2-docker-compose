@@ -13,17 +13,17 @@ if  ( grep -Fxq "  prysm_beacon:" docker-compose.yaml  &&
 elif ( grep -Fxq "  validator:" docker-compose.yaml &&
        grep -Fxq "  beacon:" docker-compose.yaml ); then
   
-  if ( grep -q "^\s{4,}image: sigp\/lighthouse:" docker-compose.yaml ); then
+  if ( grep -Eq "^\s{4,}image: sigp\/lighthouse:" docker-compose.yaml ); then
     echo "Found lighthouse setup"
 	v_mode=l
 	v_compose_yaml_origin="compose-examples/lighthouse-only/docker-compose.yaml"
 	
-  elif ( grep -q "^\s{4,}image: gcr\.io\/prysmaticlabs\/prysm\/validator" docker-compose.yaml ); then
+  elif ( grep -Eq "^\s{4,}image: gcr\.io\/prysmaticlabs\/prysm\/validator" docker-compose.yaml ); then
     echo "Found prysm setup"
 	v_mode=p
 	v_compose_yaml_origin="compose-examples/prysm-only/docker-compose.yaml"
 	
-  elif ( grep -q "^\s{4,}image: pegasyseng\/teku" docker-compose.yaml ); then
+  elif ( grep -Eq "^\s{4,}image: pegasyseng\/teku" docker-compose.yaml ); then
     echo "Found teku setup"
 	v_mode=t
 	v_compose_yaml_origin="compose-examples/teku-only/docker-compose.yaml"
