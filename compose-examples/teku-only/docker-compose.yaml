@@ -38,7 +38,7 @@ services:
     <<: *logging
 
   prometheus:
-    image: prom/prometheus:v2.21.0
+    image: prom/prometheus:${PROMETHEUS_DOCKER_TAG}
     user: root # https://github.com/prometheus/prometheus/issues/5976
     restart: on-failure
     hostname: prometheus
@@ -51,7 +51,7 @@ services:
     <<: *logging
 
   grafana:
-    image: grafana/grafana:7.2.1
+    image: grafana/grafana:${GRAFANA_DOCKER_TAG}
     restart: on-failure
     hostname: grafana
     depends_on:

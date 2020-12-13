@@ -17,6 +17,9 @@ p2p-host-dns: ""
 rpc-host: 0.0.0.0
 monitoring-host: 0.0.0.0
 
+grpc-gateway-host: 0.0.0.0
+grpc-gateway-port: 3500
+
 # disable scan of local network
 p2p-denylist: ["10.0.0.0/8","172.16.0.0/12","192.168.0.0/16","100.64.0.0/10","169.254.0.0/16"]
 
@@ -30,6 +33,8 @@ p2p-max-peers: 100
 http-web3provider: http://geth:8545
 
 mainnet: yes
+
+block-batch-limit: 512
 
 # https://github.com/attestantio/vouch/issues/6
 rpc-max-page-size: 100000
