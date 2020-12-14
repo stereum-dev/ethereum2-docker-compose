@@ -29,8 +29,5 @@ exec lighthouse \
         --http \
         --http-address 0.0.0.0 \
         $METRICS_PARAMS \
-        --ws \
-        --ws-address 0.0.0.0 \
-        --max-skip-slots 700 \
         $GRAFFITI_PARAM \
         $ETH1_FLAG
