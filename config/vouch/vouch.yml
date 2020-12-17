@@ -14,7 +14,7 @@ metrics:
 # graffiti provides graffiti data.  Full details are in the separate document.
 graffiti:
   static:
-    value: stefa2k/ethereum2-docker-compose
+    value: 
 
 # submitter submits data to beacon nodes.  If not present the nodes in beacon-node-address above will be used.
 submitter:
