@@ -33,9 +33,3 @@ p2p-max-peers: 100
 http-web3provider: http://geth:8545
 
 mainnet: yes
-
-block-batch-limit: 512
-
-# https://github.com/attestantio/vouch/issues/6
-rpc-max-page-size: 100000
-grpc-max-msg-size: 268435456
