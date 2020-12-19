@@ -34,9 +34,5 @@ Ethereum Launchpad | https://pyrmont.launchpad.ethereum.org/ | https://launchpad
 ### My `docker-compose` command doesn't work (e. g. `ERROR: Version in "./docker-compose.yaml" is unsupported.`)
 Most linux distributions (including Ubuntu) don't serve recent docker-compose versions in their package management. You can install a compatible version by following [official docker.io documentation](https://docs.docker.com/compose/install/).
 
-## Support the maintainer
-This software is provided under MIT license and therefore freely usable without restrictions. Dontations are always welcome:
-
-ETH - 0xA1DDc7ed6E7b9179C68cDEE24a5e47dE930061eE
-
-BTC - 39n4LUxbcCfJvBGvFVVwQQkGxSJ44JRYV7
+## Support us!
+This software is provided under MIT license and therefore freely usable without restrictions. Dontations are welcome at [gitcoin.co](https://gitcoin.co/grants/1855/stereumnet) to make use of quadratic funding and make your contribution count even more! With your donation you help us build new features and keep our servers for testnet running. Thank you for every contribution!
