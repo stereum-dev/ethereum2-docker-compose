@@ -100,15 +100,14 @@ services:
     environment:
       GF_RENDERING_SERVER_URL: http://renderer:8082/render
       GF_RENDERING_CALLBACK_URL: http://grafana:3000
-      GF_LOG_FILTERS: rendering:debug
     <<: *logging
 
   renderer:
-    image: grafana/grafana-image-renderer:2.0.0
+    image: grafana/grafana-image-renderer:${GRAFANA_IMAGE_RENDERER_TAG}
     restart: on-failure
     hostname: renderer
     ports:
-      - 127.0.0.1:8082:8082
+      - 8082
     environment:
       ENABLE_METRICS: 'true'
       HTTP_PORT: 8082
