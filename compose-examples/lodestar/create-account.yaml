@@ -2,7 +2,7 @@ version: "3.7"
 services:
   validator-import-launchpad:
     container_name: validator-import-launchpad
-    image: stereum/lodestar:v0.12.0
+    image: stereum/lodestar:${LODESTAR_DOCKER_TAG}
     command: account validator import --testnet pyrmont --directory /launchpad/eth2.0-deposit-cli/validator_keys
     volumes:
       - ./launchpad:/launchpad
