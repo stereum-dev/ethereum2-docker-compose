@@ -1,0 +1,37 @@
+version: "3.7"
+
+x-logging: &logging
+  logging:
+    driver: "json-file"
+    options:
+      max-file: "10"
+      max-size: "100m"
+
+services:
+  geth:
+    image: ethereum/client-go:${GETH_DOCKER_TAG}
+    restart: always
+    hostname: geth
+    command: --goerli --http --http.port=8545 --http.addr=0.0.0.0 --http.vhosts="*" --allow-insecure-unlock --http.api="db,eth,net,web3,personal"
+    stop_grace_period: 5m
+    ports:
+      - 30303:30303/tcp
+      - 30303:30303/udp
+      - 127.0.0.1:8545:8545
+    volumes:
+      - ./data/geth:/root/.ethereum
+    <<: *logging
+
+  beacon:
+    image: stereum/lodestar:${LODESTAR_DOCKER_TAG}
+    restart: always
+    hostname: beacon-chain
+    depends_on:
+      - geth
+    command: beacon --testnet pyrmont --eth1.providerUrl http://geth:8545
+    ports:
+      - 9000:9000/tcp
+      - 9000:9000/udp 
+    <<: *logging
+
+# EOF
