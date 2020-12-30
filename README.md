@@ -10,6 +10,7 @@ docker-compose | Description
 [Prysm standalone](./compose-examples/prysm-only) | Stand-alone [Prysm](https://github.com/prysmaticlabs/prysm) fullstack node and monitoring
 [Lighthouse standalone](./compose-examples/lighthouse-only) | Stand-alone [Lighthouse](https://github.com/sigp/lighthouse) node and monitoring
 [Teku standalone](./compose-examples/teku-only) | Stand-alone [Teku](https://github.com/ConsenSys/teku) node and monitoring
+[Lodestar standalone](./compose-examples/lodestar-only) | Stand-alone [Lodestar](https://github.com/ChainSafe/lodestar) beacon node (no validator with staking yet)
 
 ## Testnet (Pyrmont) or Mainnet
 **You are viewing this repository with configuration for Pyrmont**
