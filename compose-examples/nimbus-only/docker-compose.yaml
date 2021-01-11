@@ -22,11 +22,18 @@ services:
       - ./data/geth:/root/.ethereum
     <<: *logging
 
+  beacon-init:
+    image: stereum/init:buster
+    restart: "no"
+    volumes:
+      - ./data/nimbus/beacon:/mnt/beacon
+
   beacon:
     image: stereum/nimbus:${NIMBUS_DOCKER_TAG}
     restart: unless-stopped
     hostname: beacon-chain
     depends_on:
+      - beacon-init
       - geth
     command:
       - --network=pyrmont
@@ -41,7 +48,7 @@ services:
       - 9000:9000/tcp
       - 9000:9000/udp
     volumes:
-      - ./data/nimbus/beacon:/data
+      - ./data/nimbus/beacon:/mnt/beacon
     <<: *logging
 
 # EOF
