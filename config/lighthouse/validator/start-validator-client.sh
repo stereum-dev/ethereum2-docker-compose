@@ -59,6 +59,6 @@ if [ "$START_VALIDATOR" != "" ]; then
 		--debug-level $DEBUG_LEVEL \
 		--network $NETWORK \
 		validator \
-		--beacon-node http://beacon:5052 \
+		--beacon-nodes http://beacon:5052 \
 		--init-slashing-protection
 fi
