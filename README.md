@@ -11,6 +11,7 @@ docker-compose | Description
 [Lighthouse standalone](./compose-examples/lighthouse-only) | Stand-alone [Lighthouse](https://github.com/sigp/lighthouse) node and monitoring
 [Teku standalone](./compose-examples/teku-only) | Stand-alone [Teku](https://github.com/ConsenSys/teku) node and monitoring
 [Lodestar standalone](./compose-examples/lodestar-only) | Stand-alone [Lodestar](https://github.com/ChainSafe/lodestar) beacon node (no validator with staking yet)
+[Nimbus Eth2 standalone](./compose-examples/nimbus-only) | Stand-alone [Nimbus Eth2](https://nimbus.team/docs/eth2.html) beacon node (no validator with staking yet)
 
 ## Testnet (Pyrmont) or Mainnet
 **You are viewing this repository with configuration for Pyrmont**
