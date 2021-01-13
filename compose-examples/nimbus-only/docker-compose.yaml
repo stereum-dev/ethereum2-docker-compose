@@ -27,6 +27,7 @@ services:
     restart: "no"
     volumes:
       - ./data/nimbus/beacon:/mnt/beacon
+    <<: *logging
 
   beacon:
     image: stereum/nimbus:${NIMBUS_DOCKER_TAG}
