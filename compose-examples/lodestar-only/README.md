@@ -2,13 +2,27 @@
 
 ## Requirements
 * Get to know [Lodestar](https://chainsafe.github.io/lodestar/) a bit
-* Server with 4 (v)cpus & 8 gb memory & 100 gb storage
+* Server with 4 (v)cpus & 8 gb memory & 150 gb storage
 
 ## Services
 * geth (beacon connects to it to see deposits for validators)
 * beacon
+* validator (doesn't validate at the moment: [issue #1941](https://github.com/ChainSafe/lodestar/issues/1941))
+* prometheus
+* grafana
 
 **All services are enabled by default.**
+
+## Validator accounts with launchpad
+Please complete the steps on [launchpad](https://pyrmont.launchpad.ethereum.org/) and store the generated files of `~/eth2.0-deposit-cli/validator_keys` in `./launchpad/eth2.0-deposit-cli/validator_keys`. 
+
+1. Generate your validator(s) using [launchpad](https://pyrmont.launchpad.ethereum.org/) and complete the process
+2. Copy your generated validator(s) from `~/eth2.0-deposit-cli/validator_keys` to `./launchpad/eth2.0-deposit-cli/validator_keys`
+3. Run `docker-compose -f create-account.yaml run validator-import-launchpad` and use the **same password** as in the generation of the validator(s)
+
+You'll be asked to provide password for each validator
+
+You can repeat step 2 & 3 as often as you like, make sure to restart your validator to make it notice your new accounts!
 
 ## Run your lodestar Ethereum 2.0 beacon node
 
@@ -42,5 +56,20 @@ View logs of a certain service (in this case beacon, only the last 100 lines)
 ```
 docker-compose logs --tail=100 beacon
 ```
-### How do I install docker and docker-compose on raspberry pi?
-There is an excellent short article about [how to install docker and docker-compose on raspberry pi](https://dev.to/rohansawant/installing-docker-and-docker-compose-on-the-raspberry-pi-in-5-simple-steps-3mgl), you can also use google to find another tutorial for it.
+
+### Prometheus
+Runs on http://localhost:9096, scrapes data of beacon & validator.
+
+### Grafana
+Grafana listens on http://localhost:3006 and uses the data provided by prometheus service.
+
+Login with username `admin` and password `admin` (Grafana defaults), data source to Prometheus is already established and dashboards installed.
+
+It's possible an error occures when starting up grafana:
+```
+grafana_1     | GF_PATHS_DATA='/var/lib/grafana' is not writable.
+grafana_1     | You may have issues with file permissions, more information here: http://docs.grafana.org/installation/docker/#migration-from-a-previous-version-of-the-docker-container-to-5-1-or-later
+grafana_1     | mkdir: can't create directory '/var/lib/grafana/plugins': Permission denied
+```
+Adding `user: <your-user-id>` to the service `grafana` in your `docker-compose.yaml` resolves this. Run `id -u` to get your user-id on linux.
+
