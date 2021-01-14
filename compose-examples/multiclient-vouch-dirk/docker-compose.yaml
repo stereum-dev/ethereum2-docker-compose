@@ -8,6 +8,13 @@ x-logging: &logging
       max-size: "100m"
 
 services:
+  stereum-init:
+    image: stereum/init:buster
+    restart: "no"
+    volumes:
+      - ./data/grafana:/mnt/grafana
+    <<: *logging
+
   geth:
     container_name: geth
     image: ethereum/client-go:${GETH_DOCKER_TAG}
@@ -171,7 +178,9 @@ services:
     image: grafana/grafana:${GRAFANA_DOCKER_TAG}
     restart: unless-stopped
     hostname: grafana
+    user: "2000"
     depends_on:
+      - stereum-init
       - prometheus
     ports:
       - 127.0.0.1:3000:3000
