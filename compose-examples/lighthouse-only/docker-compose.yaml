@@ -28,27 +28,25 @@ services:
     <<: *logging
 
   beacon:
-    image: sigp/lighthouse:${LIGHTHOUSE_DOCKER_TAG}
+    image: stereum/lighthouse:${LIGHTHOUSE_DOCKER_TAG}
     volumes:
-      - ./data/sigmaprime/lighthouse:/root/.lighthouse
-      - ./config/lighthouse/start-beacon-node.sh:/root/scripts/start-beacon-node.sh:ro
+      - ./data/sigmaprime/lighthouse:/opt/app/beacon
     ports:
       - 9000:9000/tcp
       - 9000:9000/udp
-    env_file: ./config/lighthouse/.env
-    command: sh /root/scripts/start-beacon-node.sh
-    restart: on-failure
+    env_file: ./config/lighthouse/beacon.env
+    entrypoint: /opt/app/start/beacon.sh
+    restart: unless-stopped
     <<: *logging
 
   validator:
     image: sigp/lighthouse:${LIGHTHOUSE_DOCKER_TAG}
     volumes:
-      - ./config/lighthouse/validator/start-validator-client.sh:/root/scripts/start-validator-client.sh:ro
-      - ./wallets:/root/.lighthouse
+      - ./wallets:/opt/app/validator
     depends_on:
       - beacon
-    env_file: ./config/lighthouse/validator/.env
-    command: sh /root/scripts/start-validator-client.sh
+    env_file: ./config/lighthouse/validator.env
+    entrypoint: /opt/app/start/validator.sh
     restart: on-failure
     <<: *logging
 
