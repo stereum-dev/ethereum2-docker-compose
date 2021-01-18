@@ -13,6 +13,9 @@ services:
     restart: "no"
     volumes:
       - ./data/grafana:/mnt/grafana
+      - ./data/sigmaprime/lighthouse:/mnt/lighthouse
+      - ./wallets:/mnt/wallets
+      - ./data/prometheus:/mnt/prometheus
     <<: *logging
 
   geth:
@@ -29,6 +32,9 @@ services:
 
   beacon:
     image: stereum/lighthouse:${LIGHTHOUSE_DOCKER_TAG}
+    user: "2000"
+    depends_on:
+      - stereum-init
     volumes:
       - ./data/sigmaprime/lighthouse:/opt/app/beacon
     ports:
@@ -40,11 +46,13 @@ services:
     <<: *logging
 
   validator:
-    image: sigp/lighthouse:${LIGHTHOUSE_DOCKER_TAG}
+    image: stereum/lighthouse:${LIGHTHOUSE_DOCKER_TAG}
+    user: "2000"
+    depends_on:
+      - stereum-init
+      - beacon
     volumes:
       - ./wallets:/opt/app/validator
-    depends_on:
-      - beacon
     env_file: ./config/lighthouse/validator.env
     entrypoint: /opt/app/start/validator.sh
     restart: on-failure
@@ -52,8 +60,10 @@ services:
 
   prometheus:
     image: prom/prometheus:${PROMETHEUS_DOCKER_TAG}
-    user: root # https://github.com/prometheus/prometheus/issues/5976
-    restart: on-failure
+    user: "2000"
+    depends_on:
+      - stereum-init
+    restart: unless-stopped
     hostname: prometheus
     command: --storage.tsdb.retention.time=7d --config.file=/etc/prometheus/prometheus.yml
     ports:
@@ -65,12 +75,12 @@ services:
 
   grafana:
     image: grafana/grafana:${GRAFANA_DOCKER_TAG}
-    restart: on-failure
-    hostname: grafana
     user: "2000"
     depends_on:
       - stereum-init
       - prometheus
+    restart: unless-stopped
+    hostname: grafana
     ports:
       - 127.0.0.1:3002:3000
     volumes:
