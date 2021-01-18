@@ -90,9 +90,10 @@ services:
   lighthouse_beacon:
     container_name: lighthouse_beacon
     image: stereum/lighthouse:${LIGHTHOUSE_DOCKER_TAG}
+    user: "2000"
     restart: unless-stopped
-    entrypoint: /opt/app/start/beacon.sh
     env_file: ./config/lighthouse/beacon.env
+    entrypoint: /opt/app/start/beacon.sh
     volumes:
       - ./data/sigmaprime/lighthouse:/opt/app/beacon
     ports:
