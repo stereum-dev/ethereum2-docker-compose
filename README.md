@@ -5,14 +5,14 @@ Run and monitor an Ethereum 2.0 staking node, choose your favorite client and st
 Visit us at [stereum.net](https://stereum.net/) for guides and on [Discord](https://discord.gg/8Znj8K6GjN) for support!
 
 ## Setups
-Setup | Beacon | Staking | Monitoring | Client(s)
----------------|--------|---------|------------|------
-[Lighthouse](./compose-examples/lighthouse-only) | ![yes](https://stereum.net/imgs/beacon.png) | ![yes](https://stereum.net/imgs/staking.png) | ![yes](https://stereum.net/imgs/monitoring.png) | [Lighthouse](https://github.com/sigp/lighthouse)
-[Lodestar](./compose-examples/lodestar-only) | ![yes](https://stereum.net/imgs/beacon.png) | - | ![yes](https://stereum.net/imgs/monitoring.png) | [Lodestar](https://github.com/ChainSafe/lodestar)
-[Multiclient with Vouch & Dirk](./compose-examples/multiclient-vouch-dirk) | ![yes](https://stereum.net/imgs/beacon.png) | ![yes](https://stereum.net/imgs/staking.png) | ![yes](https://stereum.net/imgs/monitoring.png) | , ,  and with 
-[Nimbus Eth2](./compose-examples/nimbus-only) | ![yes](https://stereum.net/imgs/beacon.png) | ![yes](https://stereum.net/imgs/staking.png) | ![yes](https://stereum.net/imgs/monitoring.png) | [Nimbus Eth2](https://nimbus.team/docs/eth2.html)
-[Prysm](./compose-examples/prysm-only) | ![yes](https://stereum.net/imgs/beacon.png) | ![yes](https://stereum.net/imgs/staking.png) | ![yes](https://stereum.net/imgs/monitoring.png) | [Prysm](https://github.com/prysmaticlabs/prysm)
-[Teku](./compose-examples/teku-only) | ![yes](https://stereum.net/imgs/beacon.png) | ![yes](https://stereum.net/imgs/staking.png) | ![yes](https://stereum.net/imgs/monitoring.png) | [Teku](https://github.com/ConsenSys/teku)
+Setup | Beacon | Staking | Monitoring
+------|--------|---------|------------
+[Lighthouse](./compose-examples/lighthouse-only) | ![yes](https://stereum.net/imgs/beacon.png) | ![yes](https://stereum.net/imgs/staking.png) | ![yes](https://stereum.net/imgs/monitoring.png)
+[Lodestar](./compose-examples/lodestar-only) | ![yes](https://stereum.net/imgs/beacon.png) | - | ![yes](https://stereum.net/imgs/monitoring.png)
+[Multiclient with Vouch & Dirk](./compose-examples/multiclient-vouch-dirk) | ![yes](https://stereum.net/imgs/beacon.png) | ![yes](https://stereum.net/imgs/staking.png) | ![yes](https://stereum.net/imgs/monitoring.png)
+[Nimbus Eth2](./compose-examples/nimbus-only) | ![yes](https://stereum.net/imgs/beacon.png) | ![yes](https://stereum.net/imgs/staking.png) | ![yes](https://stereum.net/imgs/monitoring.png)
+[Prysm](./compose-examples/prysm-only) | ![yes](https://stereum.net/imgs/beacon.png) | ![yes](https://stereum.net/imgs/staking.png) | ![yes](https://stereum.net/imgs/monitoring.png)
+[Teku](./compose-examples/teku-only) | ![yes](https://stereum.net/imgs/beacon.png) | ![yes](https://stereum.net/imgs/staking.png) | ![yes](https://stereum.net/imgs/monitoring.png)
 
 <sub><sup>Sorted by name (ascending).</sup></sub>
 
