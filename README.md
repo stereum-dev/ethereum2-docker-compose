@@ -1,31 +1,29 @@
-# ethereum2-docker-compose
+# Stereum.net's node setups
 
-Run and monitor an Ethereum 2.0 staking node. Provides multiple `docker-compose.yaml` for different scenarios.
+Run and monitor an Ethereum 2.0 staking node, choose your favorite client and start right away!
 
-Visit us at [stereum.net](https://stereum.net/) and [Discord](https://discord.gg/8Znj8K6GjN)!
+Visit us at [stereum.net](https://stereum.net/) for guides and on [Discord](https://discord.gg/8Znj8K6GjN) for support!
 
-docker-compose | Description
----------------|-------------
-[Multiclient with Vouch & Dirk](./compose-examples/multiclient-vouch-dirk) | Using multiple beacons ([Prysm](https://github.com/prysmaticlabs/prysm), [Lighthouse](https://github.com/sigp/lighthouse), [Teku](https://github.com/ConsenSys/teku)) and [Vouch](https://github.com/attestantio/vouch) with [Dirk](https://github.com/attestantio/dirk) and monitoring
-[Prysm standalone](./compose-examples/prysm-only) | Stand-alone [Prysm](https://github.com/prysmaticlabs/prysm) fullstack node and monitoring
-[Lighthouse standalone](./compose-examples/lighthouse-only) | Stand-alone [Lighthouse](https://github.com/sigp/lighthouse) node and monitoring
-[Teku standalone](./compose-examples/teku-only) | Stand-alone [Teku](https://github.com/ConsenSys/teku) node and monitoring
-[Lodestar standalone](./compose-examples/lodestar-only) | Stand-alone [Lodestar](https://github.com/ChainSafe/lodestar) beacon node (no validator with staking yet)
-[Nimbus Eth2 standalone](./compose-examples/nimbus-only) | Stand-alone [Nimbus Eth2](https://nimbus.team/docs/eth2.html) node and monitoring
+## Setups
+Setup | Beacon | Staking | Monitoring | Client(s)
+---------------|--------|---------|------------|------
+[Lighthouse](./compose-examples/lighthouse-only) | ![yes](https://stereum.net/imgs/beacon.png) | ![yes](https://stereum.net/imgs/staking.png) | ![yes](https://stereum.net/imgs/monitoring.png) | [Lighthouse](https://github.com/sigp/lighthouse)
+[Lodestar](./compose-examples/lodestar-only) | ![yes](https://stereum.net/imgs/beacon.png) | - | ![yes](https://stereum.net/imgs/monitoring.png) | [Lodestar](https://github.com/ChainSafe/lodestar)
+[Multiclient with Vouch & Dirk](./compose-examples/multiclient-vouch-dirk) | ![yes](https://stereum.net/imgs/beacon.png) | ![yes](https://stereum.net/imgs/staking.png) | ![yes](https://stereum.net/imgs/monitoring.png) | , ,  and with 
+[Nimbus Eth2](./compose-examples/nimbus-only) | ![yes](https://stereum.net/imgs/beacon.png) | ![yes](https://stereum.net/imgs/staking.png) | ![yes](https://stereum.net/imgs/monitoring.png) | [Nimbus Eth2](https://nimbus.team/docs/eth2.html)
+[Prysm](./compose-examples/prysm-only) | ![yes](https://stereum.net/imgs/beacon.png) | ![yes](https://stereum.net/imgs/staking.png) | ![yes](https://stereum.net/imgs/monitoring.png) | [Prysm](https://github.com/prysmaticlabs/prysm)
+[Teku](./compose-examples/teku-only) | ![yes](https://stereum.net/imgs/beacon.png) | ![yes](https://stereum.net/imgs/staking.png) | ![yes](https://stereum.net/imgs/monitoring.png) | [Teku](https://github.com/ConsenSys/teku)
 
-## Testnet (Pyrmont) or Mainnet
-**You are viewing this repository with configuration for Pyrmont**
+<sub><sup>Sorted by name (ascending).</sup></sub>
+
+## Testnet or Mainnet
+**You are viewing this repository with configuration for testnet (Pyrmont)**
 
 Default is Pyrmont, the long-term testnet for Ethereum 2.0. For running on Mainnet, checkout `mainnet` branch by executing the following commands after `git clone`:
 ```
 git checkout mainnet
 ```
-
-### Links
-Service | Pyrmont (Testnet) | Mainnet
---------|-------------------|---------
-Block explorer | https://beaconscan.com/pyrmont or https://pyrmont.beaconcha.in/ | https://beaconscan.com/ or https://beaconcha.in/
-Ethereum Launchpad | https://pyrmont.launchpad.ethereum.org/ | https://launchpad.ethereum.org/
+Not all setups are available for Mainnet yet.
 
 ## Run a node
 1. Select a docker-compose from the list above.

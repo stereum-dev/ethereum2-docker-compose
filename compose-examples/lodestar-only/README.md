@@ -5,7 +5,7 @@
 * Server with 4 (v)cpus & 8 gb memory & 150 gb storage
 
 ## Services
-* geth (beacon connects to it to see deposits for validators)
+* [geth](https://github.com/ethereum/go-ethereum) (beacon connects to it to see deposits for validators)
 * beacon
 * validator (doesn't validate at the moment: [issue #1941](https://github.com/ChainSafe/lodestar/issues/1941))
 * prometheus
@@ -20,9 +20,7 @@ Please complete the steps on [launchpad](https://pyrmont.launchpad.ethereum.org/
 2. Copy your generated validator(s) from `~/eth2.0-deposit-cli/validator_keys` to `./launchpad/eth2.0-deposit-cli/validator_keys`
 3. Run `docker-compose -f create-account.yaml run validator-import-launchpad` and use the **same password** as in the generation of the validator(s)
 
-You'll be asked to provide password for each validator
-
-You can repeat step 2 & 3 as often as you like, make sure to restart your validator to make it notice your new accounts!
+Repeat these steps as often as you like, restart your validator to make it notice your new accounts!
 
 ## Run your lodestar Ethereum 2.0 beacon node
 
