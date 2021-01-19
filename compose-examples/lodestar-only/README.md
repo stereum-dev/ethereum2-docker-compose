@@ -1,4 +1,4 @@
-# Lodestar
+# Lodestar node
 
 ## Requirements
 * Get to know [Lodestar](https://chainsafe.github.io/lodestar/) a bit
