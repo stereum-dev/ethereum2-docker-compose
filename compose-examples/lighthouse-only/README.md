@@ -5,7 +5,7 @@
 * Server with 4 (v)cpus & 8 gb memory & 100 gb storage
 
 ## Services
-* [geth](https://github.com/ethereum/go-ethereum) (beacon conntects to it to see deposits for validators)
+* [geth](https://github.com/ethereum/go-ethereum)
 * beacon
 * validator
 * prometheus
