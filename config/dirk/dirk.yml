@@ -9,8 +9,8 @@ server:
   # listen-address is the interface and port on which Dirk will listen for requests; change `127.0.0.1`
   # to `0.0.0.0` to listen on all network interfaces.
   listen-address: 0.0.0.0:13141
-  # storage-path is the path where information created by the slashing protection system is stored.
-  storage-path: /data/protection
+# storage-path is the path where information created by the slashing protection system is stored.
+storage-path: /data/protection
 certificates:
   # server-cert is the majordomo URL to the server's certificate.
   server-cert: file:///config/certs/dirk.crt
