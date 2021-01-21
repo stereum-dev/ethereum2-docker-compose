@@ -12,13 +12,11 @@ accept-terms-of-use: yes
 beacon-rpc-provider: beacon:4000
 monitoring-host: 0.0.0.0
 
-grpc-gateway-host: 0.0.0.0
-grpc-gateway-corsdomain: http://localhost:7500
-grpc-gateway-port: 7500
+grpc-gateway-host: 0.0.0.0 # web-ui
 
 #########
 # Web-UI
-web: true
+web: yes
 
 #####################################
 # Validator database, accounts & key management

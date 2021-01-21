@@ -13,6 +13,7 @@ services:
     restart: "no"
     volumes:
       - ./data/grafana:/mnt/grafana
+      - ./data/sigmaprime/lighthouse:/mnt/lighthouse
     <<: *logging
 
   geth:
@@ -89,14 +90,15 @@ services:
 
   lighthouse_beacon:
     container_name: lighthouse_beacon
-    image: sigp/lighthouse:${LIGHTHOUSE_DOCKER_TAG}
+    image: stereum/lighthouse:${LIGHTHOUSE_DOCKER_TAG}
+    user: "2000"
+    depends_on:
+      - stereum-init
     restart: unless-stopped
-    command: sh /root/scripts/start-beacon-node.sh
-    env_file: ./config/lighthouse/.env
+    env_file: ./config/lighthouse/beacon.env
+    entrypoint: /opt/app/start/beacon.sh
     volumes:
-      - ./config/lighthouse/start-beacon-node.sh:/root/scripts/start-beacon-node.sh:ro
-      - ./data/sigmaprime/lighthouse:/root/.lighthouse
-      - ./data/sigmaprime/lighthouse-network:/root/network
+      - ./data/sigmaprime/lighthouse:/opt/app/beacon
     ports:
       - ${BEACON_API_IP}:5052:5052/tcp
       - ${BEACON_API_IP}:8910:5054

@@ -17,9 +17,6 @@ p2p-host-dns: ""
 rpc-host: 0.0.0.0
 monitoring-host: 0.0.0.0
 
-grpc-gateway-host: 0.0.0.0
-grpc-gateway-port: 3500
-
 # disable scan of local network
 p2p-denylist: ["10.0.0.0/8","172.16.0.0/12","192.168.0.0/16","100.64.0.0/10","169.254.0.0/16"]
 
