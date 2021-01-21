@@ -16,7 +16,7 @@ grpc-gateway-host: 0.0.0.0 # web-ui
 
 #########
 # Web-UI
-web: true
+web: yes
 
 #####################################
 # Validator database, accounts & key management
