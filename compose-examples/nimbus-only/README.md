@@ -1,12 +1,12 @@
-# Nimbus standalone fullstack
+# Nimbus node
 
 ## Requirements
 * Get to know [Nimbus Eth2](https://nimbus.team/docs/eth2.html) a bit
-* Server with 4 (v)cpus & 8 gb memory & 100 gb storage
+* Server with 4 (v)cpus & 8 gb memory & 250 gb storage
 
 ## Services
-* geth (beacon connects to it to see deposits of validators)
-* beacon (with validator)
+* [geth](https://github.com/ethereum/go-ethereum)
+* beacon (including validator)
 * prometheus
 * grafana
 
@@ -33,7 +33,7 @@ Please complete the steps on [launchpad](https://pyrmont.launchpad.ethereum.org/
 2. Copy your generated validator(s) from `~/eth2.0-deposit-cli/validator_keys` to `./launchpad/validator_keys`
 3. Run `docker-compose -f create-account.yaml run validator-import-launchpad` and use the **same password** as in the generation of the validator(s)
 
-You can repeat step 2 & 3 as often as you like, make sure to restart your validator to make it notice your new accounts!
+Repeat these steps as often as you like, restart your validator to make it notice your new accounts!
 
 ## Run your Nimbus Ethereum 2.0 beacon node
 

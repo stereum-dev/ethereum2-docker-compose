@@ -3,23 +3,25 @@
 ## Requirements
 * Understanding of TLS/SSL and how to create CA, issue certificates
 * Intermediate knowledge of Ethereum (1 & 2)
-* Server with a minimum of 6 cores/12 threads & 32 gb memory & 256 gb of storage
+* Server with a minimum of 6 cores/12 threads & 32 gb memory & 512 gb of storage
 
 ## Services
 
 ### Ethereum 1
-* Go Ethereum (geth)
+* [geth](https://github.com/ethereum/go-ethereum)
 
 ### Ethereum 2
-* Prysm beacon node
-* Lighthouse beacon node
-* Teku beacon node
+* [Prysm](https://github.com/prysmaticlabs/prysm) beacon node
+* [Lighthouse](https://github.com/sigp/lighthouse) beacon node
+* [Teku](https://github.com/ConsenSys/teku) beacon node
 
-* Additional Prysm beacon node (for slasher)
-* Prysm slasher
 
-* Vouch
-* Dirk
+* Additional [Prysm](https://github.com/prysmaticlabs/prysm) beacon node (for slasher)
+* [Prysm](https://github.com/prysmaticlabs/prysm) slasher
+
+
+* [Vouch](https://github.com/attestantio/vouch)
+* [Dirk](https://github.com/attestantio/dirk)
 
 ### Monitoring
 * prometheus
@@ -32,7 +34,7 @@
 For a full guide take a look at [this post on stereum.net](https://stereum.net/stake-on-multiple-clients/).
 
 ### (optional) Certificates
-There are pregenerated certificates to kickstart this installation faster for try-out. However, it is **strongly** adviced to generate your own certificates especially for mainnet. Generate a client certificate for vouch and a server certificate for dirk. These certificates won't be accessible from outside, they are only visible to vouch and dirk. There are a number of ways to generate them, one way is the use of [easy-rsa](https://help.endian.com/hc/en-us/articles/360009201753-How-to-generate-and-import-CA-Server-and-Client-certificates-from-an-external-host). Copy the certificates to:
+There are pre-generated certificates to kickstart this installation faster for try-out. However, it is **strongly** adviced to generate your own certificates especially for mainnet. Generate a client certificate for vouch and a server certificate for dirk. These certificates won't be accessible from outside, they are only visible to vouch and dirk. There are a number of ways to generate them, one way is the use of [easy-rsa](https://help.endian.com/hc/en-us/articles/360009201753-How-to-generate-and-import-CA-Server-and-Client-certificates-from-an-external-host). Copy the certificates to:
 
 **Vouch**
 * `./config/vouch/certs/ca.crt` CA public key of server certificate for **dirk**

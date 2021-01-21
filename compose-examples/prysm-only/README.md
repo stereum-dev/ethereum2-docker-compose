@@ -1,11 +1,11 @@
-# Prysm standalone fullstack
+# Prysm node
 
 ## Requirements
 * Get to know [Prysm](https://docs.prylabs.network/docs/getting-started/) a bit
-* Server with 4 (v)cpus & 8 gb memory & 100 gb storage
+* Server with 4 (v)cpus & 8 gb memory & 250 gb storage
 
 ## Services
-* geth (beacon conntects to it to see deposits for validators)
+* [geth](https://github.com/ethereum/go-ethereum)
 * beacon
 * validator
 * slasher
@@ -16,13 +16,6 @@
 
 ### Minimal Setup (beacon & validator only)
 In case you want to run only beacon & validator (geth, slasher, prometheus, grafana get disabled) move the `./compose-examples/prysm-only/override-examples/docker-compose.beacon-validator.override.yaml` file in the same folder as your `docker-compose.yaml` and rename it to `docker-compose.override.yaml`. Read up on [docker-compose files & override](https://docs.docker.com/compose/extends/#multiple-compose-files) to customize your setup further.
-
-### ARM64 (raspberry pi)
-Using this setup on a raspberry pi is as easy as copying the compose override file from `./compose-examples/prysm-only/override-examples/docker-compose.arm64.override.yaml` to `./docker-compose.override.yaml`. The override file should then be in the same folder as your `docker-compose.override.yaml`:
-```
-cp compose-examples/prysm-only/override-examples/docker-compose.arm64.override.yaml docker-compose.override.yaml
-```
-This also disables prometheus and grafana and uses external eth1 node connection (see `./config/prysm/beacon-no-geth.yaml` for changing the endpoint).
 
 ## (optional) Configure your node
 
@@ -36,9 +29,9 @@ Please complete the steps on [launchpad](https://pyrmont.launchpad.ethereum.org/
 2. Copy your generated validator(s) from `~/eth2.0-deposit-cli/validator_keys` to `./launchpad/eth2.0-deposit-cli/validator_keys`
 3. Run `docker-compose -f create-account.yaml run validator-import-launchpad` and use the **same password** as in the generation of the validator(s)
 
-You can repeat step 2 & 3 as often as you like, make sure to restart your validator to make it notice your new accounts!
+Repeat these steps as often as you like, restart your validator to make it notice your new accounts!
 
-## Run your prysm Ethereum 2.0 staking node
+## Run your Prysm Ethereum 2.0 staking node
 
 ### Start it up
 Run with (as deamon with "-d")
@@ -93,9 +86,6 @@ WARN roughtime: Roughtime reports your clock is off by more than 2 seconds offse
 Make sure the OS' clock is synced. For Windows 10 and its subsystem linux might run on different times, to check this run `wsl` and then `date` (may differ by the OS you have installed).
 
 Ask google on how to get your OS' time synced again.
-
-### How do I install docker and docker-compose on raspberry pi?
-There is an excellent short article about [how to install docker and docker-compose on raspberry pi](https://dev.to/rohansawant/installing-docker-and-docker-compose-on-the-raspberry-pi-in-5-simple-steps-3mgl), you can also use google to find another tutorial for it.
 
 ### I want to use a specific Ethereum 1 node!
 Edit the line with `http-web3provider` in [./config/prysm/slasher/beacon.yaml](/config/prysm/slasher/beacon.yaml) and set your Ethereum 1 node URL, e. g. use it with [Infura.io](https://infura.io/) and make it look like this: `http-web3provider: "https://goerli.infura.io:443/v3/put-your-infura-id-here"` (make sure to use `""` for the url).

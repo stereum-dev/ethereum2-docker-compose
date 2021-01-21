@@ -1,13 +1,15 @@
-# Lighthouse standalone fullstack
+# Lighthouse node
 
 ## Requirements
 * Get to know [Lighthouse](https://lighthouse-book.sigmaprime.io/) a bit
 * Server with 4 (v)cpus & 8 gb memory & 100 gb storage
 
 ## Services
-* geth (beacon conntects to it to see deposits for validators)
+* [geth](https://github.com/ethereum/go-ethereum)
 * beacon
 * validator
+* prometheus
+* grafana
 
 **All services are enabled by default.**
 
@@ -19,8 +21,8 @@ Please complete the steps on [launchpad](https://pyrmont.launchpad.ethereum.org/
 1. Generate your validator(s) using [launchpad](https://pyrmont.launchpad.ethereum.org/) and complete the process
 2. Copy your generated validator(s) from `~/eth2.0-deposit-cli/validator_keys` to `./launchpad`
 3. Run `docker-compose -f create-account.yaml run validator-import-launchpad` and use the **same password** as in the generation of the validator(s)
-4. Run `docker-compose up validator` to create the directory structure for the validators. You may cancel after startup
-5. Copy `./wallets/validators/validator_definitions.yml` to `./wallets/pyrmont/validators/validator_definitions.yml`
+
+Repeat these steps as often as you like, restart your validator to make it notice your new accounts!
 
 ## Run your Lighthouse Ethereum 2.0 staking node
 
@@ -65,5 +67,5 @@ Login with username `admin` and password `admin` (Grafana defaults), data source
 
 ## FAQ
 ### I want to use a specific Ethereum 1 node, like Infura.io!
-1. Edit `./config/lighthouse/.env` and set `VOTING_ETH1_NODE=` to your external Ethereum 1 node, e. g. `VOTING_ETH1_NODE=https://goerli.infura.io:443/v3/put-your-infura-id-here`.
-2. Copy `./compose-examples/lighthouse-only/override-examples/docker-compose.no-geth.override.yaml` to `./docker-compose.override.yaml`. This will prevent geth from starting.
+1. Edit `./config/lighthouse/beacon.env` and set `ETH1_NODE=` to your external Ethereum 1 node, e. g. `ETH1_NODE=https://goerli.infura.io:443/v3/put-your-infura-id-here`.
+2. Copy `./compose-examples/lighthouse-only/override-examples/docker-compose.no-geth.override.yaml` to `./docker-compose.override.yaml`. This will disable geth for your node.
