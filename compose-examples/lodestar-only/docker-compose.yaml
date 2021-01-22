@@ -8,6 +8,13 @@ x-logging: &logging
       max-size: "100m"
 
 services:
+  stereum-init:
+    image: stereum/init:buster
+    restart: "no"
+    volumes:
+      - ./data/grafana:/mnt/grafana
+    <<: *logging
+
   geth:
     image: ethereum/client-go:${GETH_DOCKER_TAG}
     restart: always
@@ -21,17 +28,90 @@ services:
     volumes:
       - ./data/geth:/root/.ethereum
     <<: *logging
-
+  
   beacon:
     image: stereum/lodestar:${LODESTAR_DOCKER_TAG}
     restart: always
     hostname: beacon-chain
     depends_on:
       - geth
-    command: beacon --testnet pyrmont --eth1.providerUrl http://geth:8545
+    command: 
+      - beacon 
+      - --testnet 
+      - pyrmont 
+      - --eth1.providerUrl 
+      - http://geth:8545  
+      - --rootDir 
+      - /opt/app/beacon 
+      - --metrics.enabled 
+      - "true" 
+      - --metrics.serverPort 
+      - "8008" 
+      - --api.rest.enabled 
+      - "true" 
+      - --api.rest.port 
+      - "9596"
+      - --api.rest.host
+      - "0.0.0.0" 
     ports:
+      - 30607:30607/tcp 
       - 9000:9000/tcp
-      - 9000:9000/udp 
+      - 9000:9000/udp
+      - 127.0.0.1:9596:9596
+    volumes:
+      - ./data/lodestar/beacon:/opt/app/beacon
+    <<: *logging
+
+  validator:
+    image: stereum/lodestar:${LODESTAR_DOCKER_TAG}
+    restart: always
+    hostname: validator
+    depends_on:
+      - beacon
+    command: 
+      - validator 
+      - --testnet 
+      - pyrmont 
+      - --server
+      - http://beacon:9596 
+      - --keystoresDir 
+      - /opt/app/keystores 
+      - --secretsDir 
+      - /opt/app/secrets 
+      - --validatorsDbDir 
+      - /opt/app/validator-db
+    volumes:
+      - ./data/lodestar/validator/keystores:/opt/app/keystores
+      - ./data/lodestar/validator/secrets:/opt/app/secrets
+      - ./data/lodestar/validator/validator-db:/opt/app/validator-db
+    <<: *logging
+
+  prometheus:
+    image: prom/prometheus:${PROMETHEUS_DOCKER_TAG}
+    user: root # https://github.com/prometheus/prometheus/issues/5976
+    restart: on-failure
+    hostname: prometheus     
+    command: --storage.tsdb.retention.time=7d --config.file=/etc/prometheus/prometheus.yml
+    ports:
+      - 127.0.0.1:9096:9090
+    volumes:
+      - ./config/prometheus/prometheus-l.yaml:/etc/prometheus/prometheus.yml
+      - ./data/prometheus:/prometheus
+    <<: *logging
+
+  grafana:
+    image: grafana/grafana:${GRAFANA_DOCKER_TAG}
+    restart: on-failure
+    hostname: grafana
+    user: "2000"
+    depends_on:
+      - stereum-init
+      - prometheus
+    ports:
+      - 127.0.0.1:3006:3000
+    volumes:
+      - ./config/grafana/provisioning-l:/etc/grafana/provisioning:ro
+      - ./data/grafana:/var/lib/grafana
     <<: *logging
 
 # EOF
