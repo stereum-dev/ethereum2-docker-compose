@@ -12,7 +12,7 @@ services:
     image: ethereum/client-go:${GETH_DOCKER_TAG}
     restart: always
     hostname: geth
-    command: --goerli --ws --ws.port=8545 --ws.addr=0.0.0.0 --ws.api="db,eth,net,web3" --ws.origins="*" 
+    command: --ws --ws.port=8545 --ws.addr=0.0.0.0 --ws.api="db,eth,net,web3" --ws.origins="*"
     stop_grace_period: 5m
     ports:
       - 30303:30303/tcp
@@ -41,7 +41,7 @@ services:
       - stereum-init
       - geth
     command:
-      - --network=pyrmont
+      - --network=mainnet
       - --data-dir=/opt/app/beacon
       - --validators-dir=/opt/app/validators
       - --secrets-dir=/opt/app/secrets
