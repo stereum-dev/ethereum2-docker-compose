@@ -5,7 +5,7 @@
 * Server with 4 (v)cpus & 8 gb memory & 100 gb storage
 
 ## Services
-* geth (beacon connects to it to see deposits for validators)
+* [geth](https://github.com/ethereum/go-ethereum)
 * beacon (with validator)
 * prometheus
 * grafana
@@ -15,12 +15,15 @@
 ## Configure your node
 
 ## Validator accounts with launchpad
-Please complete the steps on [launchpad](https://pyrmont.launchpad.ethereum.org/) and store the generated files of `~/eth2.0-deposit-cli/validator_keys` in `./launchpad`.
-1. Generate your validator(s) using [launchpad](https://pyrmont.launchpad.ethereum.org/) and complete the process
+Please complete the steps on [launchpad](https://launchpad.ethereum.org/) and store the generated files of `~/eth2.0-deposit-cli/validator_keys` in `./launchpad`.
+
+1. Generate your validator(s) using [launchpad](https://launchpad.ethereum.org/) and complete the process
 2. Copy your generated validator(s) from `~/eth2.0-deposit-cli/validator_keys` to `./launchpad`
 3. Create the validator password files in `./launchpad`. For each validator `keystore-m_xxx.json` key file a corresponding password txt file is required. The password file will need to be named to match the corresponding `keystore-m_xxx.txt` file.
 
-## Run your prysm Ethereum 2.0 staking node
+Repeat these steps as often as you like, restart your validator to make it notice your new accounts!
+
+## Run your Teku Ethereum 2.0 staking node
 
 ### Start it up
 Run with (as deamon with "-d")
@@ -64,4 +67,4 @@ Login with username `admin` and password `admin` (Grafana defaults), data source
 ## FAQ
 
 ### I want to use a specific Ethereum 1 node!
-Edit the line with `eth1-endpoint:` in [./config/teku/beacon.yaml](/config/teku/beacon.yaml) and set your Ethereum 1 node URL, e. g. use it with [Infura.io](https://infura.io/) and make it look like this: `eth1-endpoint: https://goerli.infura.io:443/v3/put-your-infura-id-here`.
+Edit the line with `eth1-endpoint:` in [./config/teku/beacon.yaml](/config/teku/beacon.yaml) and set your Ethereum 1 node URL, e. g. use it with [Infura.io](https://infura.io/) and make it look like this: `eth1-endpoint: https://mainnet.infura.io:443/v3/put-your-infura-id-here`.

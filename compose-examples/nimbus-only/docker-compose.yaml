@@ -1,0 +1,93 @@
+version: "3.7"
+
+x-logging: &logging
+  logging:
+    driver: "json-file"
+    options:
+      max-file: "10"
+      max-size: "100m"
+
+services:
+  geth:
+    image: ethereum/client-go:${GETH_DOCKER_TAG}
+    restart: always
+    hostname: geth
+    command: --ws --ws.port=8545 --ws.addr=0.0.0.0 --ws.api="db,eth,net,web3" --ws.origins="*"
+    stop_grace_period: 5m
+    ports:
+      - 30303:30303/tcp
+      - 30303:30303/udp
+      - 127.0.0.1:8545:8545
+    volumes:
+      - ./data/geth:/root/.ethereum
+    <<: *logging
+
+  stereum-init:
+    image: stereum/init:buster
+    restart: "no"
+    volumes:
+      - ./data/grafana:/mnt/grafana
+      - ./data/nimbus/beacon:/mnt/beacon
+      - ./data/nimbus/validator/validators:/mnt/validators
+      - ./data/nimbus/validator/secrets:/mnt/secrets
+      - ./config/prometheus:/mnt/prometheus
+    <<: *logging
+
+  beacon:
+    image: stereum/nimbus:${NIMBUS_DOCKER_TAG}
+    restart: unless-stopped
+    hostname: beacon-chain
+    depends_on:
+      - stereum-init
+      - geth
+    command:
+      - --network=mainnet
+      - --data-dir=/opt/app/beacon
+      - --validators-dir=/opt/app/validators
+      - --secrets-dir=/opt/app/secrets
+      - --web3-url=ws://geth:8545
+      - --tcp-port=9000
+      - --udp-port=9000
+      - --rpc
+      - --rpc-port=9190
+      - --metrics
+      - --metrics-port=8008
+      - --metrics-address=0.0.0.0
+    ports:
+      - 127.0.0.1:9190:9190 # rpc
+      - 9000:9000/tcp
+      - 9000:9000/udp
+    volumes:
+      - ./data/nimbus/beacon:/opt/app/beacon
+      - ./data/nimbus/validator/validators:/opt/app/validators
+      - ./data/nimbus/validator/secrets:/opt/app/secrets
+    <<: *logging
+
+  prometheus:
+    image: prom/prometheus:${PROMETHEUS_DOCKER_TAG}
+    user: root # https://github.com/prometheus/prometheus/issues/5976
+    restart: on-failure
+    hostname: prometheus
+    command: --storage.tsdb.retention.time=7d --config.file=/etc/prometheus/prometheus.yml
+    ports:
+      - 127.0.0.1:9098:9090
+    volumes:
+      - ./config/prometheus/prometheus-n.yaml:/etc/prometheus/prometheus.yml
+      - ./data/prometheus:/prometheus
+    <<: *logging
+
+  grafana:
+    image: grafana/grafana:${GRAFANA_DOCKER_TAG}
+    restart: on-failure
+    hostname: grafana
+    user: "2000"
+    depends_on:
+      - prometheus
+    ports:
+      - 127.0.0.1:3008:3000
+    volumes:
+      - ./config/grafana/provisioning-n:/etc/grafana/provisioning:ro
+      - ./data/grafana:/var/lib/grafana
+    <<: *logging
+
+# EOF

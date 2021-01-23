@@ -1,39 +1,50 @@
-# Lodestar node
-
-**Lodestar is not considered a stable mainnet client, use this with caution!**
+# Nimbus node
 
 ## Requirements
-* Get to know [Lodestar](https://chainsafe.github.io/lodestar/) a bit
-* Server with 4 (v)cpus & 8 gb memory & 150 gb storage
+* Get to know [Nimbus Eth2](https://nimbus.team/docs/eth2.html) a bit
+* Server with 4 (v)cpus & 8 gb memory & 250 gb storage
 
 ## Services
-* [geth](https://github.com/ethereum/go-ethereum) (beacon connects to it to see deposits for validators)
-* beacon
-* validator (doesn't validate at the moment: [issue #1941](https://github.com/ChainSafe/lodestar/issues/1941))
+* [geth](https://github.com/ethereum/go-ethereum)
+* beacon (including validator)
 * prometheus
 * grafana
 
 **All services are enabled by default.**
 
+## (optional) Configure your node
+
+### Public ip for better connectivity
+In `docker-compose.yaml` you can add a new line to `command: ` under the beacon service with the following content to make your public ip known to the service:
+```
+...
+  beacon:
+    ...
+    command:
+    ...
+      - --nat=extip:1.2.3.4
+```
+Replace `1.2.3.4` with your public ip address.
+
 ## Validator accounts with launchpad
-Please complete the steps on [launchpad](https://launchpad.ethereum.org/) and store the generated files of `~/eth2.0-deposit-cli/validator_keys` in `./launchpad/eth2.0-deposit-cli/validator_keys`. 
+Please complete the steps on [launchpad](https://launchpad.ethereum.org/) and store the generated files of `~/eth2.0-deposit-cli/validator_keys` in `./launchpad/validator_keys`. 
 
 1. Generate your validator(s) using [launchpad](https://launchpad.ethereum.org/) and complete the process
-2. Copy your generated validator(s) from `~/eth2.0-deposit-cli/validator_keys` to `./launchpad/eth2.0-deposit-cli/validator_keys`
+2. Copy your generated validator(s) from `~/eth2.0-deposit-cli/validator_keys` to `./launchpad/validator_keys`
 3. Run `docker-compose -f create-account.yaml run validator-import-launchpad` and use the **same password** as in the generation of the validator(s)
 
 Repeat these steps as often as you like, restart your validator to make it notice your new accounts!
 
-## Run your lodestar Ethereum 2.0 beacon node
+## Run your Nimbus Ethereum 2.0 beacon node
 
 ### Start it up
 Run with (as deamon with "-d")
 ```
 docker-compose up -d
 ```
-or run only certain services (in this case only beacon)
+or run only certain services (in this case beacon only)
 ```
-docker-compose up -d beacon 
+docker-compose up -d beacon
 ```
 
 ### Stop it
@@ -58,9 +69,9 @@ docker-compose logs --tail=100 beacon
 ```
 
 ### Prometheus
-Runs on http://localhost:9096, scrapes data of beacon & validator.
+Runs on http://localhost:9098, scrapes data of beacon and validator.
 
 ### Grafana
-Grafana listens on http://localhost:3006 and uses the data provided by prometheus service.
+Grafana listens on http://localhost:3008 and uses the data provided by prometheus service.
 
 Login with username `admin` and password `admin` (Grafana defaults), data source to Prometheus is already established and dashboards installed.

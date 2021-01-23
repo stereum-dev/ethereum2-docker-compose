@@ -1,8 +1,20 @@
 version: "3.7"
 services:
-  validator-import-launchpad:
-    image: sigp/lighthouse:${LIGHTHOUSE_DOCKER_TAG}
-    command: lighthouse --network mainnet account validator import --directory /launchpad
+  stereum-init:
+    image: stereum/init:buster
+    restart: "no"
     volumes:
-      - ./wallets:/root/.lighthouse
-      - ./launchpad:/launchpad
+      - ./wallets:/mnt/wallets
+
+  validator-import-launchpad:
+    image: stereum/lighthouse:${LIGHTHOUSE_DOCKER_TAG}
+    user: "2000"
+    depends_on:
+      - stereum-init
+    env_file: ./config/lighthouse/validator.env
+    entrypoint: /opt/app/start/import-launchpad-wallet.sh
+    volumes:
+      - ./wallets:/opt/app/validator
+      - ./launchpad:/opt/app/launchpad
+
+#EOF
