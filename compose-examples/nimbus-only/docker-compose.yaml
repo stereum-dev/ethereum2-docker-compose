@@ -30,7 +30,7 @@ services:
       - ./data/nimbus/beacon:/mnt/beacon
       - ./data/nimbus/validator/validators:/mnt/validators
       - ./data/nimbus/validator/secrets:/mnt/secrets
-      - ./config/prometheus:/mnt/prometheus
+      - ./data/prometheus:/mnt/prometheus
     <<: *logging
 
   beacon:
@@ -68,6 +68,8 @@ services:
     user: "2000"
     restart: on-failure
     hostname: prometheus
+    depends_on:
+      - stereum-init
     command: --storage.tsdb.retention.time=7d --config.file=/etc/prometheus/prometheus.yml
     ports:
       - 127.0.0.1:9098:9090
@@ -82,6 +84,7 @@ services:
     hostname: grafana
     user: "2000"
     depends_on:
+      - stereum-init
       - prometheus
     ports:
       - 127.0.0.1:3008:3000
