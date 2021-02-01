@@ -5,7 +5,7 @@
 * Server with 4 (v)cpus & 8 gb memory & 150 gb storage
 
 ## Services
-* [geth](https://github.com/ethereum/go-ethereum) (beacon connects to it to see deposits for validators)
+* [geth](https://github.com/ethereum/go-ethereum)
 * beacon
 * validator (doesn't validate at the moment: [issue #1941](https://github.com/ChainSafe/lodestar/issues/1941))
 * prometheus
@@ -62,3 +62,8 @@ Runs on http://localhost:9096, scrapes data of beacon & validator.
 Grafana listens on http://localhost:3006 and uses the data provided by prometheus service.
 
 Login with username `admin` and password `admin` (Grafana defaults), data source to Prometheus is already established and dashboards installed.
+
+## FAQ
+### I want to use a specific Ethereum 1 node, like Infura.io!
+1. Edit `./compose-examples/lodestar-only/docker-compose.yaml` and go to the service `beacon:` then set `--eth1.providerUrl=` to your external Ethereum 1 node, e. g. `--eth1.providerUrl=https://goerli.infura.io:443/v3/put-your-infura-id-here`.
+2. Copy `./compose-examples/lodestar-only/override-examples/docker-compose.no-geth.override.yaml` to `./docker-compose.override.yaml`. This will disable geth for your node.
