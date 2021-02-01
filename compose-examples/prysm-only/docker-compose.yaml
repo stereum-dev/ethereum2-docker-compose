@@ -117,7 +117,8 @@ services:
     <<: *logging
 
   node-exporter:
-    image: prom/node-exporter:latest
+    image: prom/node-exporter:${PROMETHEUS_NODE_EXPORTER_DOCKER_TAG}
+    user: "2000"
     hostname: node-exporter
     <<: *logging
 # EOF
