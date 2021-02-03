@@ -12,7 +12,7 @@
 
 ### Ethereum 2
 * [Prysm](https://github.com/prysmaticlabs/prysm) beacon node
-* [Lighthouse](https://github.com/sigp/lighthouse) beacon node
+* [Lighthouse](https://github.com/sigp/lighthouse) beacon node (including slasher)
 * [Teku](https://github.com/ConsenSys/teku) beacon node
 
 
