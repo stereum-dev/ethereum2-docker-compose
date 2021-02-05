@@ -14,6 +14,7 @@ services:
     volumes:
       - ./data/grafana:/mnt/grafana
       - ./data/sigmaprime/lighthouse:/mnt/lighthouse
+      - ./data/sigmaprime/slasher:/mnt/slasher
     <<: *logging
 
   geth:
@@ -99,6 +100,7 @@ services:
     entrypoint: /opt/app/start/beacon.sh
     volumes:
       - ./data/sigmaprime/lighthouse:/opt/app/beacon
+      - ./data/sigmaprime/slasher:/opt/app/slasher
     ports:
       - ${BEACON_API_IP}:5052:5052/tcp
       - ${BEACON_API_IP}:8910:5054
