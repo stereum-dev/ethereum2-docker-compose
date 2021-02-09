@@ -19,7 +19,7 @@ services:
     image: ethereum/client-go:${GETH_DOCKER_TAG}
     restart: always
     hostname: geth
-    command: --goerli --http --http.port=8545 --http.addr=0.0.0.0 --http.vhosts="*" --allow-insecure-unlock --http.api="db,eth,net,web3,personal"
+    command: --http --http.port=8545 --http.addr=0.0.0.0 --http.vhosts="*" --allow-insecure-unlock --http.api="db,eth,net,web3,personal"
     stop_grace_period: 5m
     ports:
       - 30303:30303/tcp
@@ -37,7 +37,7 @@ services:
       - geth
     command: 
       - beacon 
-      - --testnet=pyrmont 
+      - --network=mainnet 
       - --eth1.providerUrl=http://geth:8545  
       - --rootDir=/opt/app/beacon 
       - --metrics.enabled=true 
@@ -63,7 +63,7 @@ services:
       - beacon
     command: 
       - validator 
-      - --testnet=pyrmont 
+      - --network=mainnet 
       - --server=http://beacon:9596 
       - --keystoresDir=/opt/app/keystores 
       - --secretsDir=/opt/app/secrets 

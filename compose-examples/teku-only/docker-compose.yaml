@@ -20,7 +20,7 @@ services:
     image: ethereum/client-go:${GETH_DOCKER_TAG}
     restart: always
     hostname: geth
-    command: --goerli --http --http.port=8545 --http.addr=0.0.0.0 --http.vhosts="*" --allow-insecure-unlock --http.api="db,eth,net,web3,personal"
+    command: --http --http.port=8545 --http.addr=0.0.0.0 --http.vhosts="*" --allow-insecure-unlock --http.api="db,eth,net,web3,personal"
     stop_grace_period: 5m
     ports:
       - 30303:30303/tcp

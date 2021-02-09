@@ -1,0 +1,4 @@
+version: "3.7"
+services:
+  geth:
+    command: --http --http.port=8545 --http.addr=0.0.0.0 --http.vhosts="*" --cache 2048 --allow-insecure-unlock --http.api="db,eth,net,web3,personal"

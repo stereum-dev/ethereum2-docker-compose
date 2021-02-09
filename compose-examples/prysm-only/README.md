@@ -23,9 +23,9 @@ In case you want to run only beacon & validator (geth, slasher, prometheus, graf
 Configuration files are located in the folder `./config`. To gain a better connectivity for your beacon node you should specifiy your public ip and/or your dns name in `./config/prysm/slasher/beacon.yaml`. Follow the guide [Improve Peer-to-Peer Connectivity](https://docs.prylabs.network/docs/prysm-usage/p2p-host-ip/).
 
 ## Validator accounts with launchpad
-Please complete the steps on [launchpad](https://pyrmont.launchpad.ethereum.org/) and store the generated files of `~/eth2.0-deposit-cli/validator_keys` in `./launchpad/eth2.0-deposit-cli/validator_keys`. The necessary directories need to be created. Please create the directories `./data/prysm/validator/wallets` and put your wallet password in `./data/prysm/validator/passwords/wallet-password`.
+Please complete the steps on [launchpad](https://launchpad.ethereum.org/) and store the generated files of `~/eth2.0-deposit-cli/validator_keys` in `./launchpad/eth2.0-deposit-cli/validator_keys`. The necessary directories need to be created. Please create the directories `./data/prysm/validator/wallets` and put your wallet password in `./data/prysm/validator/passwords/wallet-password`.
 
-1. Generate your validator(s) using [launchpad](https://pyrmont.launchpad.ethereum.org/) and complete the process
+1. Generate your validator(s) using [launchpad](https://launchpad.ethereum.org/) and complete the process
 2. Copy your generated validator(s) from `~/eth2.0-deposit-cli/validator_keys` to `./launchpad/eth2.0-deposit-cli/validator_keys`
 3. Run `docker-compose -f create-account.yaml run validator-import-launchpad` and use the **same password** as in the generation of the validator(s)
 
@@ -88,4 +88,4 @@ Make sure the OS' clock is synced. For Windows 10 and its subsystem linux might 
 Ask google on how to get your OS' time synced again.
 
 ### I want to use a specific Ethereum 1 node!
-Edit the line with `http-web3provider` in [./config/prysm/slasher/beacon.yaml](/config/prysm/slasher/beacon.yaml) and set your Ethereum 1 node URL, e. g. use it with [Infura.io](https://infura.io/) and make it look like this: `http-web3provider: "https://goerli.infura.io:443/v3/put-your-infura-id-here"` (make sure to use `""` for the url).
+Edit the line with `http-web3provider` in [./config/prysm/slasher/beacon.yaml](/config/prysm/slasher/beacon.yaml) and set your Ethereum 1 node URL, e. g. use it with [Infura.io](https://infura.io/) and make it look like this: `http-web3provider: "https://mainnet.infura.io:443/v3/put-your-infura-id-here"` (make sure to use `""` for the url).

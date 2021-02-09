@@ -12,7 +12,7 @@ services:
     image: stereum/nimbus:${NIMBUS_DOCKER_TAG}
     depends_on:
       - stereum-init
-    command: deposits import /opt/app/validator_keys --data-dir=/opt/app/validator --network=pyrmont
+    command: deposits import /opt/app/validator_keys --data-dir=/opt/app/validator --network=mainnet
     volumes:
       - ./data/nimbus/validator:/opt/app/validator
       - ./launchpad/validator_keys:/opt/app/validator_keys

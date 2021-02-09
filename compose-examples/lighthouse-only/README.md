@@ -16,9 +16,9 @@
 ## Configure your node
 
 ## Validator accounts with launchpad
-Please complete the steps on [launchpad](https://pyrmont.launchpad.ethereum.org/) and store the generated files of `~/eth2.0-deposit-cli/validator_keys` in `./launchpad`.
+Please complete the steps on [launchpad](https://launchpad.ethereum.org/) and store the generated files of `~/eth2.0-deposit-cli/validator_keys` in `./launchpad`.
 
-1. Generate your validator(s) using [launchpad](https://pyrmont.launchpad.ethereum.org/) and complete the process
+1. Generate your validator(s) using [launchpad](https://launchpad.ethereum.org/) and complete the process
 2. Copy your generated validator(s) from `~/eth2.0-deposit-cli/validator_keys` to `./launchpad`
 3. Run `docker-compose -f create-account.yaml run validator-import-launchpad` and use the **same password** as in the generation of the validator(s)
 
@@ -67,5 +67,5 @@ Login with username `admin` and password `admin` (Grafana defaults), data source
 
 ## FAQ
 ### I want to use a specific Ethereum 1 node, like Infura.io!
-1. Edit `./config/lighthouse/beacon.env` and set `ETH1_NODE=` to your external Ethereum 1 node, e. g. `ETH1_NODE=https://goerli.infura.io:443/v3/put-your-infura-id-here`.
+1. Edit `./config/lighthouse/beacon.env` and set `ETH1_NODE=` to your external Ethereum 1 node, e. g. `ETH1_NODE=https://mainnet.infura.io:443/v3/put-your-infura-id-here`.
 2. Copy `./compose-examples/lighthouse-only/override-examples/docker-compose.no-geth.override.yaml` to `./docker-compose.override.yaml`. This will disable geth for your node.
