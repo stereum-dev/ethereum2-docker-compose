@@ -1,0 +1,12 @@
+version: "3.7"
+
+x-disabled-service:
+  &disabled-service
+    image: tianon/true
+    restart: "no"
+    command: ""
+    entrypoint: ""
+
+services:
+  geth:
+    <<: *disabled-service

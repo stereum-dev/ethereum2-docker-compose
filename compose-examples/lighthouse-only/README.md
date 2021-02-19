@@ -6,7 +6,7 @@
 
 ## Services
 * [geth](https://github.com/ethereum/go-ethereum)
-* beacon
+* beacon (including slasher)
 * validator
 * prometheus
 * grafana

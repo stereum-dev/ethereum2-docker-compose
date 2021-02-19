@@ -75,3 +75,8 @@ Runs on http://localhost:9098, scrapes data of beacon and validator.
 Grafana listens on http://localhost:3008 and uses the data provided by prometheus service.
 
 Login with username `admin` and password `admin` (Grafana defaults), data source to Prometheus is already established and dashboards installed.
+
+## FAQ
+### I want to use a specific Ethereum 1 node, like Infura.io!
+1. Edit `./compose-examples/nimbus-only/docker-compose.yaml` and go to the service`beacon:` then set `--web3-url=` to your external Ethereum 1 node, e. g. `--web3-url=wss://goerli.infura.io/ws/v3/put-your-infura-id-here`.
+2. Copy `./compose-examples/nimbus-only/override-examples/docker-compose.no-geth.override.yaml` to `./docker-compose.override.yaml`. This will disable geth for your node.
