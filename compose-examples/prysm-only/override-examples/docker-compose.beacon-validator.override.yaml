@@ -8,15 +8,20 @@ x-disabled-service:
     entrypoint: ""
 
 services:
+  stereum-init:
+    <<: *disabled-service
   geth:
     <<: *disabled-service
   beacon:
     volumes:
       - ./config/prysm/beacon-no-geth.yaml:/config/beacon.yaml:ro
-      - ./data/prysm/beacon:/data
   slasher:
     <<: *disabled-service
   prometheus:
     <<: *disabled-service
   grafana:
+    <<: *disabled-service
+  renderer:
+    <<: *disabled-service
+  node-exporter:
     <<: *disabled-service
