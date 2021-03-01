@@ -3,7 +3,7 @@ services:
   validator-import-launchpad:
     container_name: validator-import-launchpad
     image: stereum/lodestar:${LODESTAR_DOCKER_TAG}
-    command: account validator import --testnet pyrmont --directory /opt/app/validator_keys --keystoresDir /opt/app/keystores --secretsDir /opt/app/secrets
+    command: account validator import --network mainnet --directory /opt/app/validator_keys --keystoresDir /opt/app/keystores --secretsDir /opt/app/secrets
     volumes:
       - ./launchpad/eth2.0-deposit-cli/validator_keys:/opt/app/validator_keys
       - ./data/lodestar/validator/keystores:/opt/app/keystores
@@ -12,7 +12,7 @@ services:
   validator-list-accounts:
     container_name: validator-list-accounts
     image: stereum/lodestar:${LODESTAR_DOCKER_TAG}
-    command: account validator list --testnet pyrmont --keystoresDir /opt/app/keystores --secretsDir /opt/app/secrets
+    command: account validator list --network mainnet --keystoresDir /opt/app/keystores --secretsDir /opt/app/secrets
     volumes:
       - ./data/lodestar/validator/keystores:/opt/app/keystores
       - ./data/lodestar/validator/secrets:/opt/app/secrets

@@ -32,4 +32,4 @@ http-web3provider: http://geth:8545
 historical-slasher-node: yes
 block-batch-limit: 512
 
-pyrmont: yes
+mainnet: yes
