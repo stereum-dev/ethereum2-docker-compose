@@ -31,7 +31,7 @@ services:
     <<: *logging
 
   beacon:
-    image: pegasyseng/teku:${TEKU_DOCKER_TAG}
+    image: consensys/teku:${TEKU_DOCKER_TAG}
     restart: always
     hostname: beacon-chain
     depends_on:

@@ -113,7 +113,7 @@ services:
 
   teku_beacon:
     container_name: teku_beacon
-    image: pegasyseng/teku:${TEKU_DOCKER_TAG}
+    image: consensys/teku:${TEKU_DOCKER_TAG}
     user: "0:0"
     restart: unless-stopped
     command: ["--config-file=/opt/teku/beacon.yaml"]
