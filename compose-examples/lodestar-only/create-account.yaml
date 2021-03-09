@@ -1,18 +1,28 @@
 version: "3.7"
 services:
+  stereum-init:
+    image: stereum/init:buster
+    restart: "no"
+    volumes:
+      - ./launchpad:/mnt/validator_keys
+     
   validator-import-launchpad:
     container_name: validator-import-launchpad
     image: stereum/lodestar:${LODESTAR_DOCKER_TAG}
-    command: account validator import --network mainnet --directory /opt/app/validator_keys --keystoresDir /opt/app/keystores --secretsDir /opt/app/secrets
+    user: "2000"
+    depends_on:
+      - stereum-init
+    command: account validator import --testnet pyrmont --directory /opt/app/validator_keys --keystoresDir /opt/app/keystores --secretsDir /opt/app/secrets
     volumes:
-      - ./launchpad/eth2.0-deposit-cli/validator_keys:/opt/app/validator_keys
+      - ./launchpad:/opt/app/validator_keys
       - ./data/lodestar/validator/keystores:/opt/app/keystores
       - ./data/lodestar/validator/secrets:/opt/app/secrets
 
   validator-list-accounts:
     container_name: validator-list-accounts
     image: stereum/lodestar:${LODESTAR_DOCKER_TAG}
-    command: account validator list --network mainnet --keystoresDir /opt/app/keystores --secretsDir /opt/app/secrets
+    user: "2000"
+    command: account validator list --testnet pyrmont --keystoresDir /opt/app/keystores --secretsDir /opt/app/secrets
     volumes:
       - ./data/lodestar/validator/keystores:/opt/app/keystores
       - ./data/lodestar/validator/secrets:/opt/app/secrets
