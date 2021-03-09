@@ -8,6 +8,17 @@ x-logging: &logging
       max-size: "100m"
 
 services:
+   stereum-init:
+    image: stereum/init:buster
+    restart: "no"
+    volumes:
+      - ./data/grafana:/mnt/grafana
+      - ./data/nimbus/beacon:/mnt/beacon
+      - ./data/nimbus/validator/validators:/mnt/validators
+      - ./data/nimbus/validator/secrets:/mnt/secrets
+      - ./data/prometheus:/mnt/prometheus
+    <<: *logging
+      
   geth:
     image: ethereum/client-go:${GETH_DOCKER_TAG}
     restart: always
@@ -20,17 +31,6 @@ services:
       - 127.0.0.1:8545:8545
     volumes:
       - ./data/geth:/root/.ethereum
-    <<: *logging
-
-  stereum-init:
-    image: stereum/init:buster
-    restart: "no"
-    volumes:
-      - ./data/grafana:/mnt/grafana
-      - ./data/nimbus/beacon:/mnt/beacon
-      - ./data/nimbus/validator/validators:/mnt/validators
-      - ./data/nimbus/validator/secrets:/mnt/secrets
-      - ./data/prometheus:/mnt/prometheus
     <<: *logging
 
   beacon:
