@@ -5,7 +5,7 @@ services:
     restart: "no"
     volumes:
       - ./data/nimbus/validator:/mnt/validator
-      - ./launchpad/validator_keys:/mnt/validator_keys  
+      - ./launchpad:/mnt/validator_keys  
 
   validator-import-launchpad:
     container_name: validator-import-launchpad
@@ -16,4 +16,4 @@ services:
     command: deposits import /opt/app/validator_keys --data-dir=/opt/app/validator --network=pyrmont
     volumes:
       - ./data/nimbus/validator:/opt/app/validator
-      - ./launchpad/validator_keys:/opt/app/validator_keys
+      - ./launchpad:/opt/app/validator_keys

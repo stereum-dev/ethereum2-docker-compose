@@ -27,10 +27,10 @@ In `docker-compose.yaml` you can add a new line to `command: ` under the beacon 
 Replace `1.2.3.4` with your public ip address.
 
 ## Validator accounts with launchpad
-Please complete the steps on [launchpad](https://pyrmont.launchpad.ethereum.org/) and store the generated files of `~/eth2.0-deposit-cli/validator_keys` in `./launchpad/validator_keys`. 
+Please complete the steps on [launchpad](https://pyrmont.launchpad.ethereum.org/) and store the generated files of `~/eth2.0-deposit-cli/validator_keys` in `./launchpad`. 
 
 1. Generate your validator(s) using [launchpad](https://pyrmont.launchpad.ethereum.org/) and complete the process
-2. Copy your generated validator(s) from `~/eth2.0-deposit-cli/validator_keys` to `./launchpad/validator_keys`
+2. Copy your generated validator(s) from `~/eth2.0-deposit-cli/validator_keys` to `./launchpad`
 3. Run `docker-compose -f create-account.yaml run validator-import-launchpad` and use the **same password** as in the generation of the validator(s)
 
 Repeat these steps as often as you like, restart your validator to make it notice your new accounts!
