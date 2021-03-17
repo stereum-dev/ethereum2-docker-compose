@@ -14,6 +14,9 @@ services:
     volumes:
       - ./data/grafana:/mnt/grafana
       - ./data/prometheus:/mnt/prometheus
+      - ./data/consensys/teku:/mnt/teku
+      - ./config/teku/beacon.yaml:/mnt/config
+      - ./launchpad:/mnt/launchpad  
     <<: *logging
 
   geth:
@@ -34,7 +37,9 @@ services:
     image: consensys/teku:${TEKU_DOCKER_TAG}
     restart: always
     hostname: beacon-chain
+    user: "2000"
     depends_on:
+      - stereum-init     
       - geth
     command: --config-file=/config/beacon.yaml
     ports:
