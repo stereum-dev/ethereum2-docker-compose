@@ -1,7 +1,7 @@
 #!/usr/bin/expect -f
 
 set timeout -1
-set validator_password "Validator password is here"
+set validator_password [lindex $argv 0];
 
 spawn docker-compose -f create-account.yaml run validator-import-launchpad
 
