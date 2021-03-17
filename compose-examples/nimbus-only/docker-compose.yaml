@@ -8,7 +8,7 @@ x-logging: &logging
       max-size: "100m"
 
 services:
-   stereum-init:
+  stereum-init:
     image: stereum/init:buster
     restart: "no"
     volumes:

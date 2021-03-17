@@ -4,7 +4,7 @@ services:
     image: stereum/init:buster
     restart: "no"
     volumes:
-      - ./data/nimbus/validator:/mnt/validator
+      - ./data/nimbus:/mnt/validator
       - ./launchpad:/mnt/validator_keys  
 
   validator-import-launchpad:
