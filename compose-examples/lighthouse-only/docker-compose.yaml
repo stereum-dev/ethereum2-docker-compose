@@ -69,7 +69,7 @@ services:
     hostname: prometheus
     command: --storage.tsdb.retention.time=7d --config.file=/etc/prometheus/prometheus.yml
     ports:
-    - 127.0.0.1:9092:9090
+    - ${BEACON_API_IP}:9090:9090
     volumes:
     - ./config/prometheus/prometheus-lh.yaml:/etc/prometheus/prometheus.yml:ro
     - ./data/prometheus:/prometheus
@@ -84,7 +84,7 @@ services:
     restart: unless-stopped
     hostname: grafana
     ports:
-      - 127.0.0.1:3002:3000
+      - ${BEACON_API_IP}:3000:3000
     volumes:
       - ./config/grafana/provisioning-lh:/etc/grafana/provisioning:ro
       - ./data/grafana:/var/lib/grafana
