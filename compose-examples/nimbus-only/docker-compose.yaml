@@ -72,7 +72,7 @@ services:
       - stereum-init
     command: --storage.tsdb.retention.time=7d --config.file=/etc/prometheus/prometheus.yml
     ports:
-      - 127.0.0.1:9098:9090
+      - 127.0.0.1:9090:9090
     volumes:
       - ./config/prometheus/prometheus-n.yaml:/etc/prometheus/prometheus.yml
       - ./data/prometheus:/prometheus
@@ -87,7 +87,7 @@ services:
       - stereum-init
       - prometheus
     ports:
-      - 127.0.0.1:3008:3000
+      - 127.0.0.1:3000:3000
     volumes:
       - ./config/grafana/provisioning-n:/etc/grafana/provisioning:ro
       - ./data/grafana:/var/lib/grafana
