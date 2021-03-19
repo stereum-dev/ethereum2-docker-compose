@@ -92,7 +92,7 @@ services:
     hostname: prometheus
     command: --storage.tsdb.retention.time=7d --config.file=/etc/prometheus/prometheus.yml
     ports:
-      - ${BEACON_API_IP}:9096:9090
+      - ${BEACON_API_IP}:9090:9090
     volumes:
       - ./config/prometheus/prometheus-l.yaml:/etc/prometheus/prometheus.yml
       - ./data/prometheus:/prometheus
@@ -107,7 +107,7 @@ services:
       - stereum-init
       - prometheus
     ports:
-      - ${BEACON_API_IP}:3006:3000
+      - ${BEACON_API_IP}:3000:3000
     volumes:
       - ./config/grafana/provisioning-l:/etc/grafana/provisioning:ro
       - ./data/grafana:/var/lib/grafana
