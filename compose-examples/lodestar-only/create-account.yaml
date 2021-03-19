@@ -5,6 +5,7 @@ services:
     restart: "no"
     volumes:
       - ./launchpad:/mnt/validator_keys
+      - ./data/lodestar/validator:/mnt/validator
 
   validator-import-launchpad:
     container_name: validator-import-launchpad
@@ -26,3 +27,5 @@ services:
     volumes:
       - ./data/lodestar/validator/keystores:/opt/app/keystores
       - ./data/lodestar/validator/secrets:/opt/app/secrets
+
+# EOF

@@ -13,6 +13,9 @@ services:
     restart: "no"
     volumes:
       - ./data/grafana:/mnt/grafana
+      - ./data/lodestar/beacon:/mnt/beacon
+      - ./data/lodestar/validator:/mnt/validator
+      - ./data/prometheus:/mnt/prometheus
     <<: *logging
 
   geth:
@@ -24,7 +27,7 @@ services:
     ports:
       - 30303:30303/tcp
       - 30303:30303/udp
-      - 127.0.0.1:8545:8545
+      - ${BEACON_API_IP}:8545:8545
     volumes:
       - ./data/geth:/root/.ethereum
     <<: *logging
@@ -33,24 +36,26 @@ services:
     image: stereum/lodestar:${LODESTAR_DOCKER_TAG}
     restart: always
     hostname: beacon-chain
+    user: "2000"
     depends_on:
       - geth
-    command: 
-      - beacon 
-      - --network=mainnet 
-      - --eth1.providerUrl=http://geth:8545  
-      - --rootDir=/opt/app/beacon 
-      - --metrics.enabled=true 
+      - stereum-init
+    command:
+      - beacon
+      - --network=mainnet
+      - --eth1.providerUrl=http://geth:8545
+      - --rootDir=/opt/app/beacon
+      - --metrics.enabled=true
       - --metrics.serverPort=8008
-      - --metrics.listenAddr=0.0.0.0 
-      - --api.rest.enabled=true 
+      - --metrics.listenAddr=0.0.0.0
+      - --api.rest.enabled=true
       - --api.rest.port=9596
       - --api.rest.host=0.0.0.0
     ports:
-      - 30607:30607/tcp 
+      - 30607:30607/tcp
       - 9000:9000/udp
-      - 127.0.0.1:9596:9596
-      - 127.0.0.1:8008:8008
+      - ${BEACON_API_IP}:9596:9596
+      - ${BEACON_API_IP}:8008:8008
     volumes:
       - ./data/lodestar/beacon:/opt/app/beacon
     <<: *logging
@@ -59,11 +64,13 @@ services:
     image: stereum/lodestar:${LODESTAR_DOCKER_TAG}
     restart: always
     hostname: validator
+    user: "2000"
     depends_on:
       - beacon
-    command: 
-      - validator 
-      - --network=mainnet 
+      - stereum-init
+    command:
+      - validator
+      - --network=mainnet
       - --server=http://beacon:9596 
       - --keystoresDir=/opt/app/keystores 
       - --secretsDir=/opt/app/secrets 
@@ -78,12 +85,14 @@ services:
 
   prometheus:
     image: prom/prometheus:${PROMETHEUS_DOCKER_TAG}
-    user: "2000" 
+    user: "2000"
+    depends_on:
+      - stereum-init
     restart: on-failure
-    hostname: prometheus     
+    hostname: prometheus
     command: --storage.tsdb.retention.time=7d --config.file=/etc/prometheus/prometheus.yml
     ports:
-      - 127.0.0.1:9096:9090
+      - ${BEACON_API_IP}:9090:9090
     volumes:
       - ./config/prometheus/prometheus-l.yaml:/etc/prometheus/prometheus.yml
       - ./data/prometheus:/prometheus
@@ -98,7 +107,7 @@ services:
       - stereum-init
       - prometheus
     ports:
-      - 127.0.0.1:3006:3000
+      - ${BEACON_API_IP}:3000:3000
     volumes:
       - ./config/grafana/provisioning-l:/etc/grafana/provisioning:ro
       - ./data/grafana:/var/lib/grafana

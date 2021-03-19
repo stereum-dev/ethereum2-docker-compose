@@ -60,7 +60,7 @@ docker-compose logs --tail=100 beacon
 Runs on http://localhost:9094, scrapes data of beacon and validator.
 
 ### Grafana
-Grafana listens on http://localhost:3004 and uses the data provided by prometheus service.
+Grafana listens on http://localhost:3000 and uses the data provided by prometheus service.
 
 Login with username `admin` and password `admin` (Grafana defaults), data source to Prometheus is already established and dashboards installed.
 
