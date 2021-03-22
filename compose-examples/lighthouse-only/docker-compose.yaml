@@ -25,8 +25,9 @@ services:
     command: --goerli --http --http.port=8545 --http.addr=0.0.0.0 --http.vhosts="*" --allow-insecure-unlock --http.api="db,eth,net,web3,personal"
     stop_grace_period: 5m
     ports:
-      - 30305:30303/tcp
-      - 30305:30303/udp
+      - 30303:30303/tcp
+      - 30303:30303/udp
+      - ${BEACON_API_IP}:8545:8545
     volumes:
       - ./data/geth:/root/.ethereum
     <<: *logging
@@ -42,6 +43,7 @@ services:
     ports:
       - 9000:9000/tcp
       - 9000:9000/udp
+      - ${BEACON_API_IP}:5052:5052
     env_file: ./config/lighthouse/beacon.env
     entrypoint: /opt/app/start/beacon.sh
     restart: unless-stopped

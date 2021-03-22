@@ -24,7 +24,7 @@ services:
     ports:
       - 30303:30303/tcp
       - 30303:30303/udp
-      - 127.0.0.1:8545:8545
+      - ${BEACON_API_IP}:8545:8545
     volumes:
       - ./data/geth:/root/.ethereum
     <<: *logging
@@ -37,7 +37,7 @@ services:
       - geth
     command: --config-file=/config/beacon.yaml
     ports:
-      - 127.0.0.1:4000:4000
+      - ${BEACON_API_IP}:4000:4000
       - 13000:13000/tcp
       - 12000:12000/udp
     networks:
@@ -57,7 +57,7 @@ services:
       - beacon
     command: --config-file=/config/validator.yaml
     ports:   
-      - 127.0.0.1:7500:7500/tcp # web-ui
+      - ${BEACON_API_IP}:7500:7500/tcp # web-ui
     volumes:
       - ./config/prysm/validator.yaml:/config/validator.yaml:ro
       - ./data/prysm/validator:/data
@@ -82,7 +82,7 @@ services:
     hostname: prometheus
     command: --storage.tsdb.retention.time=31d --config.file=/etc/prometheus/prometheus.yml
     ports:
-      - 127.0.0.1:9090:9090
+      - ${BEACON_API_IP}:9090:9090
     volumes:
       - ./config/prometheus/prometheus-p.yaml:/etc/prometheus/prometheus.yml
       - ./data/prometheus:/prometheus
@@ -98,7 +98,7 @@ services:
       - prometheus
       - renderer
     ports:
-      - 127.0.0.1:3000:3000
+      - ${BEACON_API_IP}:3000:3000
     volumes:
       - ./config/grafana/provisioning-p:/etc/grafana/provisioning
       - ./data/grafana:/var/lib/grafana
