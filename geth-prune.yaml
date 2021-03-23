@@ -1,0 +1,19 @@
+version: "3.7"
+
+x-logging: &logging
+  logging:
+    driver: "json-file"
+    options:
+      max-file: "10"
+      max-size: "100m"
+
+services:
+  geth-prune:
+    image: ethereum/client-go:${GETH_DOCKER_TAG}
+    restart: never
+    command: snapshot prune-state
+    volumes:
+      - ./data/geth:/root/.ethereum
+    <<: *logging
+
+# EOF
