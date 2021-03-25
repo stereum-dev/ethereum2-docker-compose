@@ -1,0 +1,159 @@
+version: "3.7"
+
+x-logging: &logging
+  logging:
+    driver: "json-file"
+    options:
+      max-file: "10"
+      max-size: "100m"
+
+x-limit-node:
+  &limit-node
+  deploy:
+    resources:
+      limits:
+        cpus: "4"
+        memory: "8G"
+
+services:
+  stereum-init:
+    image: stereum/init:buster
+    restart: "no"
+    volumes:
+      - ./data/grafana:/mnt/grafana
+      - ./data/sigmaprime/lighthouse:/mnt/lighthouse
+      - ./data/sigmaprime/slasher:/mnt/slasher
+      - ./data/lodestar/beacon:/mnt/beacon
+      - ./data/nimbus/beacon:/mnt/beacon
+    <<: *logging
+
+  geth:
+    container_name: geth
+    image: ethereum/client-go:${GETH_DOCKER_TAG}
+    restart: unless-stopped
+    command: --goerli --http --http.port=8545 --http.addr=0.0.0.0 --http.vhosts="*" --allow-insecure-unlock --http.api="db,eth,net,web3,personal"
+    stop_grace_period: 5m
+    ports:
+      - 30303:30303/tcp
+      - 30303:30303/udp
+      - ${BEACON_API_IP}:8545:8545
+    volumes:
+      - ./data/geth:/root/.ethereum
+    <<: *limit-node
+    <<: *logging
+
+  lighthouse_beacon:
+    container_name: lighthouse_beacon
+    image: stereum/lighthouse:${LIGHTHOUSE_DOCKER_TAG}
+    user: "2000"
+    depends_on:
+      - stereum-init
+    restart: unless-stopped
+    env_file: ./config/lighthouse/beacon.env
+    entrypoint: /opt/app/start/beacon.sh
+    volumes:
+      - ./data/sigmaprime/lighthouse:/opt/app/beacon
+      - ./data/sigmaprime/slasher:/opt/app/slasher
+    ports:
+      - ${BEACON_API_IP}:5052:5052/tcp
+      - ${BEACON_API_IP}:8910:5054
+      - 9000:9000/tcp
+      - 9000:9000/udp
+    <<: *limit-node
+    <<: *logging
+
+  lodestar_beacon:
+    image: stereum/lodestar:${LODESTAR_DOCKER_TAG}
+    restart: always
+    hostname: beacon-chain
+    user: "2000"
+    depends_on:
+      - geth
+      - stereum-init
+    command:
+      - beacon
+      - --network=pyrmont
+      - --eth1.providerUrl=http://geth:8545
+      - --rootDir=/opt/app/beacon
+      - --metrics.enabled=true
+      - --metrics.serverPort=8008
+      - --metrics.listenAddr=0.0.0.0
+      - --api.rest.enabled=true
+      - --api.rest.port=9596
+      - --api.rest.host=0.0.0.0
+    ports:
+      - 30607:30607/tcp
+      - 9010:9000/udp
+      - ${BEACON_API_IP}:9596:9596
+      - ${BEACON_API_IP}:8008:8008
+    volumes:
+      - ./data/lodestar/beacon:/opt/app/beacon
+    <<: *limit-node
+    <<: *logging
+
+  nimbus_beacon:
+    image: stereum/nimbus:${NIMBUS_DOCKER_TAG}
+    restart: unless-stopped
+    hostname: beacon-chain
+    depends_on:
+      - stereum-init
+      - geth
+    command:
+      - --network=pyrmont
+      - --data-dir=/opt/app/beacon
+      - --web3-url=ws://geth:8545
+      - --tcp-port=9000
+      - --udp-port=9000
+      - --rpc
+      - --rpc-port=9190
+      - --metrics
+      - --metrics-port=8008
+      - --metrics-address=0.0.0.0
+    ports:
+      - ${BEACON_API_IP}:9190:9190 # rpc
+      - 9020:9000/tcp
+      - 9020:9000/udp
+    volumes:
+      - ./data/nimbus/beacon:/opt/app/beacon
+      - ./data/nimbus/validator/validators:/opt/app/validators
+      - ./data/nimbus/validator/secrets:/opt/app/secrets
+    <<: *limit-node
+    <<: *logging
+
+  prysm_beacon:
+    container_name: prysm_beacon
+    image: gcr.io/prysmaticlabs/prysm/beacon-chain:${PRYSM_DOCKER_TAG}
+    restart: unless-stopped
+    command: --config-file=/config/beacon.yaml
+    volumes:
+      - ./config/prysm/beacon.yaml:/config/beacon.yaml:ro
+      - ./data/prysm/beacon:/data
+    ports:
+      - ${BEACON_API_IP}:4000:4000
+      - ${BEACON_API_IP}:8900:8080
+      - 13000:13000/tcp
+      - 12000:12000/udp
+    <<: *limit-node
+    <<: *logging
+
+  teku_beacon:
+    container_name: teku_beacon
+    image: consensys/teku:${TEKU_DOCKER_TAG}
+    user: "0:0"
+    restart: unless-stopped
+    command: ["--config-file=/opt/teku/beacon.yaml"]
+    environment:
+      - "JAVA_OPTS=-Xmx8g"
+    volumes:
+      - ./config/teku/beacon-mc.yaml:/opt/teku/beacon.yaml:ro
+      - ./data/consensys/teku:/opt/teku/data
+    ports:
+      - ${BEACON_API_IP}:5051:5051/tcp
+      - ${BEACON_API_IP}:8920:8008
+      - 9030:9001/tcp
+      - 9030:9001/udp
+    <<: *limit-node
+    <<: *logging
+
+
+# EOF
