@@ -13,7 +13,7 @@ x-limit-node:
     resources:
       limits:
         cpus: "4"
-        memory: "8G"
+        memory: "10G"
 
 services:
   stereum-init:
@@ -28,7 +28,6 @@ services:
     <<: *logging
 
   geth:
-    container_name: geth
     image: ethereum/client-go:${GETH_DOCKER_TAG}
     restart: unless-stopped
     command: --goerli --http --http.port=8545 --http.addr=0.0.0.0 --http.vhosts="*" --allow-insecure-unlock --http.api="db,eth,net,web3,personal"
@@ -43,7 +42,6 @@ services:
     <<: *logging
 
   lighthouse_beacon:
-    container_name: lighthouse_beacon
     image: stereum/lighthouse:${LIGHTHOUSE_DOCKER_TAG}
     user: "2000"
     depends_on:
@@ -121,7 +119,6 @@ services:
     <<: *logging
 
   prysm_beacon:
-    container_name: prysm_beacon
     image: gcr.io/prysmaticlabs/prysm/beacon-chain:${PRYSM_DOCKER_TAG}
     restart: unless-stopped
     command: --config-file=/config/beacon.yaml
@@ -137,7 +134,6 @@ services:
     <<: *logging
 
   teku_beacon:
-    container_name: teku_beacon
     image: consensys/teku:${TEKU_DOCKER_TAG}
     user: "0:0"
     restart: unless-stopped
