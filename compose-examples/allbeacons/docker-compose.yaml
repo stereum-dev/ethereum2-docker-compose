@@ -23,8 +23,8 @@ services:
       - ./data/grafana:/mnt/grafana
       - ./data/sigmaprime/lighthouse:/mnt/lighthouse
       - ./data/sigmaprime/slasher:/mnt/slasher
-      - ./data/lodestar/beacon:/mnt/beacon
-      - ./data/nimbus/beacon:/mnt/beacon
+      - ./data/lodestar/beacon:/mnt/lodestar
+      - ./data/nimbus/beacon:/mnt/nimbus
     <<: *logging
 
   geth:
