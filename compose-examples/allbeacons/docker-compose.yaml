@@ -70,7 +70,7 @@ services:
       - stereum-init
     command:
       - beacon
-      - --network=pyrmont
+      - --network=prater
       - --eth1.providerUrl=http://geth:8545
       - --rootDir=/opt/app/beacon
       - --metrics.enabled=true
@@ -97,7 +97,7 @@ services:
       - stereum-init
       - geth
     command:
-      - --network=pyrmont
+      - --network=prater
       - --data-dir=/opt/app/beacon
       - --web3-url=ws://geth:8545
       - --tcp-port=9000
