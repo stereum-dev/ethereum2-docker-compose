@@ -28,7 +28,7 @@ services:
     ports:
       - 30303:30303/tcp
       - 30303:30303/udp
-      - 127.0.0.1:8545:8545
+      - ${BEACON_API_IP}:8545:8545
     volumes:
       - ./data/geth:/root/.ethereum
     <<: *logging
@@ -53,8 +53,9 @@ services:
       - --metrics
       - --metrics-port=8008
       - --metrics-address=0.0.0.0
+      - --graffiti="stereum.net"
     ports:
-      - 127.0.0.1:9190:9190 # rpc
+      - ${BEACON_API_IP}:9190:9190 # rpc
       - 9000:9000/tcp
       - 9000:9000/udp
     volumes:
@@ -72,7 +73,7 @@ services:
       - stereum-init
     command: --storage.tsdb.retention.time=7d --config.file=/etc/prometheus/prometheus.yml
     ports:
-      - 127.0.0.1:9090:9090
+      - ${BEACON_API_IP}:9090:9090
     volumes:
       - ./config/prometheus/prometheus-n.yaml:/etc/prometheus/prometheus.yml
       - ./data/prometheus:/prometheus
@@ -87,7 +88,7 @@ services:
       - stereum-init
       - prometheus
     ports:
-      - 127.0.0.1:3000:3000
+      - ${BEACON_API_IP}:3000:3000
     volumes:
       - ./config/grafana/provisioning-n:/etc/grafana/provisioning:ro
       - ./data/grafana:/var/lib/grafana

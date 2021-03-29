@@ -76,6 +76,7 @@ services:
       - --secretsDir=/opt/app/secrets 
       - --validatorsDbDir=/opt/app/validator-db
       - --rootDir=/opt/app/beacon
+      - --graffiti=stereum.net
     volumes:
       - ./data/lodestar/validator/keystores:/opt/app/keystores
       - ./data/lodestar/validator/secrets:/opt/app/secrets
