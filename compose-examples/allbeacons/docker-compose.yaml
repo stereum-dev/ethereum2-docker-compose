@@ -30,7 +30,7 @@ services:
   geth:
     image: ethereum/client-go:${GETH_DOCKER_TAG}
     restart: unless-stopped
-    command: --goerli --http --http.port=8545 --http.addr=0.0.0.0 --http.vhosts="*" --allow-insecure-unlock --http.api="db,eth,net,web3,personal"
+    command: --http --http.port=8545 --http.addr=0.0.0.0 --http.vhosts="*" --allow-insecure-unlock --http.api="db,eth,net,web3,personal"
     stop_grace_period: 5m
     ports:
       - 30303:30303/tcp
@@ -70,7 +70,7 @@ services:
       - stereum-init
     command:
       - beacon
-      - --network=pyrmont
+      - --network=mainnet
       - --eth1.providerUrl=http://geth:8545
       - --rootDir=/opt/app/beacon
       - --metrics.enabled=true
@@ -97,7 +97,7 @@ services:
       - stereum-init
       - geth
     command:
-      - --network=pyrmont
+      - --network=mainnet
       - --data-dir=/opt/app/beacon
       - --web3-url=ws://geth:8545
       - --tcp-port=9000
