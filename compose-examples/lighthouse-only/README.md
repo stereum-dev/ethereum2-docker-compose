@@ -24,6 +24,13 @@ Please complete the steps on [launchpad](https://launchpad.ethereum.org/) and st
 
 Repeat these steps as often as you like, restart your validator to make it notice your new accounts!
 
+## Validator accounts voluntary exit
+
+1. Copy `exit-account.yaml` to the project's root directory (this directory)
+2. Run `docker-compose -f exit-account.yaml run -e LAUNCHPADDIR='/opt/app/launchpad/keystore-m_12381...json' exit-validator` and use the **same password** as in the generation of the validator(s)
+
+For instance: `docker-compose -f exit-account.yaml run -e LAUNCHPADDIR='/opt/app/launchpad/keystore-m_12381_3600_0_0_0-123456789.json' exit-validator`
+
 ## Run your Lighthouse Ethereum 2.0 staking node
 
 ### Start it up
@@ -67,5 +74,5 @@ Login with username `admin` and password `admin` (Grafana defaults), data source
 
 ## FAQ
 ### I want to use a specific Ethereum 1 node, like Infura.io!
-1. Edit `./config/lighthouse/beacon.env` and set `ETH1_NODE=` to your external Ethereum 1 node, e. g. `ETH1_NODE=https://mainnet.infura.io:443/v3/put-your-infura-id-here`.
+1. Edit `./config/lighthouse/beacon.env` and set `ETH1_NODES=` to your external Ethereum 1 node, e. g. `ETH1_NODES=https://mainnet.infura.io:443/v3/put-your-infura-id-here`.
 2. Copy `./compose-examples/lighthouse-only/override-examples/docker-compose.no-geth.override.yaml` to `./docker-compose.override.yaml`. This will disable geth for your node.
