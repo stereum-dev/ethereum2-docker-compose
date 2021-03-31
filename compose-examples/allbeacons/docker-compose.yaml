@@ -125,6 +125,7 @@ services:
     volumes:
       - ./config/prysm/beacon.yaml:/config/beacon.yaml:ro
       - ./data/prysm/beacon:/data
+      - ./data/prysm/genesis:/genesis
     ports:
       - ${BEACON_API_IP}:4000:4000
       - ${BEACON_API_IP}:8900:8080

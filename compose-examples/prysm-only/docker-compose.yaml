@@ -47,6 +47,7 @@ services:
     volumes:
       - ./config/prysm/slasher/beacon.yaml:/config/beacon.yaml:ro
       - ./data/prysm/beacon-slasher:/data
+      - ./data/prysm/genesis:/genesis
     <<: *logging
 
   validator:
