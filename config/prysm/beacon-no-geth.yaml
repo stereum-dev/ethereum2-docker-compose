@@ -30,3 +30,7 @@ p2p-max-peers: 100
 http-web3provider: https://goerli.prylabs.net
 
 prater: yes
+
+genesis-state: /genesis/genesis.ssz
+
+# EOF

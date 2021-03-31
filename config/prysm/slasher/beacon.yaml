@@ -33,3 +33,7 @@ historical-slasher-node: yes
 block-batch-limit: 512
 
 prater: yes
+
+genesis-state: /genesis/genesis.ssz
+
+# EOF
