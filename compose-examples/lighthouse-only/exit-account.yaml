@@ -1,0 +1,20 @@
+version: "3.7"
+services:
+  stereum-init:
+    image: stereum/init:buster
+    restart: "no"
+    volumes:
+      - ./launchpad:/opt/app/launchpad
+
+  exit-validator:
+    image: stereum/lighthouse:${LIGHTHOUSE_DOCKER_TAG}
+    user: "2000"
+    depends_on:
+      - stereum-init
+    env_file: ./config/lighthouse/exit-validator.env
+    entrypoint: /opt/app/start/exit-validator.sh
+    volumes:
+      - ./launchpad:/opt/app/launchpad
+
+#EOF
+
