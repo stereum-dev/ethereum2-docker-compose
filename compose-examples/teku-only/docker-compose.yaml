@@ -16,7 +16,7 @@ services:
       - ./data/prometheus:/mnt/prometheus
       - ./data/consensys/teku:/mnt/teku
       - ./config/teku/beacon.yaml:/mnt/config
-      - ./launchpad:/mnt/launchpad  
+      - ./launchpad:/mnt/launchpad
     <<: *logging
 
   geth:
@@ -39,7 +39,7 @@ services:
     hostname: beacon-chain
     user: "2000"
     depends_on:
-      - stereum-init     
+      - stereum-init
       - geth
     command: --config-file=/config/beacon.yaml
     ports:
