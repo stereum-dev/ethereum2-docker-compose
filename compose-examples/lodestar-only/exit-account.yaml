@@ -11,7 +11,7 @@ services:
     user: "2000"
     depends_on:
       - stereum-init
-    command: account validator voluntary-exit --network pyrmont --force --server http://beacon:9596 --keystoresDir /opt/app/keystores --secretsDir /opt/app/secrets --validatorsDbDir /opt/app/validator-db --publicKey ${PUBKEY}
+    command: account validator voluntary-exit --network mainnet --force --server http://beacon:9596 --keystoresDir /opt/app/keystores --secretsDir /opt/app/secrets --validatorsDbDir /opt/app/validator-db --publicKey ${PUBKEY}
     volumes:
       - ./data/lodestar/validator/keystores:/opt/app/keystores
       - ./data/lodestar/validator/secrets:/opt/app/secrets
