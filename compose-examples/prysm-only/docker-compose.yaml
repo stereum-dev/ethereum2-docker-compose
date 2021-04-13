@@ -13,6 +13,7 @@ services:
     restart: "no"
     volumes:
       - ./data/grafana:/mnt/grafana
+      - ./data/prometheus:/mnt/prometheus
     <<: *logging
 
   geth:
@@ -77,7 +78,7 @@ services:
 
   prometheus:
     image: prom/prometheus:${PROMETHEUS_DOCKER_TAG}
-    user: root # https://github.com/prometheus/prometheus/issues/5976
+    user: "2000"
     restart: on-failure
     hostname: prometheus
     command: --storage.tsdb.retention.time=31d --config.file=/etc/prometheus/prometheus.yml
