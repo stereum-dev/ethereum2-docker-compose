@@ -57,7 +57,7 @@ docker-compose logs --tail=100 beacon
 ```
 
 ### Prometheus
-Runs on http://localhost:9094, scrapes data of beacon and validator.
+Runs on http://localhost:9090, scrapes data of beacon and validator.
 
 ### Grafana
 Grafana listens on http://localhost:3000 and uses the data provided by prometheus service.
