@@ -110,6 +110,7 @@ services:
 
   renderer:
     image: grafana/grafana-image-renderer:${GRAFANA_IMAGE_RENDERER_TAG}
+    user: "2000"
     restart: on-failure
     hostname: renderer
     environment:
