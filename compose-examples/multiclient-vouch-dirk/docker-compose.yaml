@@ -207,12 +207,16 @@ services:
     environment:
       ENABLE_METRICS: 'true'
       HTTP_PORT: 8082
+    networks:
+      - n_grafana_prometheus
     <<: *logging
 
   node-exporter:
     image: prom/node-exporter:${PROMETHEUS_NODE_EXPORTER_DOCKER_TAG}
     user: "2000"
     hostname: node-exporter
+    networks:
+      - n_grafana_prometheus
     <<: *logging  
 
 networks:
