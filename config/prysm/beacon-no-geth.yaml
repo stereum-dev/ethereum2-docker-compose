@@ -29,6 +29,8 @@ p2p-max-peers: 100
 # Connection to geth container
 http-web3provider: https://goerli.prylabs.net
 
+fallback-web3provider: []
+
 prater: yes
 
 genesis-state: /genesis/genesis.ssz

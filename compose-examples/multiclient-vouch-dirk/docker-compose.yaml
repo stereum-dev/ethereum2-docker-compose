@@ -192,10 +192,33 @@ services:
     volumes:
       - ./config/grafana/provisioning:/etc/grafana/provisioning:ro
       - ./data/grafana:/var/lib/grafana
+    environment:
+      GF_RENDERING_SERVER_URL: http://renderer:8082/render
+      GF_RENDERING_CALLBACK_URL: http://grafana:3000    
     networks:
       - n_grafana_prometheus
       - n_bridge
     <<: *logging
+
+  renderer:
+    image: grafana/grafana-image-renderer:${GRAFANA_IMAGE_RENDERER_TAG}
+    user: "2000"
+    restart: on-failure
+    hostname: renderer
+    environment:
+      ENABLE_METRICS: 'true'
+      HTTP_PORT: 8082
+    networks:
+      - n_grafana_prometheus
+    <<: *logging
+
+  node-exporter:
+    image: prom/node-exporter:${PROMETHEUS_NODE_EXPORTER_DOCKER_TAG}
+    user: "2000"
+    hostname: node-exporter
+    networks:
+      - n_grafana_prometheus
+    <<: *logging  
 
 networks:
   # bridge network - this networks gets internet access!
