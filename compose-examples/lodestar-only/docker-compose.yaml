@@ -40,23 +40,14 @@ services:
     depends_on:
       - geth
       - stereum-init
-    command:
-      - beacon
-      - --network=mainnet
-      - --eth1.providerUrl=http://geth:8545
-      - --rootDir=/opt/app/beacon
-      - --metrics.enabled=true
-      - --metrics.serverPort=8008
-      - --metrics.listenAddr=0.0.0.0
-      - --api.rest.enabled=true
-      - --api.rest.port=9596
-      - --api.rest.host=0.0.0.0
+    command: beacon --paramsFile /opt/app/beacon.yaml
     ports:
       - 30607:30607/tcp
       - 9000:9000/udp
       - ${BEACON_API_IP}:9596:9596
       - ${BEACON_API_IP}:8008:8008
     volumes:
+      - ./config/lodestar/beacon.yaml:/opt/app/beacon.yaml:ro
       - ./data/lodestar/beacon:/opt/app/beacon
     <<: *logging
 
@@ -68,16 +59,9 @@ services:
     depends_on:
       - beacon
       - stereum-init
-    command:
-      - validator
-      - --network=mainnet
-      - --server=http://beacon:9596 
-      - --keystoresDir=/opt/app/keystores 
-      - --secretsDir=/opt/app/secrets 
-      - --validatorsDbDir=/opt/app/validator-db
-      - --rootDir=/opt/app/beacon
-      - --graffiti=stereum.net
+    command: validator --paramsFile /opt/app/validator.yaml
     volumes:
+      - ./config/lodestar/validator.yaml:/opt/app/validator.yaml:ro
       - ./data/lodestar/validator/keystores:/opt/app/keystores
       - ./data/lodestar/validator/secrets:/opt/app/secrets
       - ./data/lodestar/validator/validator-db:/opt/app/validator-db
@@ -112,6 +96,25 @@ services:
     volumes:
       - ./config/grafana/provisioning-l:/etc/grafana/provisioning:ro
       - ./data/grafana:/var/lib/grafana
+    environment:
+      GF_RENDERING_SERVER_URL: http://renderer:8082/render
+      GF_RENDERING_CALLBACK_URL: http://grafana:3000
+    <<: *logging
+
+  renderer:
+    image: grafana/grafana-image-renderer:${GRAFANA_IMAGE_RENDERER_TAG}
+    user: "2000"
+    restart: on-failure
+    hostname: renderer
+    environment:
+      ENABLE_METRICS: 'true'
+      HTTP_PORT: 8082
+    <<: *logging
+
+  node-exporter:
+    image: prom/node-exporter:${PROMETHEUS_NODE_EXPORTER_DOCKER_TAG}
+    user: "2000"
+    hostname: node-exporter
     <<: *logging
 
 # EOF

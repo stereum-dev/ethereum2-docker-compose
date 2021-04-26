@@ -12,3 +12,9 @@ scrape_configs:
     scheme: http
     static_configs:
       - targets: ["beacon:8008"]
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets: ['node-exporter:9100']
+  - job_name: 'renderer'
+    static_configs:
+      - targets: ['renderer:8082']      

@@ -29,4 +29,8 @@ p2p-max-peers: 100
 # Connection to geth container
 http-web3provider: "https://mainnet.infura.io:443/v3/put-your-infura-id-here"
 
+fallback-web3provider: []
+
 mainnet: yes
+
+# EOF
