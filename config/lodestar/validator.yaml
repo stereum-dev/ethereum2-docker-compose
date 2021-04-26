@@ -1,4 +1,4 @@
-network: pyrmont
+network: mainnet
 server: http://beacon:9596
 keystoresDir: /opt/app/keystores
 secretsDir: /opt/app/secrets
