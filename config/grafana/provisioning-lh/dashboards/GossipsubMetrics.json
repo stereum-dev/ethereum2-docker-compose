@@ -1,46 +1,4 @@
 {
-  "__inputs": [
-    {
-      "name": "DS_PROMETHEUS",
-      "label": "Prometheus",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "prometheus",
-      "pluginName": "Prometheus"
-    }
-  ],
-  "__requires": [
-    {
-      "type": "panel",
-      "id": "bargauge",
-      "name": "Bar gauge",
-      "version": ""
-    },
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "7.1.1"
-    },
-    {
-      "type": "panel",
-      "id": "graph",
-      "name": "Graph",
-      "version": ""
-    },
-    {
-      "type": "datasource",
-      "id": "prometheus",
-      "name": "Prometheus",
-      "version": "1.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "text",
-      "name": "Text",
-      "version": "7.1.0"
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -57,7 +15,6 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": null,
   "links": [],
   "panels": [
     {
@@ -79,7 +36,7 @@
         "content": "# Gossipsub Metrics\n\nVarious metrics monitoring gossip performance         ",
         "mode": "markdown"
       },
-      "pluginVersion": "7.1.0",
+      "pluginVersion": "7.3.10",
       "timeFrom": null,
       "timeShift": null,
       "title": "",
@@ -87,7 +44,7 @@
       "type": "text"
     },
     {
-      "datasource": "Prometheus",
+      "datasource": null,
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -129,7 +86,7 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.10",
       "targets": [
         {
           "expr": "gossipsub_peers_per_protocol",
@@ -145,7 +102,7 @@
       "type": "bargauge"
     },
     {
-      "datasource": "Prometheus",
+      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -187,7 +144,7 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.10",
       "targets": [
         {
           "expr": "gossipsub_mesh_peers_per_main_topic",
@@ -203,7 +160,7 @@
       "type": "bargauge"
     },
     {
-      "datasource": "Prometheus",
+      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -243,7 +200,7 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.10",
       "targets": [
         {
           "expr": "gossipsub_avg_peer_score_per_topic",
@@ -258,7 +215,7 @@
       "type": "bargauge"
     },
     {
-      "datasource": "Prometheus",
+      "datasource": null,
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -299,7 +256,7 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.10",
       "targets": [
         {
           "expr": "gossipsub_attestations_published_per_subnet_per_slot",
@@ -315,7 +272,7 @@
       "type": "bargauge"
     },
     {
-      "datasource": "Prometheus",
+      "datasource": null,
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -356,7 +313,7 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.10",
       "targets": [
         {
           "expr": "gossipsub_subscribed_subnets",
@@ -372,7 +329,7 @@
       "type": "bargauge"
     },
     {
-      "datasource": "Prometheus",
+      "datasource": null,
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -417,7 +374,7 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.10",
       "targets": [
         {
           "expr": "gossipsub_mesh_peers_per_subnet_topic",
@@ -435,7 +392,7 @@
       "type": "bargauge"
     },
     {
-      "datasource": "Prometheus",
+      "datasource": null,
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -475,7 +432,7 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.10",
       "targets": [
         {
           "expr": "gossipsub_peers_per_subnet_topic_count",
@@ -491,7 +448,7 @@
       "type": "bargauge"
     },
     {
-      "datasource": "Prometheus",
+      "datasource": null,
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -530,7 +487,7 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.10",
       "targets": [
         {
           "expr": "gossipsub_avg_peer_score_per_subnet_topic",
@@ -546,7 +503,7 @@
       "type": "bargauge"
     },
     {
-      "datasource": "Prometheus",
+      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -587,7 +544,7 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.10",
       "targets": [
         {
           "expr": "gossipsub_failed_attestation_published_per_subnet_per_slot",
@@ -607,7 +564,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
+      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -636,8 +593,11 @@
       "lines": true,
       "linewidth": 1,
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.10",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -673,6 +633,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:103",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -681,6 +642,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:104",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -693,6 +655,584 @@
         "align": false,
         "alignLevel": null
       }
+    },
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "max": 1,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 58
+      },
+      "id": 22,
+      "options": {
+        "displayMode": "gradient",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "7.3.10",
+      "targets": [
+        {
+          "expr": "gossipsub_scores_below_zero_per_client",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{Client}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Relative number of scores below zero per client",
+      "type": "bargauge"
+    },
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "max": 1,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 58
+      },
+      "id": 23,
+      "options": {
+        "displayMode": "gradient",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "7.3.10",
+      "targets": [
+        {
+          "expr": "gossipsub_scores_below_gossip_threshold_per_client",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{Client}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Relative number of scores below gossip threshold per client",
+      "type": "bargauge"
+    },
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "max": 1,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 66
+      },
+      "id": 24,
+      "options": {
+        "displayMode": "gradient",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "7.3.10",
+      "targets": [
+        {
+          "expr": "gossipsub_scores_below_publish_threshold_per_client",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{Client}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Relative number of scores below publish threshold per client",
+      "type": "bargauge"
+    },
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "max": 1,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 66
+      },
+      "id": 25,
+      "options": {
+        "displayMode": "gradient",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "7.3.10",
+      "targets": [
+        {
+          "expr": "gossipsub_scores_below_greylist_threshold_per_client",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{Client}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Relative number of scores below greylist threshold per client",
+      "type": "bargauge"
+    },
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 74
+      },
+      "id": 26,
+      "options": {
+        "displayMode": "gradient",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "7.3.10",
+      "targets": [
+        {
+          "expr": "gossipsub_min_scores_per_client",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{Client}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Minimum scores per client",
+      "type": "bargauge"
+    },
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 74
+      },
+      "id": 27,
+      "options": {
+        "displayMode": "gradient",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "7.3.10",
+      "targets": [
+        {
+          "expr": "gossipsub_median_scores_per_client",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{Client}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Median scores per client",
+      "type": "bargauge"
+    },
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 82
+      },
+      "id": 28,
+      "options": {
+        "displayMode": "gradient",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "7.3.10",
+      "targets": [
+        {
+          "expr": "gossipsub_mean_scores_per_client",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{Client}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Mean scores per client",
+      "type": "bargauge"
+    },
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 82
+      },
+      "id": 29,
+      "options": {
+        "displayMode": "gradient",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "7.3.10",
+      "targets": [
+        {
+          "expr": "gossipsub_max_scores_per_client",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{Client}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Max scores per client",
+      "type": "bargauge"
+    },
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 90
+      },
+      "id": 30,
+      "options": {
+        "displayMode": "gradient",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "7.3.10",
+      "targets": [
+        {
+          "expr": "block_mesh_peers_per_client",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{Client}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "BeaconBlock mesh peers per client",
+      "type": "bargauge"
+    },
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 90
+      },
+      "id": 31,
+      "options": {
+        "displayMode": "gradient",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "7.3.10",
+      "targets": [
+        {
+          "expr": "beacon_aggregate_and_proof_mesh_peers_per_client",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{Client}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "BeaconAggregateAndProof mesh peers per client",
+      "type": "bargauge"
     }
   ],
   "refresh": "10s",
@@ -710,5 +1250,5 @@
   "timezone": "",
   "title": "Gossipsub Metrics",
   "uid": "rKn-PVDMk",
-  "version": 3
+  "version": 2
 }
