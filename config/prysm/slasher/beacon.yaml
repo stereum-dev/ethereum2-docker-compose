@@ -29,7 +29,11 @@ p2p-max-peers: 100
 # Connection to geth container
 http-web3provider: http://geth:8545
 
+fallback-web3provider: []
+
 historical-slasher-node: yes
 block-batch-limit: 512
 
 mainnet: yes
+
+# EOF

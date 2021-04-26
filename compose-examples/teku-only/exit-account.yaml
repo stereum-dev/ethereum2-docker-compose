@@ -1,0 +1,18 @@
+version: "3.7"
+services:
+  stereum-init:
+    image: stereum/init:buster
+    restart: "no"
+    volumes:
+      - ./launchpad:/mnt/launchpad
+
+  exit-validator:
+    image: consensys/teku:${TEKU_DOCKER_TAG}
+    user: "2000"
+    depends_on:
+      - stereum-init
+    command: voluntary-exit --beacon-node-api-endpoint=http://beacon:5051 --validator-keys=/opt/app/launchpad/${KEY}.json:/opt/app/launchpad/${KEY}.txt
+    volumes:
+      - ./launchpad:/opt/app/launchpad
+
+# EOF
