@@ -51,7 +51,7 @@
   },
   "description": "Provides an overview of Teku nodes",
   "editable": true,
-  "gnetId": 12199,
+  "gnetId": null,
   "graphTooltip": 0,
   "id": 5,
   "iteration": 1588132665027,
