@@ -44,6 +44,7 @@ The "Expect" needs to be installed to execute `prysm_validator_exit.sh`. Run `ap
 
 1. Copy `delete-account.yaml` to the project's root directory (this directory)
 2. Run `./prysm_validator_delete.sh public-key-of-your-validator`
+3. Run `docker-compose stop validator` then `docker-compose up -d validator` to restart validator service
 
 For instance: `./prysm_validator_delete.sh 0xabcde12345...`
 
