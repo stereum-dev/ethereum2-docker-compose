@@ -68,17 +68,7 @@ services:
     depends_on:
       - geth
       - stereum-init
-    command:
-      - beacon
-      - --network=pyrmont
-      - --eth1.providerUrl=http://geth:8545
-      - --rootDir=/opt/app/beacon
-      - --metrics.enabled=true
-      - --metrics.serverPort=8008
-      - --metrics.listenAddr=0.0.0.0
-      - --api.rest.enabled=true
-      - --api.rest.port=9596
-      - --api.rest.host=0.0.0.0
+    command: beacon --paramsFile /opt/app/beacon.yaml
     ports:
       - 30607:30607/tcp
       - 9010:9000/udp
@@ -97,7 +87,7 @@ services:
       - stereum-init
       - geth
     command:
-      - --network=pyrmont
+      - --network=prater
       - --data-dir=/opt/app/beacon
       - --web3-url=ws://geth:8545
       - --tcp-port=9000
