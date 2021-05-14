@@ -7,10 +7,3 @@ services:
     volumes:
       - ./data/prysm/validator:/data
       - ./launchpad:/launchpad
-
-  validator-list-accounts:
-    container_name: validator_list_accounts
-    image: gcr.io/prysmaticlabs/prysm/validator:${PRYSM_DOCKER_TAG}
-    command: accounts list --wallet-dir="/data/wallets" --wallet-password-file="/data/passwords/wallet-password" --prater
-    volumes:
-      - ./data/prysm/validator:/data
