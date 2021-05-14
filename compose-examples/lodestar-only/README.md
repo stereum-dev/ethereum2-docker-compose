@@ -25,7 +25,7 @@ Repeat these steps as often as you like, restart your validator to make it notic
 ## Validator accounts voluntary exit
 
 1. Copy `exit-account.yaml` to the project's root directory (this directory)
-2. Run `./lodestar_validator_exit.sh pubkey-of-your-validator`
+2. Run `./lodestar_validator_exit.sh public-key-of-your-validator`
 
 For instance: `./lodestar_validator_exit.sh 0xabcde12345...`
 
