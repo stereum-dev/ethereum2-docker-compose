@@ -6,7 +6,7 @@
 
 ## Services
 * [geth](https://github.com/ethereum/go-ethereum)
-* beacon (with validator)
+* beacon (including validator)
 * prometheus
 * grafana
 
@@ -15,13 +15,22 @@
 ## Configure your node
 
 ## Validator accounts with launchpad
-Please complete the steps on [launchpad](https://pyrmont.launchpad.ethereum.org/) and store the generated files of `~/eth2.0-deposit-cli/validator_keys` in `./launchpad`.
+Please complete the steps on [launchpad](https://prater.launchpad.ethereum.org/) and store the generated files of `~/eth2.0-deposit-cli/validator_keys` in `./launchpad`.
 
-1. Generate your validator(s) using [launchpad](https://pyrmont.launchpad.ethereum.org/) and complete the process
+1. Generate your validator(s) using [launchpad](https://prater.launchpad.ethereum.org/) and complete the process
 2. Copy your generated validator(s) from `~/eth2.0-deposit-cli/validator_keys` to `./launchpad`
-3. Create the validator password files in `./launchpad`. For each validator `keystore-m_xxx.json` key file a corresponding password txt file is required. The password file will need to be named to match the corresponding `keystore-m_xxx.txt` file.
+3. Create the validator password files in `./launchpad`. For each validator `keystore-m_123....json` key file a corresponding password `keystore-m_123....txt` file is required. The password file will need to be named to match the correlating keystore file.
 
 Repeat these steps as often as you like, restart your validator to make it notice your new accounts!
+
+## Validator accounts voluntary exit
+
+1. Copy `exit-account.yaml` to the project's root directory (this directory)
+2. Run `./teku_validator_exit.sh name-of-keystore-without-extension`
+
+For instance: If a keystore file is `keystore-m_12381_3600_0_0_0-123456789.json` then the command should be `./teku_validator_exit.sh keystore-m_12381_3600_0_0_0-123456789`
+
+The "Expect" needs to be installed to execute `teku_validator_exit.sh`. Run `apt-get install expect` to install expect
 
 ## Run your Teku Ethereum 2.0 staking node
 
