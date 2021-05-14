@@ -34,6 +34,6 @@ fallback-web3provider: []
 historical-slasher-node: yes
 block-batch-limit: 512
 
-pyrmont: yes
+prater: yes
 
 # EOF
