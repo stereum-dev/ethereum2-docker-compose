@@ -31,7 +31,6 @@ Repeat these steps as often as you like, restart your validator to make it notic
 
 For instance: `docker-compose -f exit-account.yaml run -e LAUNCHPADDIR='/opt/app/launchpad/keystore-m_12381_3600_0_0_0-123456789.json' exit-validator`
 
-
 ## Run your Lighthouse Ethereum 2.0 staking node
 
 ### Start it up
