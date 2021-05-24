@@ -94,7 +94,8 @@ services:
       - ./data/grafana:/var/lib/grafana
     environment:
       GF_RENDERING_SERVER_URL: http://renderer:8082/render
-      GF_RENDERING_CALLBACK_URL: http://grafana:3000     
+      GF_RENDERING_CALLBACK_URL: http://grafana:3000
+      GF_INSTALL_PLUGINS: grafana-piechart-panel
     <<: *logging
 
   renderer:
