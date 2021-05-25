@@ -1,4 +1,4 @@
-network: prater
+network: pyrmont
 eth1.providerUrl: http://geth:8545
 rootDir: /opt/app/beacon
 metrics.enabled: true

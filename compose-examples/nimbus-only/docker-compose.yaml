@@ -41,7 +41,7 @@ services:
       - stereum-init
       - geth
     command:
-      - --network=prater
+      - --network=pyrmont
       - --data-dir=/opt/app/beacon
       - --validators-dir=/opt/app/validators
       - --secrets-dir=/opt/app/secrets

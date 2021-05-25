@@ -31,6 +31,6 @@ http-web3provider: https://goerli.prylabs.net
 
 fallback-web3provider: []
 
-prater: yes
+pyrmont: yes
 
 # EOF

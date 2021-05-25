@@ -36,6 +36,6 @@ fallback-web3provider: []
 
 block-batch-limit: 512
 
-prater: yes
+pyrmont: yes
 
 # EOF

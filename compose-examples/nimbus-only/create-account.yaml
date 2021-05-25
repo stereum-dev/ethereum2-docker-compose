@@ -13,7 +13,7 @@ services:
     user: "2000"
     depends_on:
       - stereum-init
-    command: deposits import /opt/app/validator_keys --data-dir=/opt/app/validator --network=prater
+    command: deposits import /opt/app/validator_keys --data-dir=/opt/app/validator --network=pyrmont
     volumes:
       - ./data/nimbus/validator:/opt/app/validator
       - ./launchpad:/opt/app/validator_keys

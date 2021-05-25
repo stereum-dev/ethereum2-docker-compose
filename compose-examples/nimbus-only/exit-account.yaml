@@ -12,6 +12,6 @@ services:
     user: "2000"
     depends_on:
       - stereum-init
-    command: deposits exit --validator=${PUBKEY} --rpc-url=http://beacon:9190 --data-dir=/opt/app/validator --network=prater
+    command: deposits exit --validator=${PUBKEY} --rpc-url=http://beacon:9190 --data-dir=/opt/app/validator --network=pyrmont
     volumes:
       - ./data/nimbus/validator:/opt/app/validator

@@ -87,7 +87,7 @@ services:
       - stereum-init
       - geth
     command:
-      - --network=prater
+      - --network=pyrmont
       - --data-dir=/opt/app/beacon
       - --web3-url=ws://geth:8545
       - --tcp-port=9000

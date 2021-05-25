@@ -17,9 +17,9 @@ Setup | Beacon | Staking | Monitoring
 <sub><sup>Sorted by name (ascending).</sup></sub>
 
 ## Testnet or Mainnet
-**You are viewing this repository with configuration for testnet (Prater)**
+**You are viewing this repository with configuration for testnet (Pyrmont)**
 
-Default is Prater, the long-term testnet for Ethereum 2.0. For running on Mainnet, checkout `mainnet` branch by executing the following commands after `git clone`:
+Default is Pyrmont, the long-term testnet for Ethereum 2.0. For running on Mainnet, checkout `mainnet` branch by executing the following commands after `git clone`:
 ```
 git checkout mainnet
 ```
