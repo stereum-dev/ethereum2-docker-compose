@@ -1,0 +1,8 @@
+version: "3.7"
+services:
+  validator-delete-accounts:
+    container_name: validator-delete-account
+    image: gcr.io/prysmaticlabs/prysm/validator:${PRYSM_DOCKER_TAG}
+    command: accounts delete --wallet-dir="/data/wallets" --wallet-password-file="/data/passwords/wallet-password" --delete-public-keys=${PUBKEY} --accept-terms-of-use="true" --prater
+    volumes:
+      - ./data/prysm/validator:/data
