@@ -35,6 +35,15 @@ Please complete the steps on [launchpad](https://launchpad.ethereum.org/) and st
 
 Repeat these steps as often as you like, restart your validator to make it notice your new accounts!
 
+## Validator accounts voluntary exit
+
+1. Copy `exit-account.yaml` to the project's root directory (this directory)
+2. Run `./nimbus_validator_exit.sh public-key-of-your-validator`
+
+For instance: `./nimbus_validator_exit.sh 0xabcde12345...`
+
+The "Expect" needs to be installed to execute `nimbus_validator_exit.sh`. Run `apt-get install expect` to install expect
+
 ## Run your Nimbus Ethereum 2.0 beacon node
 
 ### Start it up

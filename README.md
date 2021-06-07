@@ -8,7 +8,7 @@ Visit us at [stereum.net](https://stereum.net/) for guides and on [Discord](http
 Setup | Beacon | Staking | Monitoring
 ------|--------|---------|------------
 [Lighthouse](./compose-examples/lighthouse-only) | ![yes](https://stereum.net/imgs/beacon.png) | ![yes](https://stereum.net/imgs/staking.png) | ![yes](https://stereum.net/imgs/monitoring.png)
-[Lodestar](./compose-examples/lodestar-only) | ![yes](https://stereum.net/imgs/beacon.png) | - | ![yes](https://stereum.net/imgs/monitoring.png)
+[Lodestar](./compose-examples/lodestar-only) | ![yes](https://stereum.net/imgs/beacon.png) | ![yes](https://stereum.net/imgs/staking.png) | ![yes](https://stereum.net/imgs/monitoring.png)
 [Multiclient with Vouch & Dirk](./compose-examples/multiclient-vouch-dirk) | ![yes](https://stereum.net/imgs/beacon.png) | ![yes](https://stereum.net/imgs/staking.png) | ![yes](https://stereum.net/imgs/monitoring.png)
 [Nimbus Eth2](./compose-examples/nimbus-only) | ![yes](https://stereum.net/imgs/beacon.png) | ![yes](https://stereum.net/imgs/staking.png) | ![yes](https://stereum.net/imgs/monitoring.png)
 [Prysm](./compose-examples/prysm-only) | ![yes](https://stereum.net/imgs/beacon.png) | ![yes](https://stereum.net/imgs/staking.png) | ![yes](https://stereum.net/imgs/monitoring.png)
