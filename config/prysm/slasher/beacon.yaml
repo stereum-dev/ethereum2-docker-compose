@@ -18,7 +18,7 @@ rpc-host: 0.0.0.0
 monitoring-host: 0.0.0.0
 
 # disable scan of local network
-p2p-denylist: private
+p2p-denylist: ["private"]
 
 # changing this also needs to be changed in docker-compose.yaml!
 p2p-tcp-port: 13000
