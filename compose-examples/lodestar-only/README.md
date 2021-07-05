@@ -7,7 +7,7 @@
 ## Services
 * [geth](https://github.com/ethereum/go-ethereum)
 * beacon
-* validator (doesn't validate at the moment: [issue #1941](https://github.com/ChainSafe/lodestar/issues/1941))
+* validator
 * prometheus
 * grafana
 
@@ -30,6 +30,11 @@ Repeat these steps as often as you like, restart your validator to make it notic
 For instance: `./lodestar_validator_exit.sh 0xabcde12345...`
 
 The "Expect" needs to be installed to execute `lodestar_validator_exit.sh`. Run `apt-get install expect` to install expect
+
+## Validator accounts list
+
+1. Copy `list-account.yaml` to the project's root directory (this directory)
+2. Run `docker-compose -f list-account.yaml run validator-list-accounts`
 
 ## Run your lodestar Ethereum 2.0 beacon node
 

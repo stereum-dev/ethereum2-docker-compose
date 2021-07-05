@@ -19,13 +19,4 @@ services:
       - ./data/lodestar/validator/keystores:/opt/app/keystores
       - ./data/lodestar/validator/secrets:/opt/app/secrets
 
-  validator-list-accounts:
-    container_name: validator-list-accounts
-    image: stereum/lodestar:${LODESTAR_DOCKER_TAG}
-    user: "2000"
-    command: account validator list --network prater --keystoresDir /opt/app/keystores --secretsDir /opt/app/secrets
-    volumes:
-      - ./data/lodestar/validator/keystores:/opt/app/keystores
-      - ./data/lodestar/validator/secrets:/opt/app/secrets
-
 # EOF
