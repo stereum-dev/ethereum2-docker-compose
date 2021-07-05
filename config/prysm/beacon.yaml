@@ -21,7 +21,7 @@ grpc-gateway-host: 0.0.0.0
 grpc-gateway-port: 3500
 
 # disable scan of local network
-p2p-denylist: private
+p2p-denylist: ["private"]
 
 # changing this also needs to be changed in docker-compose.yaml!
 p2p-tcp-port: 13000
