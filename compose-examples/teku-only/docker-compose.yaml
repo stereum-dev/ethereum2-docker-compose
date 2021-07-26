@@ -29,6 +29,9 @@ services:
       - 30303:30303/tcp
       - 30303:30303/udp
       - ${BEACON_API_IP}:8545:8545
+    networks:
+      default:
+      stereum-admin:
     volumes:
       - ./data/geth:/root/.ethereum
     <<: *logging
@@ -45,6 +48,9 @@ services:
     ports:
       - 9001:9001
       - ${BEACON_API_IP}:5051:5051
+    networks:
+      default:
+      stereum-admin:
     volumes:
       - ./data/consensys/teku:/opt/teku/data
       - ./config/teku/beacon.yaml:/config/beacon.yaml:ro
@@ -100,5 +106,10 @@ services:
     user: "2000"
     hostname: node-exporter
     <<: *logging
+
+networks:
+  stereum-admin:
+    internal: true
+  default:
 
 # EOF

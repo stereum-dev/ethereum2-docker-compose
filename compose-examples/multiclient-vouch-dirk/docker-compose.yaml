@@ -31,6 +31,7 @@ services:
       - ./data/geth:/root/.ethereum
     networks:
       - n_bridge
+      - stereum-admin
     <<: *logging
 
   prysm_beacon:
@@ -49,6 +50,7 @@ services:
     networks:
       - n_vouch_beacons
       - n_bridge
+      - stereum-admin
     <<: *logging
 
   prysm_beacon_slasher:
@@ -68,6 +70,7 @@ services:
       - n_vouch_beacons
       - n_bridge
       - n_slasher_beacon
+      - stereum-admin
     <<: *logging
 
   prysm_slasher:
@@ -107,6 +110,7 @@ services:
     networks:
       - n_vouch_beacons
       - n_bridge
+      - stereum-admin
     <<: *logging
 
   teku_beacon:
@@ -128,6 +132,7 @@ services:
     networks:
       - n_vouch_beacons
       - n_bridge
+      - stereum-admin
     <<: *logging
 
   vouch:
@@ -239,5 +244,8 @@ networks:
   # grafana to prometheus
   n_grafana_prometheus:
     internal: yes
+  
+  stereum-admin:
+    internal: true
 
 # EOF
