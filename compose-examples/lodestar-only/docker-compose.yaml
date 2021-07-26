@@ -28,6 +28,9 @@ services:
       - 30303:30303/tcp
       - 30303:30303/udp
       - ${BEACON_API_IP}:8545:8545
+    networks:
+      default:
+      stereum-admin:
     volumes:
       - ./data/geth:/root/.ethereum
     <<: *logging
@@ -46,6 +49,9 @@ services:
       - 9000:9000/udp
       - ${BEACON_API_IP}:9596:9596
       - ${BEACON_API_IP}:8008:8008
+    networks:
+      default:
+      stereum-admin:
     volumes:
       - ./config/lodestar/beacon.yaml:/opt/app/beacon.yaml:ro
       - ./data/lodestar/beacon:/opt/app/beacon
@@ -117,5 +123,10 @@ services:
     user: "2000"
     hostname: node-exporter
     <<: *logging
+
+networks:
+  stereum-admin:
+    internal: true
+  default:
 
 # EOF

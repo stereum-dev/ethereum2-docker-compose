@@ -28,6 +28,9 @@ services:
       - 30303:30303/tcp
       - 30303:30303/udp
       - ${BEACON_API_IP}:8545:8545
+    networks:
+      default:
+      stereum-admin:
     volumes:
       - ./data/geth:/root/.ethereum
     <<: *logging
@@ -44,6 +47,9 @@ services:
       - 9000:9000/tcp
       - 9000:9000/udp
       - ${BEACON_API_IP}:5052:5052
+    networks:
+      default:
+      stereum-admin:
     env_file: ./config/lighthouse/beacon.env
     entrypoint: /opt/app/start/beacon.sh
     restart: unless-stopped
@@ -111,5 +117,10 @@ services:
     user: "2000"
     hostname: node-exporter
     <<: *logging  
+
+networks:
+  stereum-admin:
+    internal: true
+  default:
 
 # EOF
