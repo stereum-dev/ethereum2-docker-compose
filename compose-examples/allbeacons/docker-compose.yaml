@@ -36,6 +36,9 @@ services:
       - 30303:30303/tcp
       - 30303:30303/udp
       - ${BEACON_API_IP}:8545:8545
+    networks:
+      default:
+      stereum-admin:
     volumes:
       - ./data/geth:/root/.ethereum
     <<: *limit-node
@@ -57,6 +60,9 @@ services:
       - ${BEACON_API_IP}:8910:5054
       - 9000:9000/tcp
       - 9000:9000/udp
+    networks:
+      default:
+      stereum-admin:
     <<: *limit-node
     <<: *logging
 
@@ -74,6 +80,9 @@ services:
       - 9010:9000/udp
       - ${BEACON_API_IP}:9596:9596
       - ${BEACON_API_IP}:8008:8008
+    networks:
+      default:
+      stereum-admin:
     volumes:
       - ./data/lodestar/beacon:/opt/app/beacon
     <<: *limit-node
@@ -101,6 +110,9 @@ services:
       - ${BEACON_API_IP}:9190:9190 # rpc
       - 9020:9000/tcp
       - 9020:9000/udp
+    networks:
+      default:
+      stereum-admin:
     volumes:
       - ./data/nimbus/beacon:/opt/app/beacon
       - ./data/nimbus/validator/validators:/opt/app/validators
@@ -121,6 +133,9 @@ services:
       - ${BEACON_API_IP}:8900:8080
       - 13000:13000/tcp
       - 12000:12000/udp
+    networks:
+      default:
+      stereum-admin:
     <<: *limit-node
     <<: *logging
 
@@ -139,8 +154,15 @@ services:
       - ${BEACON_API_IP}:8920:8008
       - 9030:9001/tcp
       - 9030:9001/udp
+    networks:
+      default:
+      stereum-admin:
     <<: *limit-node
     <<: *logging
 
+networks:
+  stereum-admin:
+    internal: true
+  default:
 
 # EOF

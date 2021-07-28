@@ -45,6 +45,7 @@ services:
       default:
         aliases:
           - prysm_beacon_slasher
+      stereum-admin:
     volumes:
       - ./config/prysm/slasher/beacon.yaml:/config/beacon.yaml:ro
       - ./data/prysm/beacon-slasher:/data
@@ -125,4 +126,10 @@ services:
     user: "2000"
     hostname: node-exporter
     <<: *logging
+
+networks:
+  stereum-admin:
+    internal: true
+  default:
+
 # EOF

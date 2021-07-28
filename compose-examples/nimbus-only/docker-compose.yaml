@@ -29,6 +29,9 @@ services:
       - 30303:30303/tcp
       - 30303:30303/udp
       - ${BEACON_API_IP}:8545:8545
+    networks:
+      default:
+      stereum-admin:
     volumes:
       - ./data/geth:/root/.ethereum
     <<: *logging
@@ -58,6 +61,9 @@ services:
       - ${BEACON_API_IP}:9190:9190 # rpc
       - 9000:9000/tcp
       - 9000:9000/udp
+    networks:
+      default:
+      stereum-admin:
     volumes:
       - ./data/nimbus/beacon:/opt/app/beacon
       - ./data/nimbus/validator/validators:/opt/app/validators
@@ -113,6 +119,11 @@ services:
     image: prom/node-exporter:${PROMETHEUS_NODE_EXPORTER_DOCKER_TAG}
     user: "2000"
     hostname: node-exporter
-    <<: *logging  
+    <<: *logging
+
+networks:
+  stereum-admin:
+    internal: true
+  default:
 
 # EOF
