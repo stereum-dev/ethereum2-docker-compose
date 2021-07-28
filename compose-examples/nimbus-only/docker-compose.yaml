@@ -56,6 +56,8 @@ services:
       - --metrics
       - --metrics-port=8008
       - --metrics-address=0.0.0.0
+      - --rest
+      - --rest-address=0.0.0.0
       - --graffiti="stereum.net"
     ports:
       - ${BEACON_API_IP}:9190:9190 # rpc
