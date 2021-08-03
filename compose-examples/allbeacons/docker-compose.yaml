@@ -69,12 +69,11 @@ services:
   lodestar_beacon:
     image: stereum/lodestar:${LODESTAR_DOCKER_TAG}
     restart: always
-    hostname: beacon-chain
     user: "2000"
     depends_on:
       - geth
       - stereum-init
-    command: beacon --paramsFile /opt/app/beacon.yaml
+      command: beacon --configFile /opt/app/beacon.json --paramsFile /opt/app/beacon.yaml --network pyrmont --rootDir /opt/app/beacon
     ports:
       - 30607:30607/tcp
       - 9010:9000/udp
@@ -84,6 +83,8 @@ services:
       default:
       stereum-admin:
     volumes:
+      - ./config/lodestar/beacon.yaml:/opt/app/beacon.yaml:ro
+      - ./config/lodestar/beacon.json:/opt/app/beacon.json:ro
       - ./data/lodestar/beacon:/opt/app/beacon
     <<: *limit-node
     <<: *logging
@@ -91,7 +92,6 @@ services:
   nimbus_beacon:
     image: stereum/nimbus:${NIMBUS_DOCKER_TAG}
     restart: unless-stopped
-    hostname: beacon-chain
     depends_on:
       - stereum-init
       - geth
