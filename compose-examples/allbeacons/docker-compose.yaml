@@ -73,7 +73,7 @@ services:
     depends_on:
       - geth
       - stereum-init
-      command: beacon --configFile /opt/app/beacon.json --paramsFile /opt/app/beacon.yaml --network prater --rootDir /opt/app/beacon
+    command: beacon --configFile /opt/app/beacon.json --paramsFile /opt/app/beacon.yaml --network prater --rootDir /opt/app/beacon
     ports:
       - 30607:30607/tcp
       - 9010:9000/udp
