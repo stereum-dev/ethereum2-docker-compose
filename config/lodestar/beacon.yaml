@@ -1,11 +1,2 @@
-network: prater
-eth1.providerUrl: http://geth:8545
-rootDir: /opt/app/beacon
-metrics.enabled: true
-metrics.serverPort: 8008
-metrics.listenAddr: 0.0.0.0
-api.rest.enabled: true
-api.rest.port: 9596
-api.rest.host: 0.0.0.0
 
 #EOF
