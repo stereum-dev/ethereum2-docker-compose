@@ -1,0 +1,17 @@
+{
+    "eth1": {
+        "providerUrl": "http://geth:8545"
+    },
+    "metrics": {
+        "enabled": true,
+        "serverPort": 8008,
+        "listenAddr": "0.0.0.0"
+    },
+    "api": {
+        "rest": {
+        "enabled": true,
+        "port": 9596,
+        "host": "0.0.0.0"
+        }
+    }
+}
