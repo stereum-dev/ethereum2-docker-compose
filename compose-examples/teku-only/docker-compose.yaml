@@ -45,6 +45,8 @@ services:
       - stereum-init
       - geth
     command: --config-file=/config/beacon.yaml
+    environment:
+      - "JAVA_OPTS=-Xmx3g"
     ports:
       - 9001:9001
       - ${BEACON_API_IP}:5051:5051
