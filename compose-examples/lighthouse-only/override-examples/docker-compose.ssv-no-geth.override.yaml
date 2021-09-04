@@ -20,7 +20,8 @@ services:
   ssv:
     image: bloxstaking/ssv-node:${BLOX_SSV_TAG}
     restart: unless-stopped
-    user: "2000"
+    depends_on:
+      - stereum-init
     volumes:
       - ./config/lighthouse/blox-ssv.yaml:/config.yaml:ro
       - ./data/blox/ssv:/data
@@ -30,6 +31,6 @@ services:
     networks:
       default:
     environment: 
-      CONFIG_PATH: ./config.yaml
-    command: make BUILD_PATH=/go/bin/ssvnode start-node && docker logs ssv_node --follow
+      CONFIG_PATH: /config.yaml
+    command: make BUILD_PATH=/go/bin/ssvnode start-node && docker logs ssv_node
     <<: *logging
