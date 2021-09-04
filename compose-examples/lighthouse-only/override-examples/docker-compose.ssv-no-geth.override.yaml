@@ -1,0 +1,35 @@
+version: "3.7"
+
+x-disabled-service:
+  &disabled-service
+    image: tianon/true
+    restart: "no"
+    command: ""
+    entrypoint: ""
+
+x-logging: &logging
+  logging:
+    driver: "json-file"
+    options:
+      max-file: "10"
+      max-size: "100m"
+
+services:
+  geth:
+    <<: *disabled-service
+  ssv:
+    image: bloxstaking/ssv-node:${BLOX_SSV_TAG}
+    restart: unless-stopped
+    user: "2000"
+    volumes:
+      - ./config/lighthouse/blox-ssv.yaml:/config.yaml:ro
+      - ./data/blox/ssv:/data
+    ports:
+      - 13000:13000
+      - 12000:12000
+    networks:
+      default:
+    environment: 
+      CONFIG_PATH: ./config.yaml
+    command: make BUILD_PATH=/go/bin/ssvnode start-node && docker logs ssv_node --follow
+    <<: *logging
