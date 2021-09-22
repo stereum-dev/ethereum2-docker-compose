@@ -1,3 +1,3 @@
 #!/bin/sh
 
-docker-compose --compatibility up -d $*
+docker-compose --compatibility up -d "$@"
