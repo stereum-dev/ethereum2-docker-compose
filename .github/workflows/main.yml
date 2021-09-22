@@ -16,5 +16,5 @@ jobs:
     - uses: actions/checkout@v2
     - name: Run ShellCheck
       uses: ludeeus/action-shellcheck@master
-      with:
-        ignore: teku_validator_exit.sh prysm_validator_exit.sh prysm_validator_import.sh lodestar_validator_import.sh lighthouse_validator_import.sh nimbus_validator_exit.sh prysm_validator_delete.sh lodestar_validator_exit.sh nimbus_validator_import.sh
+      env:
+        SHELLCHECK_OPTS: -e SC1071
