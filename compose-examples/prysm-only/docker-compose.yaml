@@ -41,14 +41,9 @@ services:
       - ${BEACON_API_IP}:4000:4000
       - 13000:13000/tcp
       - 12000:12000/udp
-    networks:
-      default:
-        aliases:
-          - prysm_beacon_slasher
-      stereum-admin:
     volumes:
-      - ./config/prysm/slasher/beacon.yaml:/config/beacon.yaml:ro
-      - ./data/prysm/beacon-slasher:/data
+      - ./config/prysm/beacon.yaml:/config/beacon.yaml:ro
+      - ./data/prysm/beacon:/data
     <<: *logging
 
   validator:
@@ -63,18 +58,6 @@ services:
     volumes:
       - ./config/prysm/validator.yaml:/config/validator.yaml:ro
       - ./data/prysm/validator:/data
-    <<: *logging
-
-  slasher:
-    image: gcr.io/prysmaticlabs/prysm/slasher:${PRYSM_SLASHER_DOCKER_TAG}
-    restart: always
-    hostname: slasher
-    depends_on:
-      - beacon
-    command: --config-file=/config/slasher.yaml
-    volumes:
-      - ./config/prysm/slasher/slasher.yaml:/config/slasher.yaml:ro
-      - ./data/prysm/slasher:/data
     <<: *logging
 
   prometheus:
