@@ -21,14 +21,6 @@ services:
     <<: *limit-node
   prysm_beacon:
     <<: *limit-node
-  prysm_beacon_slasher:
-    <<: *limit-node
-  prysm_slasher:
-    deploy:
-      resources:
-        limits:
-          cpus: "2"
-          memory: "4G"
   lighthouse_beacon:
     <<: *limit-node
   teku_beacon:

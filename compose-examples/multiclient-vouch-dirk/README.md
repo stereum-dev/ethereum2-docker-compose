@@ -15,11 +15,6 @@
 * [Lighthouse](https://github.com/sigp/lighthouse) beacon node (including slasher)
 * [Teku](https://github.com/ConsenSys/teku) beacon node
 
-
-* Additional [Prysm](https://github.com/prysmaticlabs/prysm) beacon node (for slasher)
-* [Prysm](https://github.com/prysmaticlabs/prysm) slasher
-
-
 * [Vouch](https://github.com/attestantio/vouch)
 * [Dirk](https://github.com/attestantio/dirk)
 
