@@ -43,7 +43,7 @@ services:
     depends_on:
       - geth
       - stereum-init
-    command: beacon --configFile /opt/app/beacon.json --paramsFile /opt/app/beacon.yaml --network pyrmont --rootDir /opt/app/beacon
+    command: beacon --rcConfig /opt/app/beacon.yaml
     ports:
       - 30607:30607/tcp
       - 9000:9000/udp
@@ -54,7 +54,6 @@ services:
       stereum-admin:
     volumes:
       - ./config/lodestar/beacon.yaml:/opt/app/beacon.yaml:ro
-      - ./config/lodestar/beacon.json:/opt/app/beacon.json:ro
       - ./data/lodestar/beacon:/opt/app/beacon
     <<: *logging
 
@@ -66,7 +65,7 @@ services:
     depends_on:
       - beacon
       - stereum-init
-    command: validator --paramsFile /opt/app/validator.yaml
+    command: validator --rcConfig /opt/app/validator.yaml
     volumes:
       - ./config/lodestar/validator.yaml:/opt/app/validator.yaml:ro
       - ./data/lodestar/validator/keystores:/opt/app/keystores
