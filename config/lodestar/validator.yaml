@@ -1,9 +1,30 @@
+########################################
+##
+## Read up on parameters on
+## https://chainsafe.github.io/lodestar/
+##
+########################################
+ 
+#########
+# Network
 network: mainnet
+
+##########
+# Database
+rootDir: /opt/app/beacon
+
+##############
+# Connectivity
 server: http://beacon:9596
+
+###############################################
+# Validator database, accounts & key management
+validatorsDbDir: /opt/app/validator-db
 keystoresDir: /opt/app/keystores
 secretsDir: /opt/app/secrets
-validatorsDbDir: /opt/app/validator-db
-rootDir: /opt/app/beacon
+
+##########
+# Graffiti
 graffiti: stereum.net
 
 #EOF
