@@ -23,37 +23,37 @@ In case you want to run only beacon & validator (geth, slasher, prometheus, graf
 Configuration files are located in the folder `./config`. To gain a better connectivity for your beacon node you should specifiy your public ip and/or your dns name in `./config/prysm/slasher/beacon.yaml`. Follow the guide [Improve Peer-to-Peer Connectivity](https://docs.prylabs.network/docs/prysm-usage/p2p-host-ip/).
 
 ## Validator accounts with launchpad
-Please complete the steps on [launchpad](https://pyrmont.launchpad.ethereum.org/) and store the generated files of `~/eth2.0-deposit-cli/validator_keys` in `./launchpad`. The necessary directories need to be created. Please create the directories `./data/prysm/validator/wallets` and put your wallet password in `./data/prysm/validator/passwords/wallet-password`.
+Please complete the steps on [launchpad](https://pyrmont.launchpad.ethereum.org/) 
 
 1. Generate your validator(s) using [launchpad](https://pyrmont.launchpad.ethereum.org/) and complete the process
 2. Copy your generated validator(s) from `~/eth2.0-deposit-cli/validator_keys` to `./launchpad`
-3. Run `docker-compose -f create-account.yaml run validator-import-launchpad` and use the **same password** as in the generation of the validator(s)
+3. Put your wallet password in `./data/prysm/validator/passwords/wallet-password`
+4. Run `./prysm_validator_import.sh <ValidatorPassword>` Put your validator password instead `<ValidatorPassword>`
+5. Run `docker-compose stop validator` then `docker-compose up -d validator` to restart validator service
 
-Repeat these steps as often as you like, restart your validator to make it notice your new accounts!
+For instance: `./prysm_validator_exit.sh MyPassword` 
+
+The "Expect" needs to be installed to execute `prysm_validator_import.sh`. Run `apt-get install expect` to install expect on Ubuntu
 
 ## Validator accounts voluntary exit
 
-1. Copy `exit-account.yaml` to the project's root directory (this directory)
-2. Run `./prysm_validator_exit.sh public-key-of-your-validator`
+The Beacon node needs to be fully synced to implement voluntary exit of validator!
+
+1. Run `./prysm_validator_exit.sh <ValidatorPublicKey>` Put your validator public key instead `<ValidatorPublicKey>`
+2. Run `docker-compose stop validator` then `docker-compose up -d validator` to restart validator service
 
 For instance: `./prysm_validator_exit.sh 0xabcde12345...`
 
-The "Expect" needs to be installed to execute `prysm_validator_exit.sh`. Run `apt-get install expect` to install expect
+The "Expect" needs to be installed to execute `prysm_validator_exit.sh`. Run `apt-get install expect` to install expect on Ubuntu
 
 ## Validator accounts delete 
 
-1. Copy `delete-account.yaml` to the project's root directory (this directory)
-2. Run `./prysm_validator_delete.sh public-key-of-your-validator`
-3. Run `docker-compose stop validator` then `docker-compose up -d validator` to restart validator service
+1. Run `./prysm_validator_delete.sh <ValidatorPublicKey>` Put your validator public key instead `<ValidatorPublicKey>`
+2. Run `docker-compose stop validator` then `docker-compose up -d validator` to restart validator service
 
 For instance: `./prysm_validator_delete.sh 0xabcde12345...`
 
-The "Expect" needs to be installed to execute `prysm_validator_delete.sh`. Run `apt-get install expect` to install expect
-
-## Validator accounts list
-
-1. Copy `list-account.yaml` to the project's root directory (this directory)
-2. Run `docker-compose -f list-account.yaml run validator-list-accounts`
+The "Expect" needs to be installed to execute `prysm_validator_delete.sh`. Run `apt-get install expect` to install expect on Ubuntu
 
 
 ## Run your Prysm Ethereum 2.0 staking node
