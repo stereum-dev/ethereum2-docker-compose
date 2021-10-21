@@ -1,0 +1,12 @@
+eth2:
+  Network: "prater"
+  BeaconNodeAddr: "http://beacon:5052"
+eth1:
+  ETH1Addr: ""
+  RegistryContractAddr: "0x687fb596F3892904F879118e2113e1EEe8746C2E"
+OperatorPrivateKey: ""
+global:
+  LogLevel: "debug"
+MetricsAPIPort: 15000
+
+# EOF

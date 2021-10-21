@@ -8,7 +8,6 @@
 * [geth](https://github.com/ethereum/go-ethereum)
 * beacon
 * validator
-* slasher
 * prometheus
 * grafana
 
@@ -20,12 +19,13 @@ In case you want to run only beacon & validator (geth, slasher, prometheus, graf
 ## (optional) Configure your node
 
 ### Public ip & other Prysm parameters/arguments
-Configuration files are located in the folder `./config`. To gain a better connectivity for your beacon node you should specifiy your public ip and/or your dns name in `./config/prysm/slasher/beacon.yaml`. Follow the guide [Improve Peer-to-Peer Connectivity](https://docs.prylabs.network/docs/prysm-usage/p2p-host-ip/).
+Configuration files are located in the folder `./config`. To gain a better connectivity for your beacon node you should specifiy your public ip and/or your dns name in `./config/prysm/beacon.yaml`. Follow the guide [Improve Peer-to-Peer Connectivity](https://docs.prylabs.network/docs/prysm-usage/p2p-host-ip/).
 
 ## Validator accounts with launchpad
+
 Please complete the steps on [launchpad](https://pyrmont.launchpad.ethereum.org/) 
 
-1. Generate your validator(s) using [launchpad](https://pyrmont.launchpad.ethereum.org/) and complete the process
+1. Generate your validator(s) using [launchpad](https://prater.launchpad.ethereum.org/) and complete the process
 2. Copy your generated validator(s) from `~/eth2.0-deposit-cli/validator_keys` to `./launchpad`
 3. Put your wallet password in `./data/prysm/validator/passwords/wallet-password`
 4. Run `./prysm_validator_import.sh <ValidatorPassword>` Put your validator password instead `<ValidatorPassword>`
@@ -113,4 +113,4 @@ Make sure the OS' clock is synced. For Windows 10 and its subsystem linux might 
 Ask google on how to get your OS' time synced again.
 
 ### I want to use a specific Ethereum 1 node!
-Edit the line with `http-web3provider` in [./config/prysm/slasher/beacon.yaml](/config/prysm/slasher/beacon.yaml) and set your Ethereum 1 node URL, e. g. use it with [Infura.io](https://infura.io/) and make it look like this: `http-web3provider: "https://goerli.infura.io:443/v3/put-your-infura-id-here"` (make sure to use `""` for the url).
+Edit the line with `http-web3provider` in [./config/prysm/beacon.yaml](/config/prysm/beacon.yaml) and set your Ethereum 1 node URL, e. g. use it with [Infura.io](https://infura.io/) and make it look like this: `http-web3provider: "https://goerli.infura.io:443/v3/put-your-infura-id-here"` (make sure to use `""` for the url).
