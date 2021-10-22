@@ -3,6 +3,6 @@ services:
   exit-validator:
     container_name: validator-import-launchpad
     image: gcr.io/prysmaticlabs/prysm/validator:${PRYSM_DOCKER_TAG}
-    command: accounts voluntary-exit --wallet-dir="/data/wallets" --wallet-password-file="/data/passwords/wallet-password" --public-keys=${PUBKEY} --accept-terms-of-use="true" --beacon-rpc-provider="beacon:4000" --pyrmont
+    command: accounts voluntary-exit --wallet-dir="/data/wallets" --wallet-password-file="/data/passwords/wallet-password" --public-keys=${PUBKEY} --accept-terms-of-use="true" --beacon-rpc-provider="beacon:4000" --prater
     volumes:
       - ./data/prysm/validator:/data

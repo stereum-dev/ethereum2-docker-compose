@@ -17,6 +17,7 @@ services:
       - ./data/sigmaprime/slasher:/mnt/slasher
       - ./wallets:/mnt/wallets
       - ./data/prometheus:/mnt/prometheus
+      - ./data/blox/ssv:/mnt/ssv
     <<: *logging
 
   geth:
