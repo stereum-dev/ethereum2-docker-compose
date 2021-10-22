@@ -7,7 +7,7 @@ if {[ llength $validator_password ] == 0 } {
    exit
 }
 
-spawn sudo docker exec -it stereum_validator_1 /app/cmd/validator/validator accounts import --keys-dir="/launchpad" --wallet-dir="/data/wallets" --wallet-password-file="/data/passwords/wallet-password" --accept-terms-of-use
+spawn sh -c { sudo docker exec -it stereum_validator_1 /app/cmd/validator/validator accounts import --keys-dir="/launchpad" --wallet-dir="/data/wallets" --wallet-password-file="/data/passwords/wallet-password" --accept-terms-of-use --mainnet }
 
 expect {
     "Enter the password for your imported accounts" {
