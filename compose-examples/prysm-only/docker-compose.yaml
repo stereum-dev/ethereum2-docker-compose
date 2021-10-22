@@ -59,6 +59,7 @@ services:
     volumes:
       - ./config/prysm/validator.yaml:/config/validator.yaml:ro
       - ./data/prysm/validator:/data
+      - ./launchpad:/launchpad  
     <<: *logging
 
   prometheus:
