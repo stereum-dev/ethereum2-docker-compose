@@ -7,7 +7,7 @@ if {[ llength $validator_password ] == 0 } {
    exit
 }
 
-spawn docker-compose -f create-account.yaml run validator-import-launchpad
+spawn sh -c { sudo docker exec -it stereum_beacon_1 /opt/app/build/nimbus_beacon_node deposits import "/opt/app/validator_keys" --data-dir="/opt/app/validator" --network="mainnet" }
 
 expect {
     "Please enter the password for decrypting" {

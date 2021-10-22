@@ -2,7 +2,7 @@
 
 set validator_pubkey [lindex $argv 0];
 
-spawn sudo PUBKEY="$validator_pubkey" docker-compose -f exit-account.yaml run exit-validator
+spawn sudo docker exec -it stereum_beacon_1 /opt/app/build/nimbus_beacon_node deposits exit --validator=$validator_pubkey --rpc-url=http://beacon:9190 --data-dir=/opt/app/validator --network=mainnet
 
 expect "Your choice*\r"
 
