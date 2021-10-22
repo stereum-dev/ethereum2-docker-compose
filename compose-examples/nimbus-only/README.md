@@ -27,18 +27,22 @@ In `docker-compose.yaml` you can add a new line to `command: ` under the beacon 
 Replace `1.2.3.4` with your public ip address.
 
 ## Validator accounts with launchpad
-Please complete the steps on [launchpad](https://prater.launchpad.ethereum.org/) and store the generated files of `~/eth2.0-deposit-cli/validator_keys` in `./launchpad`. 
+Please complete the steps on [launchpad](https://prater.launchpad.ethereum.org/)
 
 1. Generate your validator(s) using [launchpad](https://prater.launchpad.ethereum.org/) and complete the process
 2. Copy your generated validator(s) from `~/eth2.0-deposit-cli/validator_keys` to `./launchpad`
-3. Run `docker-compose -f create-account.yaml run validator-import-launchpad` and use the **same password** as in the generation of the validator(s)
+3. Run `./nimbus_validator_import.sh <ValidatorPassword>` Put your validator password instead `<ValidatorPassword>`
+4. Run `docker-compose stop validator` then `docker-compose up -d validator` to restart validator service
 
-Repeat these steps as often as you like, restart your validator to make it notice your new accounts!
+For instance: `./prysm_validator_exit.sh MyPassword`
+
+The "Expect" needs to be installed to execute `nimbus_validator_import.sh`. Run `apt-get install expect` to install expect on Ubuntu
 
 ## Validator accounts voluntary exit
+The Beacon node needs to be fully synced to implement voluntary exit of validator!
 
-1. Copy `exit-account.yaml` to the project's root directory (this directory)
-2. Run `./nimbus_validator_exit.sh public-key-of-your-validator`
+1. Run `./nimbus_validator_exit.sh <ValidatorPublicKey>` Put your validator public key instead `<ValidatorPublicKey>`
+2. Run `docker-compose stop validator` then `docker-compose up -d validator` to restart validator service
 
 For instance: `./nimbus_validator_exit.sh 0xabcde12345...`
 
