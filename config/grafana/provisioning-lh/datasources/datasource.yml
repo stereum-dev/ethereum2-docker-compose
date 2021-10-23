@@ -48,3 +48,25 @@ datasources:
   version: 1
   # <bool> allow users to edit datasources from the UI.
   editable: true
+
+notifiers:
+  - name: stereum-notifier
+    type: webhook
+    uid: stereum-notifier
+    # or
+    is_default: true
+    send_reminder: false
+    frequency: 1h
+    disable_resolve_message: false
+    # See `Supported Settings` section for settings supported for each
+    # alert notification type.
+    settings:
+      url	: 'http://notificationhub:3000/api/webhooks/grafana'
+      httpMethod: POST
+      uploadImage: true
+
+delete_notifiers:
+  - name: stereum-notifier
+    uid: stereum-notifier
+
+# EOF
