@@ -18,6 +18,7 @@ services:
       - ./wallets:/mnt/wallets
       - ./data/prometheus:/mnt/prometheus
       - ./data/blox/ssv:/mnt/ssv
+      - ./qrcode:/mnt/qrcode
     <<: *logging
 
   geth:
