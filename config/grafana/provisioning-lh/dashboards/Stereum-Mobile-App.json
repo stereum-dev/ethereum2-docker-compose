@@ -1,0 +1,63 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": 17,
+    "links": [],
+    "panels": [
+      {
+        "datasource": null,
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 0,
+          "y": 0
+        },
+        "id": 2,
+        "options": {
+          "content": "<h3>Scan this code with your Stereum Monitor app on your phone and receive alerts on your mobile</h3>\n<div style=\"background-color: white;\"><img src=\"/public/img/qrcode/qrcode.png\"></div>",
+          "mode": "html"
+        },
+        "pluginVersion": "7.3.10",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "QR-Code for Stereum Monitor mobile app",
+        "type": "text"
+      }
+    ],
+    "schemaVersion": 26,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": []
+    },
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "Stereum-Mobile-App",
+    "uid": "KeEeJwdnk",
+    "version": 2
+  }

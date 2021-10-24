@@ -13,7 +13,7 @@ services:
     user: "2000"
     depends_on:
       - stereum-init
-    command: account validator import --network pyrmont --directory /opt/app/validator_keys --keystoresDir /opt/app/keystores --secretsDir /opt/app/secrets
+    command: account validator import --network prater --directory /opt/app/validator_keys --keystoresDir /opt/app/keystores --secretsDir /opt/app/secrets
     volumes:
       - ./launchpad:/opt/app/validator_keys
       - ./data/lodestar/validator/keystores:/opt/app/keystores

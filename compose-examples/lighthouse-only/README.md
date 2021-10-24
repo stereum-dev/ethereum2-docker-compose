@@ -16,6 +16,7 @@
 ## Configure your node
 
 ## Validator accounts with launchpad
+
 Please complete the steps on [launchpad](https://prater.launchpad.ethereum.org/)
 
 1. Generate your validator(s) using [launchpad](https://prater.launchpad.ethereum.org/) and complete the process

@@ -12,11 +12,6 @@ services:
     <<: *disabled-service
   geth:
     <<: *disabled-service
-  beacon:
-    volumes:
-      - ./config/prysm/beacon-no-geth.yaml:/config/beacon.yaml:ro
-  slasher:
-    <<: *disabled-service
   prometheus:
     <<: *disabled-service
   grafana:

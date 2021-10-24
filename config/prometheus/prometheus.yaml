@@ -18,12 +18,6 @@ scrape_configs:
   - job_name: 'prysm'
     static_configs:
       - targets: ['prysm_beacon:8080']
-  - job_name: 'prysm_beacon_slasher'
-    static_configs:
-      - targets: ['prysm_beacon_slasher:8080']
-  - job_name: 'prysm_slasher'
-    static_configs:
-      - targets: ['prysm_slasher:8680']
   - job_name: 'lighthouse'
     static_configs:
       - targets: ['lighthouse_beacon:5054']

@@ -3,7 +3,7 @@ services:
   validator-import-launchpad:
     container_name: validator-import-launchpad
     image: gcr.io/prysmaticlabs/prysm/validator:${PRYSM_DOCKER_TAG}
-    command: accounts import --keys-dir="/launchpad" --wallet-dir="/data/wallets" --wallet-password-file="/data/passwords/wallet-password" --accept-terms-of-use --pyrmont
+    command: accounts import --keys-dir="/launchpad" --wallet-dir="/data/wallets" --wallet-password-file="/data/passwords/wallet-password" --accept-terms-of-use --prater
     volumes:
       - ./data/prysm/validator:/data
       - ./launchpad:/launchpad

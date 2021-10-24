@@ -1,0 +1,36 @@
+version: "3.7"
+
+x-logging: &logging
+  logging:
+    driver: "json-file"
+    options:
+      max-file: "10"
+      max-size: "100m"
+
+x-disabled-service:
+  &disabled-service
+    image: tianon/true
+    restart: "no"
+    command: ""
+    entrypoint: ""
+
+services:
+  geth:
+    <<: *disabled-service
+  notificationhub:
+    image: stereum/notifications:${NOTIFICATIONS_DOCKER_TAG}
+    container_name: notificationhub
+    user: "2000"
+    environment:
+      - STEREUM_SERVER_URL=https://notifications.stereum.cloud
+      - PORT=3000
+      - QRCODE_FILENAME=/opt/app/qrcode/qrcode.png
+      - STEREUM_APIKEY=4cTLZL8gcZ5knP49murPh2qaZSchryfHraHQHFDPuuA8jqJLrSdr7Bd4s4TSSVBW
+      - KEY_FILENAME=/opt/app/qrcode/keys.json
+    volumes:
+    - ./qrcode:/opt/app/qrcode
+    networks:
+      default:
+    <<: *logging
+
+# EOF
