@@ -63,6 +63,7 @@ services:
       - beacon
     volumes:
       - ./wallets:/opt/app/validator
+      - ./launchpad:/opt/app/launchpad  
     env_file: ./config/lighthouse/validator.env
     entrypoint: /opt/app/start/validator.sh
     restart: on-failure
