@@ -7,7 +7,11 @@ if {[ llength $validator_password ] == 0 } {
    exit
 }
 
-spawn docker-compose -f create-account.yaml run validator-import-launchpad
+spawn sh -c {  sudo docker run --rm -it \
+                -v "$(pwd)/wallets:/opt/app/validator" \
+                -v "$(pwd)/launchpad:/opt/app/launchpad" \
+                --entrypoint "/opt/app/start/import-launchpad-wallet.sh" validator_image
+            }
 
 expect {
     "Enter the keystore password" {
