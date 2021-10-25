@@ -16,20 +16,18 @@
 ## Configure your node
 
 ## Validator accounts with launchpad
-Please complete the steps on [launchpad](https://launchpad.ethereum.org/) and store the generated files of `~/eth2.0-deposit-cli/validator_keys` in `./launchpad`.
+
+Please complete the steps on [launchpad](https://launchpad.ethereum.org/)
 
 1. Generate your validator(s) using [launchpad](https://launchpad.ethereum.org/) and complete the process
 2. Copy your generated validator(s) from `~/eth2.0-deposit-cli/validator_keys` to `./launchpad`
-3. Run `docker-compose -f create-account.yaml run validator-import-launchpad` and use the **same password** as in the generation of the validator(s)
+3. Run `docker-compose stop validator` to stop validator service
+4. Run `./lighthouse_validator_import.sh <ValidatorPassword>` Put your validator password instead `<ValidatorPassword>`
+5. Run `docker-compose up -d validator` to start validator service
 
-Repeat these steps as often as you like, restart your validator to make it notice your new accounts!
+For instance: `./lighthouse_validator_import.sh MyPassword`
 
-## Validator accounts voluntary exit
-
-1. Copy `exit-account.yaml` to the project's root directory (this directory)
-2. Run `docker-compose -f exit-account.yaml run -e LAUNCHPADDIR='/opt/app/launchpad/keystore-m_12381...json' exit-validator` and use the **same password** as in the generation of the validator(s)
-
-For instance: `docker-compose -f exit-account.yaml run -e LAUNCHPADDIR='/opt/app/launchpad/keystore-m_12381_3600_0_0_0-123456789.json' exit-validator`
+The "Expect" needs to be installed to execute `lighthouse_validator_import.sh`. Run `apt-get install expect` to install expect on Ubuntu
 
 ## Run your Lighthouse Ethereum 2.0 staking node
 
