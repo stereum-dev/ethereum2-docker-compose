@@ -22,7 +22,7 @@ submitter:
   style: all
   # beacon-node-addresses is the list of addresses to which submit.  Submissions run in parallel
   beacon-node-addresses:
-    - prysm_beacon:4000
+#    - prysm_beacon:4000
     - teku_beacon:5051
     - lighthouse_beacon:5052
 
@@ -33,7 +33,7 @@ strategies:
     style: best
     # beacon-node-addresses are the addresses of beacon nodes to use for this strategy.
     beacon-node-addresses:
-      - prysm_beacon:4000
+#      - prysm_beacon:4000
       - teku_beacon:5051
       - lighthouse_beacon:5052
   # The attestationdata strategy obtains attestation data from multiple sources.
@@ -42,7 +42,7 @@ strategies:
     style: best
     # beacon-node-addresses are the addresses of beacon nodes to use for this strategy.
     beacon-node-addresses:
-      - prysm_beacon:4000
+#      - prysm_beacon:4000
       - teku_beacon:5051
       - lighthouse_beacon:5052
 
