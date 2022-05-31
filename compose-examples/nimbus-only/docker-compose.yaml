@@ -68,8 +68,9 @@ services:
       stereum-admin:
     volumes:
       - ./data/nimbus/beacon:/opt/app/beacon
-      - ./data/nimbus/validator/validators:/opt/app/validators
+      - ./data/nimbus/validator:/opt/app/validators
       - ./data/nimbus/validator/secrets:/opt/app/secrets
+      - ./launchpad:/opt/app/validator_keys
     <<: *logging
 
   prometheus:
