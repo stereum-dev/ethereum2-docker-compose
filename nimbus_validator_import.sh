@@ -7,7 +7,7 @@ if {[ llength $validator_password ] == 0 } {
    exit
 }
 
-spawn sh -c { sudo docker exec -it stereum_beacon_1 /opt/app/build/nimbus_beacon_node deposits import "/opt/app/validator_keys" --data-dir="/opt/app/validator" --network="prater" }
+spawn sh -c { sudo docker exec -it stereum_beacon_1 /opt/app/build/nimbus_beacon_node deposits import "/opt/app/validator_keys" --data-dir="/opt/app/validators" --network="prater" }
 
 expect {
     "Please enter the password for decrypting" {
