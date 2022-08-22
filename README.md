@@ -41,3 +41,8 @@ Most linux distributions (including Ubuntu) don't serve recent docker-compose ve
 
 ## Support us!
 This software is provided under MIT license and therefore freely usable without restrictions. Dontations are welcome at [gitcoin.co](https://gitcoin.co/grants/1855/stereumnet) to make use of quadratic funding and make your contribution count even more! With your donation you help us build new features and keep our servers for testnet running. Thank you for every contribution!
+
+
+### Infrastructure model
+
+![Infrastructure model](.infragenie/infrastructure_model.png)
