@@ -11,7 +11,7 @@ datadir: /data
 
 #######################
 # Connectivity settings 
-p2p-host-ip: ""
+p2p-host-ip: "54.187.225.226"
 p2p-host-dns: ""
 
 rpc-host: 0.0.0.0
