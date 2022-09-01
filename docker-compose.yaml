@@ -95,6 +95,8 @@ services:
       - renderer
     ports:
       - ${BEACON_API_IP}:3000:3000
+    env_file:
+      - config/secret.env
     volumes:
       - ./config/grafana/provisioning-p:/etc/grafana/provisioning
       # - ./data/grafana:/var/lib/grafana
