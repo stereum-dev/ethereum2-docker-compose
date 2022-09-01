@@ -16,8 +16,10 @@ services:
     image: stereum/init:buster
     restart: "no"
     volumes:
-      - ./data/grafana:/mnt/grafana
-      - ./data/prometheus:/mnt/prometheus
+      # - ./data/grafana:/mnt/grafana
+      - /data/grafana:/mnt/grafana
+      # - ./data/prometheus:/mnt/prometheus
+      - /data/prometheus:/mnt/prometheus
     <<: *logging
 
   geth:
@@ -31,7 +33,8 @@ services:
       - 30303:30303/udp
       - ${BEACON_API_IP}:8545:8545
     volumes:
-      - ./data/geth:/root/.ethereum
+      # - ./data/geth:/root/.ethereum
+      - /data/geth:/root/.ethereum
     <<: *logging
 
   beacon:
@@ -62,7 +65,8 @@ services:
       - ${BEACON_API_IP}:7500:7500/tcp # web-ui
     volumes:
       - ./config/prysm/validator.yaml:/config/validator.yaml:ro
-      - ./data/prysm/validator:/data
+      # - ./data/prysm/validator:/data
+      - /data/prysm/validator:/data
       - ./launchpad:/launchpad  
     <<: *logging
 
@@ -76,7 +80,8 @@ services:
       - ${BEACON_API_IP}:9090:9090
     volumes:
       - ./config/prometheus/prometheus-p.yaml:/etc/prometheus/prometheus.yml
-      - ./data/prometheus:/prometheus
+      # - ./data/prometheus:/prometheus
+      - /data/prometheus:/prometheus
     <<: *logging
 
   grafana:
@@ -92,7 +97,8 @@ services:
       - ${BEACON_API_IP}:3000:3000
     volumes:
       - ./config/grafana/provisioning-p:/etc/grafana/provisioning
-      - ./data/grafana:/var/lib/grafana
+      # - ./data/grafana:/var/lib/grafana
+      - /data/grafana:/var/lib/grafana
       - ./config/grafana/grafana.ini:/etc/grafana/grafana.ini:ro
     environment:
       GF_RENDERING_SERVER_URL: http://renderer:8082/render
