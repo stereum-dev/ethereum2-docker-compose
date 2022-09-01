@@ -1,0 +1,123 @@
+version: "3.7"
+
+x-logging: &logging
+  logging:
+    driver: awslogs
+    options:
+      awslogs-region: us-west-2
+      awslogs-group: eth-node  
+    # driver: "json-file"
+    # options:
+    #   max-file: "10"
+    #   max-size: "100m"
+
+services:
+  stereum-init:
+    image: stereum/init:buster
+    restart: "no"
+    volumes:
+      - ./data/grafana:/mnt/grafana
+      - ./data/prometheus:/mnt/prometheus
+    <<: *logging
+
+  geth:
+    image: ethereum/client-go:${GETH_DOCKER_TAG}
+    restart: always
+    hostname: geth
+    command: --http --http.port=8545 --http.addr=0.0.0.0 --http.vhosts="*" --allow-insecure-unlock --http.api="db,eth,net,web3,personal"
+    stop_grace_period: 5m
+    ports:
+      - 30303:30303/tcp
+      - 30303:30303/udp
+      - ${BEACON_API_IP}:8545:8545
+    volumes:
+      - ./data/geth:/root/.ethereum
+    <<: *logging
+
+  beacon:
+    image: gcr.io/prysmaticlabs/prysm/beacon-chain:${PRYSM_DOCKER_TAG}
+    restart: always
+    hostname: beacon-chain
+    depends_on:
+      - geth
+    command: --config-file=/config/beacon.yaml
+    ports:
+      - ${BEACON_API_IP}:4000:4000
+      - 13000:13000/tcp
+      - 12000:12000/udp
+    volumes:
+      - ./config/prysm/beacon.yaml:/config/beacon.yaml:ro
+      # - ./data/prysm/beacon:/data
+      - /data/prysm/beacon:/data
+    <<: *logging
+
+  validator:
+    image: gcr.io/prysmaticlabs/prysm/validator:${PRYSM_DOCKER_TAG}
+    restart: on-failure
+    hostname: validator
+    depends_on:
+      - beacon
+    command: --config-file=/config/validator.yaml
+    ports:   
+      - ${BEACON_API_IP}:7500:7500/tcp # web-ui
+    volumes:
+      - ./config/prysm/validator.yaml:/config/validator.yaml:ro
+      - ./data/prysm/validator:/data
+      - ./launchpad:/launchpad  
+    <<: *logging
+
+  prometheus:
+    image: prom/prometheus:${PROMETHEUS_DOCKER_TAG}
+    user: "2000"
+    restart: on-failure
+    hostname: prometheus
+    command: --storage.tsdb.retention.time=31d --config.file=/etc/prometheus/prometheus.yml
+    ports:
+      - ${BEACON_API_IP}:9090:9090
+    volumes:
+      - ./config/prometheus/prometheus-p.yaml:/etc/prometheus/prometheus.yml
+      - ./data/prometheus:/prometheus
+    <<: *logging
+
+  grafana:
+    image: grafana/grafana:${GRAFANA_DOCKER_TAG}
+    restart: on-failure
+    hostname: grafana
+    user: "2000"
+    depends_on:
+      - stereum-init
+      - prometheus
+      - renderer
+    ports:
+      - ${BEACON_API_IP}:3000:3000
+    volumes:
+      - ./config/grafana/provisioning-p:/etc/grafana/provisioning
+      - ./data/grafana:/var/lib/grafana
+      - ./config/grafana/grafana.ini:/etc/grafana/grafana.ini:ro
+    environment:
+      GF_RENDERING_SERVER_URL: http://renderer:8082/render
+      GF_RENDERING_CALLBACK_URL: http://grafana:3000
+    <<: *logging
+
+  renderer:
+    image: grafana/grafana-image-renderer:${GRAFANA_IMAGE_RENDERER_TAG}
+    user: "2000"
+    restart: on-failure
+    hostname: renderer
+    environment:
+      ENABLE_METRICS: 'true'
+      HTTP_PORT: 8082
+    <<: *logging
+
+  node-exporter:
+    image: prom/node-exporter:${PROMETHEUS_NODE_EXPORTER_DOCKER_TAG}
+    user: "2000"
+    hostname: node-exporter
+    <<: *logging
+
+networks:
+  stereum-admin:
+    internal: true
+  default:
+
+# EOF
