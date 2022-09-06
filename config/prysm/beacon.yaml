@@ -5,7 +5,7 @@
 ##
 ############################################################
 
-accept-terms-of-use: yes
+accept-terms-of-use: true
 
 datadir: /data
 
@@ -31,11 +31,12 @@ p2p-max-peers: 100
 ##############################
 # Connection to geth container
 http-web3provider: http://geth:8545
+#http-web3provider: https://mainnet.infura.io/v3/033637cbcbf740a28d2c901f88a76bd5
 
-fallback-web3provider: []
+#fallback-web3provider: []
 
 block-batch-limit: 512
 
-mainnet: yes
+mainnet: true
 
 # EOF

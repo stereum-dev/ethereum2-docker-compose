@@ -94,7 +94,7 @@ services:
       - prometheus
       - renderer
     ports:
-      - ${BEACON_API_IP}:3000:3000
+      - 3000:3000
     env_file:
       - config/secret.env
     volumes:
